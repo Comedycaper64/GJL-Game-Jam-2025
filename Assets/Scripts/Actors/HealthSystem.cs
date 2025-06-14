@@ -42,6 +42,8 @@ public class HealthSystem : MonoBehaviour
 
         OnNewHealth?.Invoke(this, health / maxHealth);
 
+        Debug.Log(gameObject.name + "damage taken");
+
         if (health == 0f)
         {
             Die();
