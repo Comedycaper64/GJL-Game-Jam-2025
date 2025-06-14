@@ -14,8 +14,12 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         canMove = true;
-        //movementSpeed = GetComponent<ChimeraStats>().movementSpeed;
-        inputManager = GetComponent<InputManager>();
+        movementSpeed = GetComponent<PlayerStats>().movementSpeed;
+    }
+
+    private void Start()
+    {
+        inputManager = InputManager.Instance;
     }
 
     private void Update()
@@ -23,24 +27,32 @@ public class PlayerMovement : MonoBehaviour
         Vector2 movementValue = Vector2.zero;
         if (canMove)
         {
-            // movementValue = inputManager.MovementValue;
-            // transform.position +=
-            //     new Vector3(inputManager.MovementValue.x, inputManager.MovementValue.y)
-            //     * movementSpeed
-            //     * Time.deltaTime;
-            // if (inputManager.MovementValue.x < 0)
-            // {
-            //     visualTransform.eulerAngles = new Vector3(0, 180, 0);
-            // }
-            // else if (inputManager.MovementValue.x > 0)
-            // {
-            //     visualTransform.eulerAngles = new Vector3(0, 0, 0);
-            // }
+            movementValue = Move();
         }
-        bodyAnimator.SetFloat("Speed", Mathf.Abs(movementValue.x) + Mathf.Abs(movementValue.y));
+        //bodyAnimator.SetFloat("Speed", Mathf.Abs(movementValue.x) + Mathf.Abs(movementValue.y));
     }
 
-    public void ToggleMove(bool enable)
+    private Vector2 Move()
+    {
+        Vector2 movementValue = inputManager.MovementValue;
+        transform.position +=
+            new Vector3(inputManager.MovementValue.x, inputManager.MovementValue.y)
+            * movementSpeed
+            * Time.deltaTime;
+
+        if (inputManager.MovementValue.x < 0)
+        {
+            visualTransform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else if (inputManager.MovementValue.x > 0)
+        {
+            visualTransform.eulerAngles = new Vector3(0, 0, 0);
+        }
+
+        return movementValue;
+    }
+
+    public void ToggleCanMove(bool enable)
     {
         canMove = enable;
     }
