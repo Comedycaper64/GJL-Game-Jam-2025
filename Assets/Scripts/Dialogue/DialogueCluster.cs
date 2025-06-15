@@ -1,13 +1,13 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DialogueCluster", menuName = "Dialogue/Cluster", order = 0)]
-public class CinematicSO : ScriptableObject
+public class DialogueCluster : ScriptableObject
 {
     [SerializeField]
-    private CinematicNode[] cinematicNodes;
+    private ConversationNode[] conversationNodes;
 
-    public CinematicNode[] GetCinematicNodes()
+    public ConversationNode[] GetCinematicNodes()
     {
-        return cinematicNodes;
+        return conversationNodes;
     }
 }

@@ -16,4 +16,8 @@ public class PlayerStats : MonoBehaviour
 
     [Range(0, 1)]
     public float weaponAttackArc = 0.5f;
+
+    [Header("Absorb")]
+    public float meterReplenishRate = 0.2f;
+    public float meterDrainRate = 0.5f;
 }

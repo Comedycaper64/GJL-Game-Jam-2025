@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
     public static Action OnAbsorbReleaseEvent;
     public static Action OnDashEvent;
     public static Action OnMenuEvent;
+    public static Action OnSkipEvent;
 
     private Controls controls;
 
@@ -102,6 +103,14 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
         if (context.performed)
         {
             OnMenuEvent?.Invoke();
+        }
+    }
+
+    public void OnSkip(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnSkipEvent?.Invoke();
         }
     }
 }

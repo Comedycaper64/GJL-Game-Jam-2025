@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class MeleeEnemySpawnState : State
 {
     float stateTime = 2f;

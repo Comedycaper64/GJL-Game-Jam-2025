@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class MeleeEnemyDeadState : State
 {
     private MeleeEnemyStateMachine enemyStateMachine;

@@ -12,7 +12,7 @@ public struct Dialogue
 
 [Serializable]
 [CreateAssetMenu(fileName = "Dialogue", menuName = "Dialogue/DialogueSO", order = 0)]
-public class DialogueSO : CinematicNode
+public class DialogueSO : ConversationNode
 {
     [SerializeField]
     private Dialogue[] dialogues;

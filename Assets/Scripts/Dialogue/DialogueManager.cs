@@ -5,68 +5,28 @@ using UnityEngine;
 
 public struct DialogueUIEventArgs
 {
-    public DialogueUIEventArgs(string sentence, Action onTypingFinished)
+    public DialogueUIEventArgs(string sentence, float displayDuration)
     {
         this.sentence = sentence;
-        this.onTypingFinished = onTypingFinished;
+        this.displayDuration = displayDuration;
     }
 
     public string sentence;
-    public Action onTypingFinished;
+    public float displayDuration;
 }
-
-// public struct DialogueChoiceUIEventArgs
-// {
-//     public DialogueChoiceUIEventArgs(
-//         DialogueChoiceSO dialogueChoice,
-//         EventHandler<DialogueChoice> onDialogueChosen
-//     )
-//     {
-//         this.dialogueChoice = dialogueChoice;
-//         this.onDialogueChosen = onDialogueChosen;
-//     }
-
-//     public DialogueChoiceSO dialogueChoice;
-//     public EventHandler<DialogueChoice> onDialogueChosen;
-// }
 
 public class DialogueManager : MonoBehaviour
 {
-    //private bool bLogActive = false;
-    //private bool bIsSentenceTyping;
-    //private bool bLoopToChoice;
-    //private bool bAutoPlay = false;
-    private float crossFadeTime = 0.1f;
-
-    //private Coroutine autoPlayCoroutine;
-    //private Coroutine animationCoroutine;
-    //private ActorSO currentActor;
-    //private DialogueChoiceSO currentChoice;
-    //private int actorIndex;
-    //private Animator[] actorAnimators;
     private string currentSentence;
     private AudioSource dialogueAudioSource;
 
-    //private DialogueCameraDirector dialogueCameraDirector;
-    //private ActorAnimatorMapper actorAnimatorMapper;
     private Queue<string> currentDialogue;
-
-    //private Queue<AnimationClip> currentAnimations;
-    //private Queue<float> currentAnimationCrossFadeTimes;
-    //private Queue<float> currentAnimationTimes;
-    //private Queue<CameraMode> currentCameraModes;
     private Queue<AudioClip> currentVoiceClips;
-
-    //private bool disableCameraOnEnd;
 
     private Action onDialogueComplete;
     private Queue<Dialogue> dialogues;
-    public static event Action OnFinishTypingDialogue;
-    public static event EventHandler<bool> OnToggleDialogueUI;
+    private Coroutine autoPlayCoroutine;
 
-    //public static event EventHandler<DialogueChoiceUIEventArgs> OnDisplayChoices;
-
-    //public static event EventHandler<Sprite[]> OnChangeSprite;
     public static event EventHandler<DialogueUIEventArgs> OnDialogue;
 
     private void Awake()
@@ -74,15 +34,19 @@ public class DialogueManager : MonoBehaviour
         dialogueAudioSource = GetComponent<AudioSource>();
     }
 
-    private void OnDisable() { }
+    private void OnDisable()
+    {
+        InputManager.OnSkipEvent -= SkipCurrentDialogue;
+    }
 
     public void PlayDialogue(DialogueSO dialogueSO, Action onDialogueComplete)
     {
         this.onDialogueComplete = onDialogueComplete;
         dialogues = new Queue<Dialogue>(dialogueSO.GetDialogues());
-        //InputManager.Instance.OnShootAction += InputManager_OnShootAction;
 
-        ToggleDialogueUI(true);
+        InputManager.OnSkipEvent += SkipCurrentDialogue;
+
+        //ToggleDialogueUI(true);
         TryPlayNextDialogue();
     }
 
@@ -90,58 +54,18 @@ public class DialogueManager : MonoBehaviour
     {
         DialogueSkipCleanup();
 
-        EndDialogue(true);
-    }
-
-    // public void SkipCurrentChoice()
-    // {
-    //     DialogueSkipCleanup();
-    //     ResetChoices();
-    //     bLoopToChoice = false;
-
-    //     EndDialogue(true);
-    // }
-
-    public void SkipDialogue(DialogueSO dialogueSO, Action onDialogueComplete)
-    {
-        DialogueSkipCleanup();
-
-        dialogues = new Queue<Dialogue>(dialogueSO.GetDialogues());
-
-        onDialogueComplete();
+        DisplayNextSentence();
     }
 
     private void DialogueSkipCleanup()
     {
         dialogueAudioSource.Stop();
+
+        if (autoPlayCoroutine != null)
+        {
+            StopCoroutine(autoPlayCoroutine);
+        }
     }
-
-    // public void DisplayChoices(DialogueChoiceSO dialogueChoiceSO, Action onDialogueComplete)
-    // {
-    //     this.onDialogueComplete = onDialogueComplete;
-    //     currentChoice = dialogueChoiceSO;
-    //     ToggleDialogueUI(true);
-    //     DialogueChoiceUIEventArgs choiceUIEventArgs = new DialogueChoiceUIEventArgs(
-    //         dialogueChoiceSO,
-    //         PlayChoiceDialogue
-    //     );
-    //     OnDisplayChoices?.Invoke(this, choiceUIEventArgs);
-    // }
-
-    // private void PlayChoiceDialogue(object sender, DialogueChoice dialogueChoice)
-    // {
-    //     if (dialogueChoice.loopBackToChoice)
-    //     {
-    //         bLoopToChoice = true;
-    //     }
-
-    //     dialogues = new Queue<Dialogue>(
-    //         currentChoice.GetDialogueAnswers()[dialogueChoice.correspondingDialogue].dialogueAnswers
-    //     );
-    //     InputManager.Instance.OnShootAction += InputManager_OnShootAction;
-
-    //     TryPlayNextDialogue();
-    // }
 
     private void TryPlayNextDialogue()
     {
@@ -180,20 +104,21 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        bool playingVoiceClip = TryPlayVoiceClip();
+        float voiceClipLength = TryPlayVoiceClip();
 
         if (currentSentence == "")
         {
-            ToggleDialogueUI(false);
+            //ToggleDialogueUI(false);
         }
         else
         {
-            ToggleDialogueUI(true);
-            StartTypingSentence(playingVoiceClip);
+            //ToggleDialogueUI(true);
+
+            OnDialogue?.Invoke(this, new DialogueUIEventArgs(currentSentence, voiceClipLength));
         }
     }
 
-    private bool TryPlayVoiceClip()
+    private float TryPlayVoiceClip()
     {
         if (dialogueAudioSource.isPlaying)
         {
@@ -203,23 +128,18 @@ public class DialogueManager : MonoBehaviour
         if (currentVoiceClips.TryDequeue(out AudioClip voiceClip) && (voiceClip != null))
         {
             dialogueAudioSource.clip = voiceClip;
+
             // dialogueAudioSource.volume =
             //     PlayerOptions.GetMasterVolume() * PlayerOptions.GetVoiceVolume();
 
             dialogueAudioSource.Play();
 
-            // if (bAutoPlay)
-            // {
-            //     autoPlayCoroutine = StartCoroutine(
-            //         DialogueAutoPlayTimer(
-            //             voiceClip.length * (1 / currentActor.GetAudioMixerPitchMod())
-            //         )
-            //     );
-            // }
-            return true;
+            autoPlayCoroutine = StartCoroutine(DialogueAutoPlayTimer(voiceClip.length));
+
+            return voiceClip.length;
         }
 
-        return false;
+        return -1f;
     }
 
     private IEnumerator DialogueAutoPlayTimer(float dialogueTime)
@@ -228,64 +148,18 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
-    private void StartTypingSentence(bool playingVoiceClip)
-    {
-        // bIsSentenceTyping = true;
-
-        // bool playDialogueNoises = !playingVoiceClip;
-
-        // OnDialogue?.Invoke(
-        //     this,
-        //     new DialogueUIEventArgs(
-        //         currentActor,
-        //         currentSentence,
-        //         playDialogueNoises,
-        //         FinishTypingSentence
-        //     )
-        // );
-    }
-
-    private IEnumerator AnimationPause(float pauseTime)
-    {
-        // InputManager.Instance.OnShootAction -= InputManager_OnShootAction;
-
-        yield return new WaitForSeconds(pauseTime);
-
-        // InputManager.Instance.OnShootAction += InputManager_OnShootAction;
-
-        // animationCoroutine = null;
-
-        // DisplayNextSentence();
-    }
-
-    private void FinishTypingSentence()
-    {
-        //bIsSentenceTyping = false;
-    }
-
-    private void ToggleDialogueUI(bool toggle)
-    {
-        OnToggleDialogueUI?.Invoke(this, toggle);
-    }
-
-    private void ResetChoices()
-    {
-        // DialogueChoiceUIEventArgs blankChoiceUIEventArgs = new DialogueChoiceUIEventArgs(
-        //     null,
-        //     null
-        // );
-        // OnDisplayChoices?.Invoke(this, blankChoiceUIEventArgs);
-    }
+    // private void ToggleDialogueUI(bool toggle)
+    // {
+    //     OnToggleDialogueUI?.Invoke(this, toggle);
+    // }
 
     private void EndDialogue(bool skipping = false)
     {
-        //InputManager.Instance.OnShootAction -= InputManager_OnShootAction;
+        InputManager.OnSkipEvent -= SkipCurrentDialogue;
 
         dialogueAudioSource.Stop();
 
-        ToggleDialogueUI(false);
-
-        ResetChoices();
+        //ToggleDialogueUI(false);
 
         if (!skipping)
         {
@@ -295,15 +169,5 @@ public class DialogueManager : MonoBehaviour
         {
             onDialogueComplete = null;
         }
-    }
-
-    private void InputManager_OnShootAction()
-    {
-        // if (bLogActive)
-        // {
-        //     return;
-        // }
-
-        // DisplayNextSentence();
     }
 }

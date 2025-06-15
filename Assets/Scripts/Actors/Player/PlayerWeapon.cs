@@ -66,6 +66,8 @@ public class PlayerWeapon : MonoBehaviour
             hittableLayerMask
         );
 
+        Debug.Log("Colliders: " + colliders.Length);
+
         Vector2 cursorDirection = cursorPointer.GetCursorDirection();
 
         foreach (Collider2D collider in colliders)

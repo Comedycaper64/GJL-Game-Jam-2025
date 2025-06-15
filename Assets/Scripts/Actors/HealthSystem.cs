@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    private float maxHealth;
+    private int maxHealth;
 
-    private float health;
+    private int health;
 
     [SerializeField]
     private bool isPlayer;
@@ -18,20 +18,20 @@ public class HealthSystem : MonoBehaviour
 
     public Action OnTakeDamage;
     public EventHandler OnDeath;
-    public EventHandler<float> OnNewHealth;
+    public EventHandler<int> OnNewHealth;
 
     private void Awake()
     {
         health = maxHealth;
     }
 
-    public void SetMaxHealth(float maxHealth)
+    public void SetMaxHealth(int maxHealth)
     {
         this.maxHealth = maxHealth;
         health = maxHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         if (isInvincible)
         {
@@ -40,7 +40,7 @@ public class HealthSystem : MonoBehaviour
 
         health = Mathf.Max(0, health - damage);
 
-        OnNewHealth?.Invoke(this, health / maxHealth);
+        OnNewHealth?.Invoke(this, health);
 
         Debug.Log(gameObject.name + "damage taken");
 
