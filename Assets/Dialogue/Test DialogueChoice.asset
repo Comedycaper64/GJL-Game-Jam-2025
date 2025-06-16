@@ -17,3 +17,11 @@ MonoBehaviour:
     feedbackKey: Music
     feedbackValue: 1
     attitudeModifier: -2
+  - dialogueChoice: The music's great
+    feedbackKey: Music
+    feedbackValue: 0
+    attitudeModifier: 2
+  - dialogueChoice: The music should be different
+    feedbackKey: Music
+    feedbackValue: 2
+    attitudeModifier: 0

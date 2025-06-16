@@ -54,11 +54,11 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    // public void Heal(float amountToHeal)
-    // {
-    //     health = Mathf.Min(maxHealth, health + amountToHeal);
-    //     OnNewHealth?.Invoke(this, health / maxHealth);
-    // }
+    public void Heal(int amountToHeal)
+    {
+        health = Mathf.Min(maxHealth, health + amountToHeal);
+        OnNewHealth?.Invoke(this, health);
+    }
 
     public float GetHealth()
     {

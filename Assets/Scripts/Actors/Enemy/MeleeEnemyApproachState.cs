@@ -4,6 +4,7 @@ public class MeleeEnemyApproachState : State
 {
     private float weaponAttackTimer = 0f;
     private float weaponAttackTime;
+    private Rigidbody2D rb;
     private MeleeEnemyStats stats;
     private MeleeEnemyStateMachine enemyStateMachine;
 
@@ -11,6 +12,7 @@ public class MeleeEnemyApproachState : State
         : base(stateMachine)
     {
         enemyStateMachine = stateMachine as MeleeEnemyStateMachine;
+        rb = enemyStateMachine.GetRigidbody();
     }
 
     public override void Enter()
@@ -98,6 +100,7 @@ public class MeleeEnemyApproachState : State
             }
         }
 
-        stateMachine.transform.position += directionToMove * stats.movementSpeed * deltaTime;
+        //stateMachine.transform.position += directionToMove * stats.movementSpeed * deltaTime;
+        rb.MovePosition(rb.position + ((Vector2)directionToMove * stats.movementSpeed * deltaTime));
     }
 }

@@ -153,6 +153,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectDialogue"",
+                    ""type"": ""Value"",
+                    ""id"": ""7f6a6a5c-33f0-473e-ad91-5b027c907ea1"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Respawn"",
+                    ""type"": ""Button"",
+                    ""id"": ""33025666-52d2-4126-ac2d-c4f5f5512032"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -276,6 +294,72 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Skip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""e5e6e958-49d5-4492-9506-5258ba1ca979"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectDialogue"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""2333db74-b907-4f6a-8e92-60749a21846f"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4f7e9595-5d4a-4448-a8d9-063a8e3b7e6f"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f7a87c65-418b-402c-8eaa-9be5b5e9f926"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""abd49c5f-0072-4ca9-80f0-d0a545bbe1ca"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db6144df-b406-4d76-b522-9a1745783cc8"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Player"",
+                    ""action"": ""Respawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -303,6 +387,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Skip = m_Player.FindAction("Skip", throwIfNotFound: true);
+        m_Player_SelectDialogue = m_Player.FindAction("SelectDialogue", throwIfNotFound: true);
+        m_Player_Respawn = m_Player.FindAction("Respawn", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -390,6 +476,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Skip;
+    private readonly InputAction m_Player_SelectDialogue;
+    private readonly InputAction m_Player_Respawn;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -429,6 +517,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Skip".
         /// </summary>
         public InputAction @Skip => m_Wrapper.m_Player_Skip;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SelectDialogue".
+        /// </summary>
+        public InputAction @SelectDialogue => m_Wrapper.m_Player_SelectDialogue;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Respawn".
+        /// </summary>
+        public InputAction @Respawn => m_Wrapper.m_Player_Respawn;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -476,6 +572,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Skip.started += instance.OnSkip;
             @Skip.performed += instance.OnSkip;
             @Skip.canceled += instance.OnSkip;
+            @SelectDialogue.started += instance.OnSelectDialogue;
+            @SelectDialogue.performed += instance.OnSelectDialogue;
+            @SelectDialogue.canceled += instance.OnSelectDialogue;
+            @Respawn.started += instance.OnRespawn;
+            @Respawn.performed += instance.OnRespawn;
+            @Respawn.canceled += instance.OnRespawn;
         }
 
         /// <summary>
@@ -508,6 +610,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Skip.started -= instance.OnSkip;
             @Skip.performed -= instance.OnSkip;
             @Skip.canceled -= instance.OnSkip;
+            @SelectDialogue.started -= instance.OnSelectDialogue;
+            @SelectDialogue.performed -= instance.OnSelectDialogue;
+            @SelectDialogue.canceled -= instance.OnSelectDialogue;
+            @Respawn.started -= instance.OnRespawn;
+            @Respawn.performed -= instance.OnRespawn;
+            @Respawn.canceled -= instance.OnRespawn;
         }
 
         /// <summary>
@@ -610,5 +718,19 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSkip(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectDialogue" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectDialogue(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Respawn" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRespawn(InputAction.CallbackContext context);
     }
 }

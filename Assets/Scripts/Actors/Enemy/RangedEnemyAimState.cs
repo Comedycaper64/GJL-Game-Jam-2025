@@ -4,6 +4,7 @@ public class RangedEnemyAimState : State
 {
     private float weaponAttackTimer = 0f;
     private float weaponAttackTime;
+    private Rigidbody2D rb;
     private RangedEnemyStats stats;
     private RangedEnemyStateMachine enemyStateMachine;
 
@@ -11,6 +12,7 @@ public class RangedEnemyAimState : State
         : base(stateMachine)
     {
         enemyStateMachine = stateMachine as RangedEnemyStateMachine;
+        rb = enemyStateMachine.GetRigidbody();
     }
 
     public override void Enter()
@@ -72,6 +74,7 @@ public class RangedEnemyAimState : State
             }
         }
 
-        stateMachine.transform.position += directionToMove * stats.movementSpeed * deltaTime;
+        //stateMachine.transform.position += directionToMove * stats.movementSpeed * deltaTime;
+        rb.MovePosition(rb.position + ((Vector2)directionToMove * stats.movementSpeed * deltaTime));
     }
 }

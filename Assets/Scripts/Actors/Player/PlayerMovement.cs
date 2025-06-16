@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.Build.Player;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -17,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator bodyAnimator;
 
     [SerializeField]
+    private Rigidbody2D playerRb;
+
+    [SerializeField]
     private Transform visualTransform;
 
     private void Awake()
@@ -31,11 +35,15 @@ public class PlayerMovement : MonoBehaviour
 
         //Temp
         ToggleCanMove(true);
+
+        PlayerManager.OnPlayerDead += OnPlayerDead;
     }
 
     private void OnDisable()
     {
         InputManager.OnDashEvent -= TryDash;
+
+        PlayerManager.OnPlayerDead -= OnPlayerDead;
 
         if (dashCoroutine != null)
         {
@@ -48,7 +56,8 @@ public class PlayerMovement : MonoBehaviour
         Vector2 movementValue = Vector2.zero;
         if (canMove)
         {
-            movementValue = Move();
+            //movementValue = Move();
+            movementValue = MoveRB();
 
             if (!dashAvailable)
             {
@@ -72,6 +81,30 @@ public class PlayerMovement : MonoBehaviour
             * movementSpeed
             * dashModifier
             * Time.deltaTime;
+
+        if (movementValue.x < 0)
+        {
+            visualTransform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else if (movementValue.x > 0)
+        {
+            visualTransform.eulerAngles = new Vector3(0, 0, 0);
+        }
+
+        return movementValue;
+    }
+
+    private Vector2 MoveRB()
+    {
+        Vector2 movementValue = inputManager.MovementValue.normalized;
+        playerRb.MovePosition(
+            playerRb.position
+                + new Vector2(movementValue.x, movementValue.y)
+                    * movementSpeed
+                    * 2.5f
+                    * dashModifier
+                    * Time.deltaTime
+        );
 
         if (movementValue.x < 0)
         {
@@ -122,5 +155,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         canMove = enable;
+    }
+
+    private void OnPlayerDead(object sender, bool playerDead)
+    {
+        ToggleCanMove(!playerDead);
     }
 }

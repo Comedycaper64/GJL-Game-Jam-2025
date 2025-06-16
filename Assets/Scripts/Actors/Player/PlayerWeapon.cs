@@ -1,11 +1,16 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
+    private bool playerDead = false;
     private bool weaponActive = false;
     private bool weaponAvailable = false;
     private float weaponRechargeTimer = 0f;
     private float weaponRechargeTime;
+
+    private List<HealthSystem> enemiesInRange = new List<HealthSystem>();
 
     [SerializeField]
     private PlayerStats playerStats;
@@ -14,22 +19,34 @@ public class PlayerWeapon : MonoBehaviour
     private PlayerCursorPointer cursorPointer;
 
     [SerializeField]
-    private LayerMask hittableLayerMask;
+    private CircleCollider2D weaponCollider;
+
+    // [SerializeField]
+    // private LayerMask hittableLayerMask;
 
     private void Start()
     {
         weaponRechargeTime = playerStats.weaponSwingRechargeTime;
 
         ToggleWeapon(true);
+
+        PlayerManager.OnPlayerDead += DisableWeapon;
+        weaponCollider.radius = playerStats.weaponAttackRange;
     }
 
     private void OnDisable()
     {
         InputManager.OnAttackEvent -= TryAttack;
+        PlayerManager.OnPlayerDead -= DisableWeapon;
     }
 
     private void Update()
     {
+        if (playerDead)
+        {
+            return;
+        }
+
         if (!weaponAvailable)
         {
             weaponRechargeTimer += Time.deltaTime;
@@ -42,8 +59,35 @@ public class PlayerWeapon : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (
+            other.TryGetComponent<HealthSystem>(out HealthSystem healthSystem)
+            && !healthSystem.GetIsPlayer()
+        )
+        {
+            enemiesInRange.Add(healthSystem);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (
+            other.TryGetComponent<HealthSystem>(out HealthSystem healthSystem)
+            && enemiesInRange.Contains(healthSystem)
+        )
+        {
+            enemiesInRange.Remove(healthSystem);
+        }
+    }
+
     private void TryAttack()
     {
+        if (playerDead)
+        {
+            return;
+        }
+
         if (!weaponAvailable)
         {
             return;
@@ -60,37 +104,22 @@ public class PlayerWeapon : MonoBehaviour
 
     private void ResolveAttack()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(
-            transform.position,
-            playerStats.weaponAttackRange,
-            hittableLayerMask
-        );
-
-        Debug.Log("Colliders: " + colliders.Length);
-
         Vector2 cursorDirection = cursorPointer.GetCursorDirection();
 
-        foreach (Collider2D collider in colliders)
+        for (int i = 0; i < enemiesInRange.Count; i++)
         {
-            if (!collider.TryGetComponent<HealthSystem>(out HealthSystem healthSystem))
-            {
-                continue;
-            }
-
-            if (healthSystem.GetIsPlayer())
-            {
-                return;
-            }
+            HealthSystem health = enemiesInRange[i];
 
             Vector2 colliderDirectionFromPlayer = (
-                collider.transform.position - transform.position
+                health.transform.position - transform.position
             ).normalized;
+
             if (
                 Vector2.Dot(cursorDirection, colliderDirectionFromPlayer)
                 > (1f - playerStats.weaponAttackArc)
             )
             {
-                healthSystem.TakeDamage(playerStats.weaponDamage);
+                health.TakeDamage(playerStats.weaponDamage);
             }
         }
     }
@@ -110,5 +139,11 @@ public class PlayerWeapon : MonoBehaviour
             InputManager.OnAttackEvent -= TryAttack;
             weaponActive = false;
         }
+    }
+
+    private void DisableWeapon(object sender, bool toggle)
+    {
+        playerDead = toggle;
+        enemiesInRange.Clear();
     }
 }

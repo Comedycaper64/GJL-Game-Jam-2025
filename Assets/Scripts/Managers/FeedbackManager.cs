@@ -18,10 +18,6 @@ public class FeedbackManager : MonoBehaviour
             return;
         }
         Instance = this;
-
-        //TEST
-
-        SetDictionaryValue("Music", 2);
     }
 
     public void SetDictionaryValue(string key, int value)

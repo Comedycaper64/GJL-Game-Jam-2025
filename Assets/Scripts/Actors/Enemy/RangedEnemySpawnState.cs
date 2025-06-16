@@ -13,6 +13,7 @@ public class RangedEnemySpawnState : State
     public override void Enter()
     {
         stateTimer = stateTime;
+        enemyStateMachine.ToggleVisual(true);
     }
 
     public override void Exit()

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(
     fileName = "DialogueConditional",
     menuName = "Dialogue/DialogueConditionalSO",
-    order = 0
+    order = 2
 )]
 public class DialogueConditionalSO : ConversationNode
 {
@@ -20,6 +20,9 @@ public class DialogueConditionalSO : ConversationNode
 
     [SerializeField]
     private DialogueCluster[] feedbackClusters;
+
+    [SerializeField]
+    private DialogueCluster noFeedbackCluster;
 
     [SerializeField]
     private DialogueCluster attitudeBranchCluster;
@@ -44,11 +47,20 @@ public class DialogueConditionalSO : ConversationNode
 
     public ConversationNode[] GetConversation(int attitude = -1, int feedbackValue = -1)
     {
+        Debug.Log("Get covnersation");
+
         if (attitudeThreshold < 0)
         {
-            if (feedbackValue >= feedbackClusters.Length)
+            if ((feedbackValue < 0) || (feedbackValue >= feedbackClusters.Length))
             {
-                return feedbackClusters[0].GetCinematicNodes();
+                if (noFeedbackCluster != null)
+                {
+                    return noFeedbackCluster.GetCinematicNodes();
+                }
+                else
+                {
+                    return feedbackClusters[0].GetCinematicNodes();
+                }
             }
 
             return feedbackClusters[feedbackValue].GetCinematicNodes();

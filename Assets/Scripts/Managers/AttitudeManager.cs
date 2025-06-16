@@ -30,4 +30,9 @@ public class AttitudeManager : MonoBehaviour
     {
         developerAttitude = STARTING_ATTITUDE;
     }
+
+    public void AlterAttitude(int attitudeModifier)
+    {
+        developerAttitude += attitudeModifier;
+    }
 }

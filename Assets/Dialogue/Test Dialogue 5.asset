@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - dialogue:
-    - Music Feedback 2 1
+    - Well how should it be different then?
     - Music Feedback 2 2
     - wawawa
     voiceClip:

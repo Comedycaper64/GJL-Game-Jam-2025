@@ -11,6 +11,9 @@ public class RangedEnemyStateMachine : StateMachine
     private Collider2D bodyCollider;
 
     [SerializeField]
+    private Rigidbody2D enemyRB;
+
+    [SerializeField]
     private GameObject enemyVisual;
 
     private void Awake()
@@ -28,14 +31,19 @@ public class RangedEnemyStateMachine : StateMachine
     {
         playerTransform = PlayerIdentifier.PlayerTransform;
 
-        //TEMP
-        SwitchState(new RangedEnemySpawnState(this));
+        ResetEnemy();
     }
 
     private void OnDisable()
     {
         health.OnTakeDamage -= HealthSystem_OnTakeDamage;
         health.OnDeath -= HealthSystem_OnDeath;
+    }
+
+    public override void SpawnEnemy()
+    {
+        health.SetMaxHealth(stats.health);
+        SwitchState(new RangedEnemySpawnState(this));
     }
 
     public Transform GetPlayerTransform()
@@ -52,6 +60,7 @@ public class RangedEnemyStateMachine : StateMachine
     private void HealthSystem_OnDeath(object sender, EventArgs e)
     {
         SwitchState(new RangedEnemyDeadState(this));
+        OnEnemyDeath?.Invoke();
     }
 
     public RangedEnemyStats GetStats()
@@ -64,14 +73,24 @@ public class RangedEnemyStateMachine : StateMachine
         return health;
     }
 
+    public Rigidbody2D GetRigidbody()
+    {
+        return enemyRB;
+    }
+
     public void ToggleCollider(bool toggle)
     {
         bodyCollider.enabled = toggle;
     }
 
+    public void ToggleVisual(bool toggle)
+    {
+        enemyVisual.SetActive(toggle);
+    }
+
     public override void ToggleInactive(bool toggle)
     {
         ToggleCollider(!toggle);
-        enemyVisual.SetActive(!toggle);
+        ToggleVisual(!toggle);
     }
 }

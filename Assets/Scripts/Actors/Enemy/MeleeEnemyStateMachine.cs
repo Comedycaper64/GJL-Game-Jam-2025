@@ -12,6 +12,9 @@ public class MeleeEnemyStateMachine : StateMachine
     private Collider2D bodyCollider;
 
     [SerializeField]
+    private Rigidbody2D enemyRB;
+
+    [SerializeField]
     private GameObject enemyVisual;
 
     [SerializeField]
@@ -32,14 +35,19 @@ public class MeleeEnemyStateMachine : StateMachine
     {
         playerTransform = PlayerIdentifier.PlayerTransform;
 
-        //TEMP
-        SwitchState(new MeleeEnemySpawnState(this));
+        ResetEnemy();
     }
 
     private void OnDisable()
     {
         health.OnTakeDamage -= HealthSystem_OnTakeDamage;
         health.OnDeath -= HealthSystem_OnDeath;
+    }
+
+    public override void SpawnEnemy()
+    {
+        health.SetMaxHealth(stats.health);
+        SwitchState(new MeleeEnemySpawnState(this));
     }
 
     public Transform GetPlayerTransform()
@@ -56,6 +64,7 @@ public class MeleeEnemyStateMachine : StateMachine
     private void HealthSystem_OnDeath(object sender, EventArgs e)
     {
         SwitchState(new MeleeEnemyDeadState(this));
+        OnEnemyDeath?.Invoke();
     }
 
     public Vector2 GetAttackDirection()
@@ -83,14 +92,24 @@ public class MeleeEnemyStateMachine : StateMachine
         return hittableLayerMask;
     }
 
+    public Rigidbody2D GetRigidbody()
+    {
+        return enemyRB;
+    }
+
     public void ToggleCollider(bool toggle)
     {
         bodyCollider.enabled = toggle;
     }
 
+    public void ToggleVisual(bool toggle)
+    {
+        enemyVisual.SetActive(toggle);
+    }
+
     public override void ToggleInactive(bool toggle)
     {
         ToggleCollider(!toggle);
-        enemyVisual.SetActive(!toggle);
+        ToggleVisual(!toggle);
     }
 }

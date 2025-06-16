@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerAbsorber : MonoBehaviour
 {
+    private bool playerDead = false;
     private bool absorberAvailable = false;
     private bool absorberActive = false;
     private float absorbMeter = 1f;
@@ -29,16 +30,24 @@ public class PlayerAbsorber : MonoBehaviour
         ToggleAbsorberAvailable(true);
         ToggleAbsorber(false);
         absorberAvailable = true;
+
+        PlayerManager.OnPlayerDead += DisableAbsorber;
     }
 
     private void OnDisable()
     {
         InputManager.OnAbsorbEvent -= TryAbsorb;
         InputManager.OnAbsorbReleaseEvent -= EndAbsorb;
+        PlayerManager.OnPlayerDead -= DisableAbsorber;
     }
 
     private void Update()
     {
+        if (playerDead)
+        {
+            return;
+        }
+
         if (absorberActive)
         {
             absorbMeter = Mathf.Clamp01(absorbMeter - (meterDrainRate * Time.deltaTime));
@@ -56,6 +65,11 @@ public class PlayerAbsorber : MonoBehaviour
 
     private void TryAbsorb()
     {
+        if (playerDead)
+        {
+            return;
+        }
+
         if (!absorberAvailable)
         {
             return;
@@ -103,5 +117,10 @@ public class PlayerAbsorber : MonoBehaviour
     public void AbsorbProjectile()
     {
         Debug.Log("Absorb");
+    }
+
+    private void DisableAbsorber(object sender, bool toggle)
+    {
+        playerDead = toggle;
     }
 }

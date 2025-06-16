@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
     public static Action OnDashEvent;
     public static Action OnMenuEvent;
     public static Action OnSkipEvent;
+    public static Action OnRespawnEvent;
+    public static EventHandler<int> OnChooseDialogueAction;
 
     private Controls controls;
 
@@ -31,6 +33,13 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
         controls = new Controls();
         controls.Player.SetCallbacks(this);
         controls.Player.Enable();
+
+        PauseManager.OnPauseGame += ToggleDisableInputs;
+    }
+
+    private void OnDisable()
+    {
+        PauseManager.OnPauseGame -= ToggleDisableInputs;
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -65,7 +74,7 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
         }
         if (context.performed)
         {
-            OnAttackEvent?.Invoke();
+            OnFeedbackEvent?.Invoke();
         }
     }
 
@@ -108,9 +117,67 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
 
     public void OnSkip(InputAction.CallbackContext context)
     {
+        if (disableInputs)
+        {
+            return;
+        }
         if (context.performed)
         {
             OnSkipEvent?.Invoke();
         }
+    }
+
+    public void OnSelectDialogue(InputAction.CallbackContext context)
+    {
+        if (disableInputs)
+        {
+            return;
+        }
+        if (!context.performed)
+        {
+            return;
+        }
+        else
+        {
+            Vector2 choice = context.ReadValue<Vector2>();
+
+            int dialogueChoice = 1;
+
+            if (choice.y < 0f)
+            {
+                dialogueChoice = 2;
+            }
+            else if (choice.x < 0f)
+            {
+                dialogueChoice = 3;
+            }
+            else if (choice.x > 0f)
+            {
+                return;
+            }
+
+            OnChooseDialogueAction?.Invoke(this, dialogueChoice);
+        }
+    }
+
+    public void OnRespawn(InputAction.CallbackContext context)
+    {
+        if (disableInputs)
+        {
+            return;
+        }
+        if (!context.performed)
+        {
+            return;
+        }
+        else
+        {
+            OnRespawnEvent?.Invoke();
+        }
+    }
+
+    private void ToggleDisableInputs(object sender, bool toggle)
+    {
+        disableInputs = toggle;
     }
 }

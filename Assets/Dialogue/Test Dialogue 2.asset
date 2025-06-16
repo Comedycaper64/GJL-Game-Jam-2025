@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - dialogue:
-    - Music Feedback 0
-    - Music Feedback 0 1
+    - The music sucks
+    - That's a shame
     - wawawa
     voiceClip:
     - {fileID: 8300000, guid: 7fdfe8bf6f6061c49ba87c3363b5f5b9, type: 3}

@@ -13,6 +13,7 @@ public class MeleeEnemySpawnState : State
     public override void Enter()
     {
         stateTimer = stateTime;
+        enemyStateMachine.ToggleVisual(true);
 
         //stateMachine.animator.SetTrigger("spawn");
     }
