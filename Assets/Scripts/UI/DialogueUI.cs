@@ -33,7 +33,7 @@ public class DialogueUI : MonoBehaviour
         speakerIndicator.SetActive(false);
 
         //Temp
-        timerStarted = true;
+        //timerStarted = true;
     }
 
     private void OnDisable()
@@ -73,6 +73,11 @@ public class DialogueUI : MonoBehaviour
         yield return new WaitForSeconds(dialogueFadeTime);
 
         //displayingDialogue = false;
+    }
+
+    public void StartCallTimer()
+    {
+        timerStarted = true;
     }
 
     private void DialogueManager_OnDialogue(object sender, DialogueUIEventArgs dialogueArgs)

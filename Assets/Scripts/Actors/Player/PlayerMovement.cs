@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using UnityEditor.Build.Player;
+
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -53,11 +53,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector2 movementValue = Vector2.zero;
+        //Vector2 movementValue = Vector2.zero;
         if (canMove)
         {
             //movementValue = Move();
-            movementValue = MoveRB();
+            //movementValue = MoveRB();
 
             if (!dashAvailable)
             {
@@ -70,7 +70,18 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
         //bodyAnimator.SetFloat("Speed", Mathf.Abs(movementValue.x) + Mathf.Abs(movementValue.y));
+    }
+
+    private void FixedUpdate()
+    {
+        Vector2 movementValue = Vector2.zero;
+        if (canMove)
+        {
+            //movementValue = Move();
+            movementValue = MoveRB();
+        }
     }
 
     private Vector2 Move()
@@ -101,10 +112,19 @@ public class PlayerMovement : MonoBehaviour
             playerRb.position
                 + new Vector2(movementValue.x, movementValue.y)
                     * movementSpeed
-                    * 2.5f
+                    //* 2.5f
                     * dashModifier
-                    * Time.deltaTime
+                    * Time.fixedDeltaTime
         );
+
+        // playerRb.linearVelocity = Vector2.ClampMagnitude(
+        //     playerRb.linearVelocity,
+        //     movementSpeed * 2.5f * dashModifier
+        // );
+
+        // float maximumVelocity =
+
+        // playerRb.AddForce();
 
         if (movementValue.x < 0)
         {

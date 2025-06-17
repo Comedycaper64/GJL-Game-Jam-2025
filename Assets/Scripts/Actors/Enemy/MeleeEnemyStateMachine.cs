@@ -18,6 +18,9 @@ public class MeleeEnemyStateMachine : StateMachine
     private GameObject enemyVisual;
 
     [SerializeField]
+    private EnemyWeapon enemyWeapon;
+
+    [SerializeField]
     private LayerMask hittableLayerMask;
 
     private void Awake()
@@ -75,6 +78,17 @@ public class MeleeEnemyStateMachine : StateMachine
     public void SetAttackDirection(Vector2 direction)
     {
         attackDirection = direction;
+
+        // enemyWeapon.SetAttackDirection(direction);
+        enemyWeapon.SetAttackDirection(playerTransform.position);
+    }
+
+    public void PlayAttackAnimation()
+    {
+        //Trigger enemy attack animation
+
+        //Trigger weapon attack anim
+        enemyWeapon.PlayAttackAnimation();
     }
 
     public MeleeEnemyStats GetStats()
@@ -105,6 +119,7 @@ public class MeleeEnemyStateMachine : StateMachine
     public void ToggleVisual(bool toggle)
     {
         enemyVisual.SetActive(toggle);
+        enemyWeapon.ToggleWeaponVisual(toggle);
     }
 
     public override void ToggleInactive(bool toggle)

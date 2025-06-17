@@ -9,12 +9,14 @@ public class ConversationManager : MonoBehaviour
     private Queue<ConversationNode> activeDialogueCluster = new Queue<ConversationNode>();
     private Queue<DialogueCluster> conversationQueue = new Queue<DialogueCluster>();
 
-    [SerializeField]
-    private DialogueCluster startingCluster;
+    // [SerializeField]
+    // private DialogueCluster startingCluster;
 
     [SerializeField]
     private DialogueManager dialogueManager;
     private DialogueChoiceManager dialogueChoiceManager;
+
+    private Action OnClusterEnd;
 
     public static EventHandler<bool> OnConversationActive;
 
@@ -28,7 +30,7 @@ public class ConversationManager : MonoBehaviour
     {
         dialogueChoiceManager = dialogueManager.GetComponent<DialogueChoiceManager>();
 
-        AddToConversation(startingCluster);
+        //AddToConversation(startingCluster);
     }
 
     private void OnDisable()
@@ -39,6 +41,12 @@ public class ConversationManager : MonoBehaviour
 
     private void AdvanceConversation()
     {
+        if (OnClusterEnd != null)
+        {
+            OnClusterEnd();
+            OnClusterEnd = null;
+        }
+
         if (conversationQueue.TryDequeue(out DialogueCluster newCluster))
         {
             activeDialogueCluster = new Queue<ConversationNode>(newCluster.GetCinematicNodes());
@@ -126,9 +134,11 @@ public class ConversationManager : MonoBehaviour
         OnConversationActive?.Invoke(this, false);
     }
 
-    public void AddToConversation(DialogueCluster newCluster)
+    public void AddToConversation(DialogueCluster newCluster, Action onClusterEnd = null)
     {
         conversationQueue.Enqueue(newCluster);
+
+        OnClusterEnd = onClusterEnd;
 
         if (!conversationActive)
         {

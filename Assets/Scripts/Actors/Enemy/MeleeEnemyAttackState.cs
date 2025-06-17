@@ -19,7 +19,7 @@ public class MeleeEnemyAttackState : State
     public override void Enter()
     {
         stats = enemyStateMachine.GetStats();
-        stateMachine.smAnimator.SetTrigger("attack");
+        enemyStateMachine.PlayAttackAnimation();
         hasAttacked = false;
         stateTimer = stateTime;
     }
@@ -33,15 +33,6 @@ public class MeleeEnemyAttackState : State
         if (!hasAttacked && stateTimer <= (stateTime * (1 - stats.weaponAttackTiming)))
         {
             ResolveAttack(enemyStateMachine.GetAttackDirection());
-
-            // if (
-            //     Vector2.Distance(playerHealth.transform.position, stateMachine.transform.position)
-            //     < stats.weaponDamageRange
-            // )
-            // {
-            //     playerHealth.TakeDamage(stats.weaponDamage);
-            // }
-
 
             hasAttacked = true;
         }

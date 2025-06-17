@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +10,14 @@ public class PlayerWeapon : MonoBehaviour
     private bool weaponAvailable = false;
     private float weaponRechargeTimer = 0f;
     private float weaponRechargeTime;
+    private float weaponSwingDamageDelay = 0.2f;
+
+    private Coroutine weaponSwingCoroutine;
 
     private List<HealthSystem> enemiesInRange = new List<HealthSystem>();
+
+    [SerializeField]
+    private Animator weaponAnimator;
 
     [SerializeField]
     private PlayerStats playerStats;
@@ -38,6 +45,11 @@ public class PlayerWeapon : MonoBehaviour
     {
         InputManager.OnAttackEvent -= TryAttack;
         PlayerManager.OnPlayerDead -= DisableWeapon;
+
+        if (weaponSwingCoroutine != null)
+        {
+            StopCoroutine(weaponSwingCoroutine);
+        }
     }
 
     private void Update()
@@ -93,13 +105,22 @@ public class PlayerWeapon : MonoBehaviour
             return;
         }
 
-        ResolveAttack();
+        weaponAnimator.SetTrigger("slash");
 
         //Play Weapon Effect
         //Trigger animation
         //Play SFX
 
         weaponAvailable = false;
+
+        weaponSwingCoroutine = StartCoroutine(AttackDamageDelay());
+    }
+
+    private IEnumerator AttackDamageDelay()
+    {
+        yield return new WaitForSeconds(weaponSwingDamageDelay);
+
+        ResolveAttack();
     }
 
     private void ResolveAttack()

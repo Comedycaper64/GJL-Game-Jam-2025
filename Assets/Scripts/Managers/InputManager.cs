@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour, Controls.IPlayerActions
 {
+    private bool gameStarted = false;
     public static InputManager Instance { get; private set; }
     public static bool disableInputs = false;
 
@@ -35,6 +36,8 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
         controls.Player.Enable();
 
         PauseManager.OnPauseGame += ToggleDisableInputs;
+
+        disableInputs = true;
     }
 
     private void OnDisable()
@@ -178,6 +181,17 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
 
     private void ToggleDisableInputs(object sender, bool toggle)
     {
+        if (!gameStarted)
+        {
+            return;
+        }
+
         disableInputs = toggle;
+    }
+
+    public void GameStart()
+    {
+        gameStarted = true;
+        disableInputs = false;
     }
 }
