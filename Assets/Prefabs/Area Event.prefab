@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6962399118356458298}
   - component: {fileID: 1273364671307790586}
   - component: {fileID: 2096820029335201495}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Area Event
   m_TagString: Untagged
   m_Icon: {fileID: 0}

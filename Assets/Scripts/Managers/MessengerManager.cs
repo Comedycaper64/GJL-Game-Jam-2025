@@ -1,10 +1,20 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MessengerManager : MonoBehaviour
 {
+    private float loadingScreenDisplayTime = 4f;
+    private float logoRotateSpeed = 100f;
+
     [SerializeField]
     private DialogueCluster openingDialogueCluster;
+
+    [SerializeField]
+    private DialogueCluster gameStartCluster;
+
+    [SerializeField]
+    private Transform logoTransform;
 
     [SerializeField]
     private ConversationManager conversationManager;
@@ -16,13 +26,63 @@ public class MessengerManager : MonoBehaviour
     private Button callButton;
 
     [SerializeField]
+    private Scrollbar messengerScrollbar;
+
+    [SerializeField]
+    private CanvasGroupFader loadFader;
+
+    [SerializeField]
     private CanvasGroupFader preCallFader;
 
     [SerializeField]
     private CanvasGroupFader callStartFader;
 
     [SerializeField]
+    private CanvasGroupFader darknessFader;
+
+    [SerializeField]
     private CanvasGroupFader messengerUIFader;
+
+    private void Awake()
+    {
+        messengerScrollbar.value = 0f;
+        loadFader.SetCanvasGroupAlpha(1f);
+        messengerUIFader.SetCanvasGroupAlpha(1f);
+
+        StartCoroutine(DelayedLoadDisable());
+    }
+
+    private IEnumerator DelayedLoadDisable()
+    {
+        yield return new WaitForSeconds(loadingScreenDisplayTime);
+
+        loadFader.ToggleFade(false);
+        loadFader.ToggleBlockRaycasts(false);
+    }
+
+    private IEnumerator DelayedGameLoad()
+    {
+        darknessFader.ToggleFade(true);
+
+        yield return new WaitForSeconds(1f);
+        messengerUIFader.ToggleFade(false);
+        messengerUIFader.ToggleBlockRaycasts(false);
+
+        yield return new WaitForSeconds(1f);
+
+        darknessFader.ToggleFade(false);
+
+        InputManager.Instance.GameStart();
+        conversationManager.AddToConversation(gameStartCluster);
+
+        //another yield
+        //flash feedback button when dialogue gets to it
+    }
+
+    private void Update()
+    {
+        logoTransform.eulerAngles += new Vector3(0f, logoRotateSpeed * Time.deltaTime, 0f);
+    }
 
     public void StartCall()
     {
@@ -39,11 +99,6 @@ public class MessengerManager : MonoBehaviour
 
     public void StartGame()
     {
-        messengerUIFader.ToggleFade(false);
-        messengerUIFader.ToggleBlockRaycasts(false);
-        InputManager.Instance.GameStart();
-
-        //fadeout messenger UI
-        //enable character movement + inputs
+        StartCoroutine(DelayedGameLoad());
     }
 }

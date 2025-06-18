@@ -23,7 +23,7 @@ public class NPCDialogue : MonoBehaviour
 
     private void Awake()
     {
-        spokenDialogue = new Queue<string>(dialogueSO.GetDialogues()[0].dialogue);
+        spokenDialogue = new Queue<string>(dialogueSO.GetDialogue().dialogue);
         dialogueStarted = false;
         textBoxFader.SetCanvasGroupAlpha(0f);
     }

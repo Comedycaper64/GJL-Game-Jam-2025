@@ -20,10 +20,15 @@ public class ConversationManager : MonoBehaviour
 
     public static EventHandler<bool> OnConversationActive;
 
+    public static EventHandler<int> OnUnlockFeedback;
+    public static Action OnPlaytestEnd;
+
     private void Awake()
     {
         AreaEventTrigger.OnAreaEvent += ConversationTrigger;
         FeedbackUI.OnFeedback += ConversationTrigger;
+        FeedbackUI.OnFinalFeedback += EndConversationTrigger;
+        CombatArenaManager.OnCombatEnd += ConversationTrigger;
     }
 
     private void Start()
@@ -37,16 +42,12 @@ public class ConversationManager : MonoBehaviour
     {
         AreaEventTrigger.OnAreaEvent -= ConversationTrigger;
         FeedbackUI.OnFeedback -= ConversationTrigger;
+        FeedbackUI.OnFinalFeedback -= EndConversationTrigger;
+        CombatArenaManager.OnCombatEnd -= ConversationTrigger;
     }
 
     private void AdvanceConversation()
     {
-        if (OnClusterEnd != null)
-        {
-            OnClusterEnd();
-            OnClusterEnd = null;
-        }
-
         if (conversationQueue.TryDequeue(out DialogueCluster newCluster))
         {
             activeDialogueCluster = new Queue<ConversationNode>(newCluster.GetCinematicNodes());
@@ -82,6 +83,21 @@ public class ConversationManager : MonoBehaviour
                 ResolveConditional(conditionalSO);
 
                 TryResolveDialogueCluster();
+            }
+            else if (nodeType == typeof(DialogueFeedbackSO))
+            {
+                DialogueFeedbackSO feedbackSO = node as DialogueFeedbackSO;
+
+                FeedbackManager.Instance.SetDictionaryValue(
+                    feedbackSO.GetKey(),
+                    feedbackSO.GetValue()
+                );
+            }
+            else if (nodeType == typeof(DialogueFeedbackUnlockSO))
+            {
+                DialogueFeedbackUnlockSO unlockSO = node as DialogueFeedbackUnlockSO;
+
+                OnUnlockFeedback?.Invoke(this, unlockSO.feedbackUnlockIndex);
             }
             else
             {
@@ -132,6 +148,19 @@ public class ConversationManager : MonoBehaviour
     {
         conversationActive = false;
         OnConversationActive?.Invoke(this, false);
+
+        if (OnClusterEnd != null)
+        {
+            OnClusterEnd();
+            OnClusterEnd = null;
+        }
+    }
+
+    private void EndLevel()
+    {
+        InputManager.Instance.GameEnd();
+
+        OnPlaytestEnd?.Invoke();
     }
 
     public void AddToConversation(DialogueCluster newCluster, Action onClusterEnd = null)
@@ -142,14 +171,19 @@ public class ConversationManager : MonoBehaviour
 
         if (!conversationActive)
         {
-            AdvanceConversation();
             conversationActive = true;
             OnConversationActive?.Invoke(this, true);
+            AdvanceConversation();
         }
     }
 
     private void ConversationTrigger(object sender, DialogueCluster cluster)
     {
         AddToConversation(cluster);
+    }
+
+    private void EndConversationTrigger(object sender, DialogueCluster cluster)
+    {
+        AddToConversation(cluster, EndLevel);
     }
 }

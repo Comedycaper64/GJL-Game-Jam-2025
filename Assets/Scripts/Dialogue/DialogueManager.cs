@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<AudioClip> currentVoiceClips;
 
     private Action onDialogueComplete;
-    private Queue<Dialogue> dialogues;
+    private Dialogue dialogues;
     private Coroutine autoPlayCoroutine;
 
     public static event EventHandler<DialogueUIEventArgs> OnDialogue;
@@ -42,7 +42,7 @@ public class DialogueManager : MonoBehaviour
     public void PlayDialogue(DialogueSO dialogueSO, Action onDialogueComplete)
     {
         this.onDialogueComplete = onDialogueComplete;
-        dialogues = new Queue<Dialogue>(dialogueSO.GetDialogues());
+        dialogues = dialogueSO.GetDialogue();
 
         InputManager.OnSkipEvent += SkipCurrentDialogue;
 
@@ -69,17 +69,17 @@ public class DialogueManager : MonoBehaviour
 
     private void TryPlayNextDialogue()
     {
-        if (!dialogues.TryDequeue(out Dialogue dialogueNode))
-        {
-            EndDialogue();
-            return;
-        }
+        // if (!dialogues.TryDequeue(out Dialogue dialogueNode))
+        // {
+        //     EndDialogue();
+        //     return;
+        // }
 
-        currentDialogue = new Queue<string>(dialogueNode.dialogue);
+        currentDialogue = new Queue<string>(dialogues.dialogue);
 
-        if (dialogueNode.voiceClip != null)
+        if (dialogues.voiceClip != null)
         {
-            currentVoiceClips = new Queue<AudioClip>(dialogueNode.voiceClip);
+            currentVoiceClips = new Queue<AudioClip>(dialogues.voiceClip);
         }
         else
         {
@@ -100,7 +100,8 @@ public class DialogueManager : MonoBehaviour
 
         if (!currentDialogue.TryDequeue(out currentSentence))
         {
-            TryPlayNextDialogue();
+            //TryPlayNextDialogue();
+            EndDialogue();
             return;
         }
 

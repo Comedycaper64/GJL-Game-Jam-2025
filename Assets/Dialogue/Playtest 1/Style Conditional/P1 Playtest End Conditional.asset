@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf133be2c5d0db4288d6bda48938e31, type: 3}
+  m_Name: P1 Playtest End Conditional
+  m_EditorClassIdentifier: 
+  attitudeThreshold: -1
+  feedbackKey: Style
+  feedbackClusters:
+  - {fileID: 11400000, guid: 2f8362b70f4c58945ba737dcabb1cffa, type: 2}
+  - {fileID: 11400000, guid: c026a6f89a825f3409e0a7eb1e2d05c6, type: 2}
+  - {fileID: 11400000, guid: 5311f9470fbee5d44a6b366f2e42f13d, type: 2}
+  noFeedbackCluster: {fileID: 11400000, guid: 8a007c93f4ba21645b2dcde2bf2e853c, type: 2}
+  attitudeBranchCluster: {fileID: 0}

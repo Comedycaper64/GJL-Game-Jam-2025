@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad92fcdf09f97848b791996cfbf95d5, type: 3}
+  m_Name: P1 Second Combat Start Dialogue
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialogue:
+    - 'So, now you''ll face ranged enemies, which means I tell you about the game''s
+      U-S-P! Uh, that''s the unique selling point, anyway, you can press right click
+      to *Absorb* projectiles. '
+    - Uh yeah that's what the meter in the bottom right is for. Right click and you'll
+      absorb all the projectiles around you. Ugh, this took forever to get working.
+    voiceClip:
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}

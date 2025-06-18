@@ -15,10 +15,10 @@ public struct Dialogue
 public class DialogueSO : ConversationNode
 {
     [SerializeField]
-    private Dialogue[] dialogues;
+    private Dialogue dialogue;
 
-    public Dialogue[] GetDialogues()
+    public Dialogue GetDialogue()
     {
-        return dialogues;
+        return dialogue;
     }
 }

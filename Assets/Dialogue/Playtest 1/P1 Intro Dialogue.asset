@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad92fcdf09f97848b791996cfbf95d5, type: 3}
+  m_Name: P1 Intro Dialogue
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialogue:
+    - There we go, it works! (chuckle) Wow, it's weird seeing it on someone else's
+      screen.
+    - Oh, the controls! Uhhh so use W,A,S,D to move... uh you can attack by Left
+      Clicking... you have a dash if you press Spacebar... yeah that should be all
+      you need for now.
+    - So I'll be asking you questions about how you're finding the game, but also
+      let me know if you have any feedback as well.
+    - And... yeah, that's the Hero, you play as a knight in a dungeon.
+    - Uhhh, yeah that's all I wanted to say at the beginning here, so feel free to
+      continue through the level.
+    voiceClip:
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}

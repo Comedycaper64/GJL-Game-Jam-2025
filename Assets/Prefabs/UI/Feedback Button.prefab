@@ -282,6 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420698346b6236045b05422ff0d30365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feedbackCluster: {fileID: 0}
+  feedbackCluster: {fileID: 11400000, guid: 6c1d2d5a74fcd4d4897db440a91d0014, type: 2}
   feedbackButton: {fileID: 7815155844630590181}
-  buttonText: {fileID: 0}
+  buttonText: {fileID: 4089329545562212378}

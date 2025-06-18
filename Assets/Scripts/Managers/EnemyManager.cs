@@ -38,11 +38,21 @@ public class EnemyManager : MonoBehaviour
         {
             enemyToSpawn = meleeEnemies[meleeEnemySpawnIndex];
             meleeEnemySpawnIndex++;
+
+            if (meleeEnemySpawnIndex >= meleeEnemies.Length)
+            {
+                meleeEnemySpawnIndex = 0;
+            }
         }
         else
         {
             enemyToSpawn = rangedEnemies[rangedEnemySpawnIndex];
             rangedEnemySpawnIndex++;
+
+            if (rangedEnemySpawnIndex >= rangedEnemies.Length)
+            {
+                rangedEnemySpawnIndex = 0;
+            }
         }
 
         enemyToSpawn.transform.position = spawnLocation;

@@ -8,6 +8,8 @@ public class DialogueChoiceManager : MonoBehaviour
 
     public static EventHandler<DialogueChoiceSO> OnDialogueChoice;
 
+    public static EventHandler<FeedbackType> OnFeedbackType;
+
     private void Awake()
     {
         DialogueChoiceUI.OnDialogueChosen += HandleDialogueChoice;
@@ -32,6 +34,7 @@ public class DialogueChoiceManager : MonoBehaviour
         if (choiceIndex < 0)
         {
             chosenDialogue = new DialogueChoice("", currentChoices[0].feedbackKey, -1, -1);
+            OnFeedbackType?.Invoke(this, FeedbackType.silence);
         }
         else
         {
@@ -49,6 +52,11 @@ public class DialogueChoiceManager : MonoBehaviour
             chosenDialogue.feedbackKey,
             chosenDialogue.feedbackValue
         );
+
+        if (chosenDialogue.feedbackType != FeedbackType.na)
+        {
+            OnFeedbackType?.Invoke(this, chosenDialogue.feedbackType);
+        }
 
         onChoiceComplete();
         currentChoices = null;

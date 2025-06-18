@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FeedbackButtonUI : MonoBehaviour
 {
     [SerializeField]
-    private DialogueCluster feedbackCluster;
+    protected DialogueCluster feedbackCluster;
 
     [SerializeField]
     private Button feedbackButton;
@@ -16,7 +16,7 @@ public class FeedbackButtonUI : MonoBehaviour
 
     public static EventHandler<DialogueCluster> OnGiveFeedback;
 
-    public void StartFeedbackConversation()
+    public virtual void StartFeedbackConversation()
     {
         OnGiveFeedback?.Invoke(this, feedbackCluster);
     }

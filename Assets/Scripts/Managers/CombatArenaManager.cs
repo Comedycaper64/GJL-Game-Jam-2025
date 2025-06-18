@@ -28,6 +28,11 @@ public class CombatArenaManager : MonoBehaviour
     [SerializeField]
     private Transform[] arenaSpawnPoints;
 
+    [SerializeField]
+    private DialogueCluster combatEndCluster;
+
+    public static EventHandler<DialogueCluster> OnCombatEnd;
+
     private void OnEnable()
     {
         PlayerManager.OnPlayerDead += TryReset;
@@ -62,6 +67,11 @@ public class CombatArenaManager : MonoBehaviour
         arenaActive = false;
         ToggleGates(false);
         arenaCompleted = true;
+
+        if (combatEndCluster)
+        {
+            OnCombatEnd?.Invoke(this, combatEndCluster);
+        }
     }
 
     private void ToggleGates(bool toggle)

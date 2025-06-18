@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad92fcdf09f97848b791996cfbf95d5, type: 3}
+  m_Name: Opening Call Dialogue
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialogue:
+    - Oh, there you are!
+    - Thanks again for coming, I've been struggling to find anyone free to do a playtest,
+      so you reaching out was a miracle!
+    - I've been working on this for quite a bit now, so I'm excited to finally show
+      it off!
+    - Uh you'll be the first playtester, and watching you play will let me know if
+      the game needs any changes, or if there are any bugs I need to fix.
+    - So uhhh... yeah, launch up the game when you're ready. Just extract those files
+      I sent and it should hopefully run!
+    voiceClip:
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}

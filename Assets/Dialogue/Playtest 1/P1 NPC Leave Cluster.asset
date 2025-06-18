@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae9a570f1e3c1d40b535421963e5810, type: 3}
+  m_Name: P1 NPC Leave Cluster
+  m_EditorClassIdentifier: 
+  conversationNodes:
+  - {fileID: 11400000, guid: 56d48fa3fc3ad174f8bc7c74f85ad597, type: 2}
+  - {fileID: 11400000, guid: 9c91c372f5c757c44b96aeaf5585da3e, type: 2}

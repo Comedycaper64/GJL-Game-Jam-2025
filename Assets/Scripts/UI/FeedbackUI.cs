@@ -17,13 +17,19 @@ public class FeedbackUI : MonoBehaviour
     [SerializeField]
     private CanvasGroupFader feedbackBusyFader;
 
+    [SerializeField]
+    private GameObject[] unlockableFeedbacks;
+
     public static EventHandler<DialogueCluster> OnFeedback;
+    public static EventHandler<DialogueCluster> OnFinalFeedback;
 
     private void Awake()
     {
         FeedbackButtonUI.OnGiveFeedback += TryStartFeedback;
+        FeedbackEndGameButtonUI.OnGiveFinalFeedback += TryStartFinalFeedback;
         InputManager.OnFeedbackEvent += ToggleFeedbackMenu;
         ConversationManager.OnConversationActive += OnConversationActive;
+        ConversationManager.OnUnlockFeedback += OnUnlockFeedback;
 
         feedBackColumnGroup = feedbackColumnFader.GetComponent<CanvasGroup>();
         ToggleColumnFader(false);
@@ -33,8 +39,16 @@ public class FeedbackUI : MonoBehaviour
     private void OnDisable()
     {
         FeedbackButtonUI.OnGiveFeedback -= TryStartFeedback;
+        FeedbackEndGameButtonUI.OnGiveFinalFeedback -= TryStartFinalFeedback;
         InputManager.OnFeedbackEvent -= ToggleFeedbackMenu;
         ConversationManager.OnConversationActive -= OnConversationActive;
+        ConversationManager.OnUnlockFeedback -= OnUnlockFeedback;
+    }
+
+    private void UpdateFeedbackUI()
+    {
+        //update feedback Ui number
+        //flash Ui
     }
 
     public void ToggleButtonFader(bool toggle)
@@ -76,11 +90,30 @@ public class FeedbackUI : MonoBehaviour
         feedbackButton.DisableButton();
     }
 
+    private void TryStartFinalFeedback(object sender, DialogueCluster cluster)
+    {
+        if (conversationActive)
+        {
+            return;
+        }
+
+        OnFinalFeedback?.Invoke(this, cluster);
+
+        FeedbackButtonUI feedbackButton = sender as FeedbackButtonUI;
+        feedbackButton.DisableButton();
+    }
+
     private void OnConversationActive(object sender, bool toggle)
     {
         conversationActive = toggle;
 
         ToggleBusyFader(conversationActive);
         feedBackColumnGroup.interactable = !conversationActive;
+    }
+
+    private void OnUnlockFeedback(object sender, int index)
+    {
+        unlockableFeedbacks[index].SetActive(true);
+        UpdateFeedbackUI();
     }
 }

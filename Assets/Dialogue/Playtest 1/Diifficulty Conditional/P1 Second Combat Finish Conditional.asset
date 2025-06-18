@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf133be2c5d0db4288d6bda48938e31, type: 3}
+  m_Name: P1 Second Combat Finish Conditional
+  m_EditorClassIdentifier: 
+  attitudeThreshold: -1
+  feedbackKey: Diff
+  feedbackClusters:
+  - {fileID: 11400000, guid: 833f70858870d2f4ca5896cb43688f9b, type: 2}
+  - {fileID: 11400000, guid: d5fdc6b2e6f320a4eb508dc5c4f6dce6, type: 2}
+  - {fileID: 11400000, guid: f81a4a575d9f38c4494a30048e127665, type: 2}
+  noFeedbackCluster: {fileID: 11400000, guid: 7ee66938577a2b84b81ef698b91e0fe5, type: 2}
+  attitudeBranchCluster: {fileID: 0}

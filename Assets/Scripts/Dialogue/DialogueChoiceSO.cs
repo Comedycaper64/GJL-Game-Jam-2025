@@ -8,13 +8,15 @@ public struct DialogueChoice
         string dialogueChoice,
         string feedbackKey,
         int feedbackValue,
-        int attitudeModifier
+        int attitudeModifier,
+        FeedbackType feedbackType = FeedbackType.na
     )
     {
         this.dialogueChoice = dialogueChoice;
         this.feedbackKey = feedbackKey;
         this.feedbackValue = feedbackValue;
         this.attitudeModifier = attitudeModifier;
+        this.feedbackType = feedbackType;
     }
 
     [TextArea]
@@ -22,6 +24,7 @@ public struct DialogueChoice
     public string feedbackKey;
     public int feedbackValue;
     public int attitudeModifier;
+    public FeedbackType feedbackType;
 }
 
 [Serializable]

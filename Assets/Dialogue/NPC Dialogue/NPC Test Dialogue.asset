@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad92fcdf09f97848b791996cfbf95d5, type: 3}
   m_Name: NPC Test Dialogue
   m_EditorClassIdentifier: 
-  dialogues:
-  - dialogue:
-    - Greetings. I am an NPC
-    - Have you heard of the high elves?
+  dialogue:
+    dialogue:
+    - Greetings, It is I NPC.
+    - Behold my conversation.
     voiceClip: []
