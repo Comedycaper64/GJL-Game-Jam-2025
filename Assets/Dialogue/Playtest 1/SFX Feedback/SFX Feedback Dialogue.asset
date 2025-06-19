@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Oh right, yes, what do you think about them?
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: cb5d71bd9bd57e24cb931746bae7e51c, type: 3}

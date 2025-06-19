@@ -20,7 +20,7 @@ MonoBehaviour:
     - Um.
     - Ok.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 9753a9a03fd293d4185696e0c6838d69, type: 3}
+    - {fileID: 8300000, guid: e2b2ede1a8d7d5c4aaf635385bad395a, type: 3}
+    - {fileID: 8300000, guid: 9f5984f16739cdf42991e674782aca59, type: 3}
+    - {fileID: 8300000, guid: d2e7c4f2dca6ea64cba5edebc83025b5, type: 3}

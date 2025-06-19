@@ -16,6 +16,9 @@ public class NPCDialogue : MonoBehaviour
     private DialogueSO dialogueSO;
 
     [SerializeField]
+    private GameObject npcLeaveAreaCluster;
+
+    [SerializeField]
     private TextMeshProUGUI dialogueText;
 
     [SerializeField]
@@ -57,6 +60,16 @@ public class NPCDialogue : MonoBehaviour
         dialogueStarted = true;
         textBoxFader.ToggleFade(true);
         dialogueCoroutine = StartCoroutine(PlayNextDialogue(spokenDialogue.Dequeue()));
+    }
+
+    public void StopDialogue()
+    {
+        if (dialogueCoroutine != null)
+        {
+            StopCoroutine(dialogueCoroutine);
+        }
+
+        npcLeaveAreaCluster.SetActive(false);
     }
 
     private IEnumerator PlayNextDialogue(string dialogue)

@@ -19,6 +19,6 @@ MonoBehaviour:
       for a knight to have an absorb power for no reason.
     - Let me think on that.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: a8f3eeff393da2d408206194a5b9a6c2, type: 3}
+    - {fileID: 8300000, guid: 4516e09257b1b1e44a76b165f73537ed, type: 3}
+    - {fileID: 8300000, guid: 1c20a9c9cedec8c469c8df67093aab96, type: 3}

@@ -17,4 +17,4 @@ MonoBehaviour:
     - Alright, it's not supposed to be very difficult, so I might make it a touch
       easier.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 724b8d0588b3bb941b5eac643c676de8, type: 3}

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad92fcdf09f97848b791996cfbf95d5, type: 3}
+  m_Name: P2 Intro Dialogue Followup
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialogue:
+    - Alright, here we go again.
+    - So you'll immediately notice that, uh, the visuals of the game are a *little*
+      different.
+    - I've spent a lot of time making all the assets and putting it together, and
+      if it gets criticised I *might* cry, so I'll just assume neutral-to-good feedback.
+    - But... yeah, start making your way through.
+    voiceClip:
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}

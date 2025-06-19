@@ -47,7 +47,5 @@ public class EnemyWeapon : MonoBehaviour
     public void SetAttackDirection(Vector2 direction)
     {
         playerTarget = direction;
-
-        Debug.Log("Target direction: " + playerTarget);
     }
 }

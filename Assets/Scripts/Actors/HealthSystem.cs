@@ -42,7 +42,7 @@ public class HealthSystem : MonoBehaviour
 
         OnNewHealth?.Invoke(this, health);
 
-        Debug.Log(gameObject.name + "damage taken");
+        //Debug.Log(gameObject.name + "damage taken");
 
         if (health == 0f)
         {
@@ -73,7 +73,7 @@ public class HealthSystem : MonoBehaviour
     private void Die()
     {
         OnDeath?.Invoke(this, EventArgs.Empty);
-        Debug.Log(gameObject.name + "is Dead");
+        //Debug.Log(gameObject.name + "is Dead");
         //Destroy(gameObject);
     }
 }

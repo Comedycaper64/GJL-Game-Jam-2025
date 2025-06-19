@@ -17,4 +17,4 @@ MonoBehaviour:
     - Hm. I'm not really sure what other style I could go with... but I could give
       it a try.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 7e83d5b00b2339440811e02472ba912f, type: 3}

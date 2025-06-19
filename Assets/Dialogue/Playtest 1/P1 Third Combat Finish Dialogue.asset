@@ -17,4 +17,4 @@ MonoBehaviour:
     - Alright, so you are done with the available content. Let me know when you're
       ready to finish.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 16bf0f9952814d941993809b6665c2e8, type: 3}

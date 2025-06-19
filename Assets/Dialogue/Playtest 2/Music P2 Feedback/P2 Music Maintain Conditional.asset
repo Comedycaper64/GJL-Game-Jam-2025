@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf133be2c5d0db4288d6bda48938e31, type: 3}
+  m_Name: P2 Music Maintain Conditional
+  m_EditorClassIdentifier: 
+  attitudeThreshold: -1
+  feedbackKey: Music
+  feedbackClusters:
+  - {fileID: 11400000, guid: f04d5a38e0952194cb5cb6a20728056b, type: 2}
+  - {fileID: 11400000, guid: 09e799d155311b642a99eb6de96dd322, type: 2}
+  noFeedbackCluster: {fileID: 11400000, guid: bbf93b4bcf947934b9a8d6a7b1506d7b, type: 2}
+  attitudeBranchCluster: {fileID: 0}

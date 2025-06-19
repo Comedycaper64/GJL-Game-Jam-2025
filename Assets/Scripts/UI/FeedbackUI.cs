@@ -1,10 +1,21 @@
 using System;
+using MoreMountains.Feedbacks;
+using TMPro;
 using UnityEngine;
 
 public class FeedbackUI : MonoBehaviour
 {
     private bool feedbackColumnOpen = false;
     private bool conversationActive = false;
+
+    [SerializeField]
+    private int feedbacks = 0;
+
+    [SerializeField]
+    private TextMeshProUGUI feedbackButtonText;
+
+    [SerializeField]
+    private MMF_Player feedbackButtonPlayer;
 
     [SerializeField]
     private CanvasGroupFader feedbackButtonFader;
@@ -31,6 +42,8 @@ public class FeedbackUI : MonoBehaviour
         ConversationManager.OnConversationActive += OnConversationActive;
         ConversationManager.OnUnlockFeedback += OnUnlockFeedback;
 
+        feedbackButtonText.text = feedbacks.ToString();
+
         feedBackColumnGroup = feedbackColumnFader.GetComponent<CanvasGroup>();
         ToggleColumnFader(false);
         ToggleBusyFader(false);
@@ -47,8 +60,9 @@ public class FeedbackUI : MonoBehaviour
 
     private void UpdateFeedbackUI()
     {
-        //update feedback Ui number
-        //flash Ui
+        feedbackButtonPlayer.PlayFeedbacks();
+        feedbacks++;
+        feedbackButtonText.text = feedbacks.ToString();
     }
 
     public void ToggleButtonFader(bool toggle)
@@ -88,6 +102,9 @@ public class FeedbackUI : MonoBehaviour
 
         FeedbackButtonUI feedbackButton = sender as FeedbackButtonUI;
         feedbackButton.DisableButton();
+
+        feedbacks--;
+        feedbackButtonText.text = feedbacks.ToString();
     }
 
     private void TryStartFinalFeedback(object sender, DialogueCluster cluster)

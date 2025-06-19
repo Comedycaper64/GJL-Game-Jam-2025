@@ -19,6 +19,6 @@ MonoBehaviour:
       comes out right.'
     - I'll just not have writing in the game. It's fine.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 7f586511446178f449ee1c72a09769a0, type: 3}
+    - {fileID: 8300000, guid: 491e4e213c996214bbafdf8e68317e6c, type: 3}
+    - {fileID: 8300000, guid: 1d9c497f75e620d489c7d7926ee66f59, type: 3}

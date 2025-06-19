@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad92fcdf09f97848b791996cfbf95d5, type: 3}
+  m_Name: Attitude High D
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialogue:
+    - 'Well, I''m glad you enjoyed it! This has been a lot of work, but I''m happy
+      with how it''s coming along. '
+    - Let me spend a few more months working on it and maybe there'll be another
+      playtest! See you later!
+    voiceClip:
+    - {fileID: 8300000, guid: 10ddd17c83beabd4f8c759ffcbae994f, type: 3}
+    - {fileID: 8300000, guid: d270537f37a26fa478b39cc3e3cce53d, type: 3}

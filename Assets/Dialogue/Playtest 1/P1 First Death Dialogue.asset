@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Ah... damn. You fought bravely but uh... well... yeah.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 597d04e114f6b634e8ac2d57b848fe48, type: 3}

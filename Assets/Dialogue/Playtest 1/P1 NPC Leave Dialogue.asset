@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     dialogue:
-    - Oh for... I forgot to make him invincible... argh, well good catch, wouldn't
-      have thought to attack him. I'll get that fixed.
+    - Oh he's not done... well okay. I guess he does talk for a bit long
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 94d595f9470f48c4b93460e50337108e, type: 3}

@@ -17,5 +17,5 @@ MonoBehaviour:
     - You don't... *like* sound effects?
     - Hokay...
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 06b56b0c049e74744a47cd5786542c10, type: 3}
+    - {fileID: 8300000, guid: 3e4d3d88fe81ef2438b2dc6aa486e4b9, type: 3}

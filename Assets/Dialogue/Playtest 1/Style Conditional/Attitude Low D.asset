@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad92fcdf09f97848b791996cfbf95d5, type: 3}
+  m_Name: Attitude Low D
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialogue:
+    - Soooo, it uh looks like the game wasn't terribly to your liking. That's a shame.
+      But uh, yeah, hopefully I can improve some parts of it.
+    - Maybe next playtest you'll be more positive on it? We'll see I guess. Uh. Bye.
+    voiceClip:
+    - {fileID: 8300000, guid: 23762b73b4366c2489931d9d58d9f918, type: 3}
+    - {fileID: 8300000, guid: ed6ef649c2dbc6048bad381d903b5a1e, type: 3}

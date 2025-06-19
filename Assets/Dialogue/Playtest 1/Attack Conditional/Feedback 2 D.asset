@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Good is good, I'll take it!
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 7231c22f0ea768f4d99ccf872e5f60c4, type: 3}

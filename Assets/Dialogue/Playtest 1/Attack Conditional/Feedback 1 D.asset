@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Alright... uh I guess I can increase the player damage then.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: b28ccf76a7b839d4e949f1126a73dca7, type: 3}

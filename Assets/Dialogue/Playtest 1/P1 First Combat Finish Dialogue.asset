@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Nice! Good work! Uh, now that you've had a feel for combat, what do you think?
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 50016d88959e3704592b3a4a6be6e089, type: 3}

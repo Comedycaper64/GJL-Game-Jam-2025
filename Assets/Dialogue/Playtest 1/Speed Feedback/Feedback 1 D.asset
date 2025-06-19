@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Ah, yeah I guess so, I can tune that up.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 7b7d0cf563f735347be96c2f88533e55, type: 3}

@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Ooh, ok THAT sounds cool. I'll definitely implement that.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 806f4c38edeb70144bed5a2cda94cc8c, type: 3}

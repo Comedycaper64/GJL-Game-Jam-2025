@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Suppose it must be ok.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 5ead6a26a1c67a249b89b3c38b1541c1, type: 3}

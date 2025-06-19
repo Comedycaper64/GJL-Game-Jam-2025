@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Like a damage buff? Hm, that might be cool actually.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: e3376894c96398145aab2f5a87052b35, type: 3}

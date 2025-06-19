@@ -19,6 +19,6 @@ MonoBehaviour:
       aspect, you can absorb projectiles coming at you.
     - '*sigh*'
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 63c2aa63673866d4ebf08242c6c2a9e1, type: 3}
+    - {fileID: 8300000, guid: 1a34c75154572494c89757637a01248c, type: 3}
+    - {fileID: 8300000, guid: b30e96a1a79c53f42b26d70a32377ace, type: 3}

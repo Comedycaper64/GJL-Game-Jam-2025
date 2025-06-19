@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf133be2c5d0db4288d6bda48938e31, type: 3}
+  m_Name: P2 First Combat Finish NonMaintain Conditional
+  m_EditorClassIdentifier: 
+  attitudeThreshold: -1
+  feedbackKey: Attack
+  feedbackClusters:
+  - {fileID: 11400000, guid: 5e7b7b4869339904c9c31d3b78d5727b, type: 2}
+  - {fileID: 11400000, guid: 47609ab9adb11e4449427d74975b83a2, type: 2}
+  - {fileID: 11400000, guid: 3a58c992d9990724ca4644b99435b83d, type: 2}
+  noFeedbackCluster: {fileID: 11400000, guid: 16b8bf29cc5af7e4dbfe232badd91f28, type: 2}
+  attitudeBranchCluster: {fileID: 0}

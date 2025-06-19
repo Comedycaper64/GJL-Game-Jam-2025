@@ -25,8 +25,8 @@ MonoBehaviour:
     - Uhhh, yeah that's all I wanted to say at the beginning here, so feel free to
       continue through the level.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: b1a6ddff90ca5fa4f96367a9cd1b54a2, type: 3}
+    - {fileID: 8300000, guid: cb735676676621a4c92a5a0a60fdc109, type: 3}
+    - {fileID: 8300000, guid: 5bd072a0a2427074cbc40641c867e552, type: 3}
+    - {fileID: 8300000, guid: c9de776ea48f5c545992595dfabeeb13, type: 3}
+    - {fileID: 8300000, guid: 0674fe3def7382147a4cd0021822b057, type: 3}

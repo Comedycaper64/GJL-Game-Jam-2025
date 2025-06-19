@@ -20,5 +20,5 @@ MonoBehaviour:
     - Uh yeah that's what the meter in the bottom right is for. Right click and you'll
       absorb all the projectiles around you. Ugh, this took forever to get working.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 37a5dceaa27f8d446b404f181806d47d, type: 3}
+    - {fileID: 8300000, guid: 0cfa7988313ea294dae5288e768bbee7, type: 3}

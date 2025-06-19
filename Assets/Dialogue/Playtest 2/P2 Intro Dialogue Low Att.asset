@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad92fcdf09f97848b791996cfbf95d5, type: 3}
+  m_Name: P2 Intro Dialogue Low Att
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialogue:
+    - ...Hi there.
+    - So, like I said, I have another playtest ready. Maybe this time you'll like
+      it.
+    - '*sigh*, sorry, I''m being too grumpy.'
+    - It's like, you know, you spend *so* much time and effort on something, and
+      it gets completely dismissed and...
+    - Wow, I'm just venting right now. Sorry, let's reset. I've made it better! The
+      game is hopefully improved!
+    - So yeah, let's try to push negative thoughts aside and have ourselves a playtest.
+    - Uh.. yeah, just open the files the same as last time.
+    voiceClip:
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
