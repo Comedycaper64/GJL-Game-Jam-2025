@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +26,9 @@ public class PlayerWeapon : MonoBehaviour
 
     [SerializeField]
     private CircleCollider2D weaponCollider;
+
+    [SerializeField]
+    private AudioClip weaponSwingSFX;
 
     // [SerializeField]
     // private LayerMask hittableLayerMask;
@@ -110,6 +112,7 @@ public class PlayerWeapon : MonoBehaviour
         //Play Weapon Effect
         //Trigger animation
         //Play SFX
+        AudioManager.PlaySFX(weaponSwingSFX, 0.5f, 0, transform.position);
 
         weaponAvailable = false;
 
@@ -140,8 +143,21 @@ public class PlayerWeapon : MonoBehaviour
                 > (1f - playerStats.weaponAttackArc)
             )
             {
-                health.TakeDamage(playerStats.weaponDamage);
+                DealDamage(health, colliderDirectionFromPlayer);
             }
+        }
+    }
+
+    private void DealDamage(HealthSystem health, Vector2 attackDirection)
+    {
+        health.TakeDamage(playerStats.weaponDamage);
+
+        if (health.TryGetComponent<Rigidbody2D>(out Rigidbody2D damagedRb))
+        {
+            damagedRb.AddForce(
+                attackDirection * playerStats.weaponKnockbackStrength,
+                ForceMode2D.Impulse
+            );
         }
     }
 

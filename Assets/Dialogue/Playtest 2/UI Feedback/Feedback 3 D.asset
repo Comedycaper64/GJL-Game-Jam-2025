@@ -18,5 +18,5 @@ MonoBehaviour:
     - Like I don't even know how I would do that for this sort of game. But I guess
       I could look into it. Sure.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 46d59b61590f16343a6ff965b23f3694, type: 3}
+    - {fileID: 8300000, guid: 8abfe159a7bbdfd4287a790a60ea0214, type: 3}

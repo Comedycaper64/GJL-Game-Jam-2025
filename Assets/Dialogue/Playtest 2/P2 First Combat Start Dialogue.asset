@@ -19,5 +19,5 @@ MonoBehaviour:
     - I'll build out bigger and more complicated levels once the game's in a better
       place.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 820fc953f416c4741a948deb0ba8b743, type: 3}
+    - {fileID: 8300000, guid: ef354293141758248982c07cfca8c9c2, type: 3}

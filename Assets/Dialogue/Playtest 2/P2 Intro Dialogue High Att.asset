@@ -20,7 +20,7 @@ MonoBehaviour:
     - I'm pretty interested to see what you have to say this time.
     - Uh so yeah, let's get right into it, you know the drill I hope.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: b8d7d662540ffe241bc047350a65f775, type: 3}
+    - {fileID: 8300000, guid: 5ca235a5ed2347640bf5654239e262fe, type: 3}
+    - {fileID: 8300000, guid: d0981c29e92668a47b9524b2ea3b34e8, type: 3}
+    - {fileID: 8300000, guid: 4a7543a9566e5c94b88e871017237d0c, type: 3}

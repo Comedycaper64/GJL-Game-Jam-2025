@@ -16,8 +16,8 @@ MonoBehaviour:
   - dialogueChoice: Minimalism is the hot new thing. You should try it.
     feedbackKey: UI
     feedbackValue: 1
-    attitudeModifier: 0
-    feedbackType: 3
+    attitudeModifier: -1
+    feedbackType: 2
   - dialogueChoice: It could be a bit fancier maybe?
     feedbackKey: UI
     feedbackValue: 2
@@ -26,5 +26,5 @@ MonoBehaviour:
   - dialogueChoice: I hate any UI that isn't diegetic.
     feedbackKey: UI
     feedbackValue: 3
-    attitudeModifier: 1
-    feedbackType: 1
+    attitudeModifier: -1
+    feedbackType: 2

@@ -16,6 +16,7 @@ public class PlayerStats : MonoBehaviour
 
     [Range(0, 1)]
     public float weaponAttackArc = 0.5f;
+    public float weaponKnockbackStrength = 10f;
 
     [Header("Absorb")]
     public float meterReplenishRate = 0.2f;

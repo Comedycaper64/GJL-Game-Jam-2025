@@ -16,15 +16,15 @@ MonoBehaviour:
   - dialogueChoice: An extra type would be nice. Like a caster?
     feedbackKey: Enemy
     feedbackValue: 1
-    attitudeModifier: 0
+    attitudeModifier: 1
     feedbackType: 3
   - dialogueChoice: It's perfect as is. Less is more, as they say.
     feedbackKey: Enemy
     feedbackValue: 2
-    attitudeModifier: 0
-    feedbackType: 3
+    attitudeModifier: 1
+    feedbackType: 1
   - dialogueChoice: I like the idea of elite enemies.
     feedbackKey: Enemy
     feedbackValue: 0
-    attitudeModifier: 1
-    feedbackType: 1
+    attitudeModifier: 0
+    feedbackType: 3

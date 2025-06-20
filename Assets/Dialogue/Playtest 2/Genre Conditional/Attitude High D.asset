@@ -18,5 +18,5 @@ MonoBehaviour:
     - I have no idea how long it'll take me to make the next playtest, so... yeah,
       wish me luck, I'll see you later.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: ff9121d7e2028dc43bd8d05d0a8885be, type: 3}
+    - {fileID: 8300000, guid: 820911c31d5967840a5e301d93235b42, type: 3}

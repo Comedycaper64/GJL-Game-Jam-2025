@@ -19,6 +19,12 @@ public class PlayerAbsorber : MonoBehaviour
     [SerializeField]
     private GameObject absorbVisual;
 
+    [SerializeField]
+    private AudioClip absorbSFX;
+
+    [SerializeField]
+    private AudioClip absorbBuffSFX;
+
     public static EventHandler<bool> OnAbsorbToggle;
 
     private void Start()
@@ -78,7 +84,7 @@ public class PlayerAbsorber : MonoBehaviour
         ToggleAbsorber(true);
 
         //Play Absorb Effect
-        //Play SFX
+        AudioManager.PlaySFX(absorbSFX, 0.5f, 0, transform.position);
     }
 
     private void ToggleAbsorber(bool toggle)

@@ -17,11 +17,13 @@ MonoBehaviour:
     - Alright, here we go again.
     - So you'll immediately notice that, uh, the visuals of the game are a *little*
       different.
+    - Uhhh, this is one aspect of the game that I DO NOT want any feedback on.
     - I've spent a lot of time making all the assets and putting it together, and
       if it gets criticised I *might* cry, so I'll just assume neutral-to-good feedback.
     - But... yeah, start making your way through.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: c3561fdbea4601345937c3541ec67d20, type: 3}
+    - {fileID: 8300000, guid: 675c12984c22f5c4991bc2e4e4595646, type: 3}
+    - {fileID: 8300000, guid: 287c5822c7bf8a84b805831afe197221, type: 3}
+    - {fileID: 8300000, guid: 208ed241d4069b14eac0c4a90e3d8de5, type: 3}
+    - {fileID: 8300000, guid: 80a9f584f04b9a440bc33edb276fc8af, type: 3}

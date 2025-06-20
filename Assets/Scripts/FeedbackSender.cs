@@ -8,8 +8,15 @@ public class FeedbackSender : MonoBehaviour
 
     public static EventHandler<DialogueCluster> OnSendFeedback;
 
-    public void SendFeedback()
+    public void SendFeedback(DialogueCluster customCluster = null)
     {
-        OnSendFeedback.Invoke(this, dialogueCluster);
+        if (customCluster != null)
+        {
+            OnSendFeedback.Invoke(this, customCluster);
+        }
+        else
+        {
+            OnSendFeedback.Invoke(this, dialogueCluster);
+        }
     }
 }

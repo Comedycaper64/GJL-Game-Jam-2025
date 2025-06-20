@@ -83,6 +83,7 @@ MonoBehaviour:
   playerStats: {fileID: 4006506383031850509}
   cursorPointer: {fileID: 8523041529573132753}
   weaponCollider: {fileID: 3718876264224922361}
+  weaponSwingSFX: {fileID: 8300000, guid: d55f21df517b3cb49bdd851fbeed48b9, type: 3}
 --- !u!58 &3718876264224922361
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -375,6 +376,8 @@ GameObject:
   - component: {fileID: 8377489545869177232}
   - component: {fileID: 6032448287990442244}
   - component: {fileID: 5883853028858070706}
+  - component: {fileID: 6986871177081172559}
+  - component: {fileID: 8935170687501390314}
   - component: {fileID: 3465329709172314445}
   - component: {fileID: 4913664608849616207}
   m_Layer: 6
@@ -417,6 +420,7 @@ MonoBehaviour:
   bodyAnimator: {fileID: 0}
   playerRb: {fileID: 4913664608849616207}
   visualTransform: {fileID: 7335753668861977931}
+  dashSFX: {fileID: 8300000, guid: 97722b1b4d6d18a4cb9bf172ddc60c00, type: 3}
 --- !u!114 &4006506383031850509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,14 +434,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 6
-  movementSpeed: 7.5
+  movementSpeed: 5
   dashSpeedModifier: 3
   dashTime: 0.2
-  dashRechargeTime: 1
-  weaponDamage: 9
+  dashRechargeTime: 1.5
+  weaponDamage: 1
   weaponSwingRechargeTime: 0.6
   weaponAttackRange: 3
   weaponAttackArc: 1
+  weaponKnockbackStrength: 5
   meterReplenishRate: 0.2
   meterDrainRate: 0.5
 --- !u!114 &8377489545869177232
@@ -466,7 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 1
   isInvincible: 0
-  damageSFX: {fileID: 0}
+  damageSFX: {fileID: 8300000, guid: f896b1ffbb1c0cc438f72f5e19443c85, type: 3}
 --- !u!114 &5883853028858070706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,6 +485,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localPlayerTransform: {fileID: 8169375814408469039}
+--- !u!114 &6986871177081172559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912147900651066019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0f7631af2588440a481b2973dcded6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feedbackSender: {fileID: 8935170687501390314}
+  dialogueClusters:
+  - {fileID: 0}
+--- !u!114 &8935170687501390314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912147900651066019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9a25ba12923984da2ef60a0ffdbac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueCluster: {fileID: 0}
 --- !u!58 &3465329709172314445
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -593,6 +626,8 @@ MonoBehaviour:
   playerStats: {fileID: 4006506383031850509}
   absorbCollider: {fileID: 3632214777742620697}
   absorbVisual: {fileID: 8437322299902449766}
+  absorbSFX: {fileID: 8300000, guid: 68c46d1075823714d88dc0d847e0e35b, type: 3}
+  absorbBuffSFX: {fileID: 8300000, guid: d41cc82dbb6f7564db15cb43693bebec, type: 3}
 --- !u!58 &3632214777742620697
 CircleCollider2D:
   m_ObjectHideFlags: 0

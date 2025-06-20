@@ -17,4 +17,4 @@ MonoBehaviour:
     - Here's the NPC again. Writing's gone through some changes. It's not tremendously
       important to be honest, but it's set dressing.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: abda46dfe0417434797bb3382e06877c, type: 3}

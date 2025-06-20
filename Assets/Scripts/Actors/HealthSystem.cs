@@ -42,7 +42,7 @@ public class HealthSystem : MonoBehaviour
 
         OnNewHealth?.Invoke(this, health);
 
-        //Debug.Log(gameObject.name + "damage taken");
+        AudioManager.PlaySFX(damageSFX, 0.5f, 0, transform.position);
 
         if (health == 0f)
         {

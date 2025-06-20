@@ -18,6 +18,7 @@ MonoBehaviour:
     - So, like I said, I have another playtest ready. Maybe this time you'll like
       it.
     - '*sigh*, sorry, I''m being too grumpy.'
+    - I'm just really not great with criticism.
     - It's like, you know, you spend *so* much time and effort on something, and
       it gets completely dismissed and...
     - Wow, I'm just venting right now. Sorry, let's reset. I've made it better! The
@@ -25,10 +26,11 @@ MonoBehaviour:
     - So yeah, let's try to push negative thoughts aside and have ourselves a playtest.
     - Uh.. yeah, just open the files the same as last time.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 110a7d934b35df1429611b0df95ea661, type: 3}
+    - {fileID: 8300000, guid: a41cd615534950f4e8a26a583bbeece7, type: 3}
+    - {fileID: 8300000, guid: db0a58d59e1f1f841b2400f224a1c078, type: 3}
+    - {fileID: 8300000, guid: d47f1ab5052509b46a6d0cfc3255244f, type: 3}
+    - {fileID: 8300000, guid: e9fad30b2285a0d45a15fc0ca82671f5, type: 3}
+    - {fileID: 8300000, guid: e81c2b1d5ff4e124a90545497a668ab1, type: 3}
+    - {fileID: 8300000, guid: b098452fac581204d820c6101fc6efc6, type: 3}
+    - {fileID: 8300000, guid: 8147431784623e047a2e4571609ad5ef, type: 3}

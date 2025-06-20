@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: P2 Intro Cluster Followup
   m_EditorClassIdentifier: 
   conversationNodes:
-  - {fileID: 11400000, guid: 98a02333662bf784c80118f04702e058, type: 2}
+  - {fileID: 11400000, guid: 5ede6015ed694334285e8c56c0db0d0d, type: 2}

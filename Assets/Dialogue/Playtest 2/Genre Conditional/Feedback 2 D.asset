@@ -18,5 +18,5 @@ MonoBehaviour:
       like that...
     - Ok, I'll definitely consider that.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 96f6f62105fd7b442be795e88359c060, type: 3}
+    - {fileID: 8300000, guid: 7c887187600f0974aa7562ab52b0f1ba, type: 3}

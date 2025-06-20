@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Arghh... why didn't you say so last time. Damn it...
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 65b3f1da1e6858a4586aae703899ea52, type: 3}

@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Well, glad you still like it.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 317f9652e282eeb41b830286ada2c6b3, type: 3}

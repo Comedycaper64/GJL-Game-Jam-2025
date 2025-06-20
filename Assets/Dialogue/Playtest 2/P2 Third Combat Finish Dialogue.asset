@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - There we are, all done. Let me know when you wanna finish.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 3a85c2653c00a7d4685c47a0c6e89c49, type: 3}

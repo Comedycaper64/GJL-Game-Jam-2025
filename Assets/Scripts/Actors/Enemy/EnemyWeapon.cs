@@ -15,6 +15,9 @@ public class EnemyWeapon : MonoBehaviour
     [SerializeField]
     private Animator enemyWeaponAnim;
 
+    [SerializeField]
+    private AudioClip weaponSwingSFX;
+
     private void Update()
     {
         RotateTowardsTargetDirection();
@@ -37,6 +40,7 @@ public class EnemyWeapon : MonoBehaviour
     public void PlayAttackAnimation()
     {
         enemyWeaponAnim.SetTrigger("attack");
+        AudioManager.PlaySFX(weaponSwingSFX, 0.5f, 0, transform.position);
     }
 
     public void ToggleWeaponVisual(bool toggle)

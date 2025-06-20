@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Yeahh, making visual assets is difficult, but I agree, I'll work on it.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: eea46bcdba240184a8406ae94a39ac9a, type: 3}

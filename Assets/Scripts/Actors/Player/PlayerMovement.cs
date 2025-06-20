@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform visualTransform;
 
+    [SerializeField]
+    private AudioClip dashSFX;
+
     private void Awake()
     {
         stats = GetComponent<PlayerStats>();
@@ -148,7 +151,8 @@ public class PlayerMovement : MonoBehaviour
         dashCoroutine = StartCoroutine(ApplyDash());
 
         //Dash Effect
-        //Dash SFX
+
+        AudioManager.PlaySFX(dashSFX, 0.5f, 0, transform.position);
 
         dashAvailable = false;
     }

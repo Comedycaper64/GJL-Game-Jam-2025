@@ -18,5 +18,5 @@ MonoBehaviour:
     - I'm not really sure what genre I want to take this game into. What do you think
       would be a good fit?
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: a08bab0b4ff2c114cab6a67a9f3737ad, type: 3}
+    - {fileID: 8300000, guid: ec95151242e81564c8176468b67dabaf, type: 3}

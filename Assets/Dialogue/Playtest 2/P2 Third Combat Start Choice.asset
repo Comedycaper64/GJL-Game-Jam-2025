@@ -16,15 +16,15 @@ MonoBehaviour:
   - dialogueChoice: I don't understand what it's doing.
     feedbackKey: Absorb
     feedbackValue: 0
-    attitudeModifier: -2
-    feedbackType: 2
+    attitudeModifier: -1
+    feedbackType: 3
   - dialogueChoice: It's a definite improvement.
     feedbackKey: Absorb
     feedbackValue: 1
-    attitudeModifier: 0
-    feedbackType: 3
+    attitudeModifier: 1
+    feedbackType: 1
   - dialogueChoice: Ehhhhh, I preferred it before.
     feedbackKey: Absorb
     feedbackValue: 2
-    attitudeModifier: 1
-    feedbackType: 1
+    attitudeModifier: -2
+    feedbackType: 2

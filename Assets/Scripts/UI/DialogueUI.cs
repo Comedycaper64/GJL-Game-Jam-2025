@@ -75,9 +75,14 @@ public class DialogueUI : MonoBehaviour
         //displayingDialogue = false;
     }
 
-    public void StartCallTimer()
+    public void StartCallTimer(bool toggle = true)
     {
-        timerStarted = true;
+        timerStarted = toggle;
+    }
+
+    public float GetCallTimer()
+    {
+        return timer;
     }
 
     private void DialogueManager_OnDialogue(object sender, DialogueUIEventArgs dialogueArgs)

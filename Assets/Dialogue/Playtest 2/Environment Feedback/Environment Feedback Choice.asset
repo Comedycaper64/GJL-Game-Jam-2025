@@ -16,8 +16,8 @@ MonoBehaviour:
   - dialogueChoice: The environment isn't very interesting.
     feedbackKey: Env
     feedbackValue: 1
-    attitudeModifier: -2
-    feedbackType: 2
+    attitudeModifier: 0
+    feedbackType: 3
   - dialogueChoice: The environment should be simplified.
     feedbackKey: Env
     feedbackValue: 2
@@ -26,5 +26,5 @@ MonoBehaviour:
   - dialogueChoice: It's good.
     feedbackKey: Env
     feedbackValue: 0
-    attitudeModifier: 0
-    feedbackType: 3
+    attitudeModifier: 1
+    feedbackType: 1

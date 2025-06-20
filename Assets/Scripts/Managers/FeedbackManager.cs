@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -20,6 +21,8 @@ public class FeedbackManager : MonoBehaviour
     private int silenceCount = 0;
 
     private Dictionary<string, int> feedbackDictionary = new Dictionary<string, int>();
+    private Dictionary<FeedbackType, int> feedbackTypeDicitonary =
+        new Dictionary<FeedbackType, int>();
 
     public static FeedbackManager Instance { get; private set; }
 
@@ -36,6 +39,14 @@ public class FeedbackManager : MonoBehaviour
         Instance = this;
 
         // DON'T DESTROY ON LOAD
+    }
+
+    private void Start()
+    {
+        feedbackTypeDicitonary.Add(FeedbackType.praise, 0);
+        feedbackTypeDicitonary.Add(FeedbackType.critique, 0);
+        feedbackTypeDicitonary.Add(FeedbackType.constructive, 0);
+        feedbackTypeDicitonary.Add(FeedbackType.silence, 0);
     }
 
     private void OnEnable()
@@ -68,22 +79,69 @@ public class FeedbackManager : MonoBehaviour
         return false;
     }
 
+    public FeedbackType GetHighestFeedbackType()
+    {
+        FeedbackType highestFeedbackType = feedbackTypeDicitonary
+            .Aggregate((x, y) => x.Value > y.Value ? x : y)
+            .Key;
+
+        Debug.Log("Praise Count: " + praiseCount);
+        Debug.Log("Critique Count: " + critiqueCount);
+        Debug.Log("Constructive Count: " + constructiveCount);
+        Debug.Log("Silent Count: " + silenceCount);
+        Debug.Log("Evaluated feedback type: " + highestFeedbackType);
+
+        return highestFeedbackType;
+    }
+
+    public int GetChangesInfluenced()
+    {
+        int changes = 0;
+
+        foreach (var entry in feedbackDictionary)
+        {
+            if (entry.Key == "Silence")
+            {
+                continue;
+            }
+
+            if (entry.Value > 0)
+            {
+                changes++;
+            }
+        }
+
+        return changes;
+    }
+
+    public void SilenceTest()
+    {
+        if (GetHighestFeedbackType() == FeedbackType.silence)
+        {
+            feedbackDictionary.TryAdd("Silence", 1);
+        }
+    }
+
     private void UpdateFeedbackCounts(object sender, FeedbackType type)
     {
         switch (type)
         {
             case FeedbackType.praise:
                 praiseCount++;
+                feedbackTypeDicitonary[type] = praiseCount;
                 break;
             case FeedbackType.constructive:
                 constructiveCount++;
+                feedbackTypeDicitonary[type] = constructiveCount;
                 break;
             case FeedbackType.critique:
                 critiqueCount++;
+                feedbackTypeDicitonary[type] = critiqueCount;
                 break;
             case FeedbackType.silence:
                 Debug.Log("Silence Feedback");
                 silenceCount++;
+                feedbackTypeDicitonary[type] = silenceCount;
                 break;
 
             default:

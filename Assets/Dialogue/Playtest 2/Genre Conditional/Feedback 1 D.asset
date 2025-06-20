@@ -17,5 +17,5 @@ MonoBehaviour:
     - That's what I was leaning towards, yeah.
     - Makes sense, alright.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 43f09115e36a39546a2ff3f42d3625a0, type: 3}
+    - {fileID: 8300000, guid: 2fe0d620944a2f649b83fed891f364e1, type: 3}

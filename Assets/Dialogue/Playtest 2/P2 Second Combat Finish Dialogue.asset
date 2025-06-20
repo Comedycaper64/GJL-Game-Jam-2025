@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Watching you clear that got me thinking... how's the enemy variety?
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: d8a3f83b16829db40ae4530fc3b78f37, type: 3}

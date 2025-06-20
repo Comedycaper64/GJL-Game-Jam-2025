@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Soooo glad I have someone to bounce ideas off of.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: ebc6b5225d1a78e4b895d9cfe695406f, type: 3}

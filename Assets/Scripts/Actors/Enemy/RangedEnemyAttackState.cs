@@ -60,5 +60,12 @@ public class RangedEnemyAttackState : State
             stats.weaponDamage,
             stats.projectileSpeed
         );
+
+        AudioManager.PlaySFX(
+            enemyStateMachine.GetShootSFX(),
+            0.5f,
+            0,
+            stateMachine.transform.position
+        );
     }
 }

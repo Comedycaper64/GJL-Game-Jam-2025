@@ -24,10 +24,10 @@ MonoBehaviour:
     - Mmmmm.
     - 'Right, I''m thinking about this LATER. '
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: bd9b91035f6f6524da8e336d4b0b4a02, type: 3}
+    - {fileID: 8300000, guid: 98f562c9a00205f4f9180875ea7e4d38, type: 3}
+    - {fileID: 8300000, guid: b088f87018cdd9a479288b00845473ad, type: 3}
+    - {fileID: 8300000, guid: 3fb18ecce5fab2346a75e43fca37ea81, type: 3}
+    - {fileID: 8300000, guid: ef3976db18167d14daec32d392e565c8, type: 3}
+    - {fileID: 8300000, guid: 755aa48fff05270419ac1b2dd92517fb, type: 3}
+    - {fileID: 8300000, guid: 5da51a18ad9485f4aa81ef7b66a4eae3, type: 3}

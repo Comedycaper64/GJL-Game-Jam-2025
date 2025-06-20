@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - Oh, like the decoration of the level? What about it?
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 7917fb978136c844d912f666ace09d2f, type: 3}

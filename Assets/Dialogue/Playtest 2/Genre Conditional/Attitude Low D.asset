@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     dialogue:
-    - 'Well, I tried. If the game still isn''t good at this stage, I don''t know
-      what to do. '
+    - Well, considering how the playtest went...
+    - 'I tried. If the game still isn''t good at this stage, I don''t know what to
+      do. '
     - I need to think on things. Goodbye.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 71d6709aa81548f418e9079dd20c019a, type: 3}
+    - {fileID: 8300000, guid: 827d37fbf9d19074fbc84079e3da6c02, type: 3}
+    - {fileID: 8300000, guid: b82eacd56a4e2e048a9eb76096e32775, type: 3}

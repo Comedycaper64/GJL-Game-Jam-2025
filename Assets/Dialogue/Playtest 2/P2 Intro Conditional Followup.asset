@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf133be2c5d0db4288d6bda48938e31, type: 3}
+  m_Name: P2 Intro Conditional Followup
+  m_EditorClassIdentifier: 
+  attitudeThreshold: -1
+  feedbackKey: Style
+  feedbackClusters:
+  - {fileID: 11400000, guid: 8d153c7996a04d9418fe350c931ed09a, type: 2}
+  - {fileID: 11400000, guid: 8d153c7996a04d9418fe350c931ed09a, type: 2}
+  - {fileID: 11400000, guid: 2a25a7296c7924946b2ab4f0edd6bd04, type: 2}
+  noFeedbackCluster: {fileID: 11400000, guid: 8d153c7996a04d9418fe350c931ed09a, type: 2}
+  attitudeBranchCluster: {fileID: 0}

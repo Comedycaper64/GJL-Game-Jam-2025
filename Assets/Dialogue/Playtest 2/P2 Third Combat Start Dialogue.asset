@@ -17,5 +17,5 @@ MonoBehaviour:
     - Last encounter, almost done.
     - Oh, right, what did you think of the Absorb changes?
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 5ad983af8a84a7140b2bd815a18924e5, type: 3}
+    - {fileID: 8300000, guid: 114b49aac5d7e0f4db1364c4a1c8aa9a, type: 3}

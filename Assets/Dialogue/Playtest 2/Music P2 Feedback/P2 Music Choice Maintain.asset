@@ -16,10 +16,10 @@ MonoBehaviour:
   - dialogueChoice: Actually, I hate it.
     feedbackKey: Attack
     feedbackValue: 1
-    attitudeModifier: -1
-    feedbackType: 1
+    attitudeModifier: -2
+    feedbackType: 2
   - dialogueChoice: Damn, this is a bop.
     feedbackKey: Attack
     feedbackValue: 0
-    attitudeModifier: 0
-    feedbackType: 2
+    attitudeModifier: 1
+    feedbackType: 1

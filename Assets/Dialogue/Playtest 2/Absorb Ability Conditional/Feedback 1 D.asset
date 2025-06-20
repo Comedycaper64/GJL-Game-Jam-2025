@@ -20,7 +20,7 @@ MonoBehaviour:
       something
     - ...they do exist for a reason though, don't they?
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 384d5c9a1f3103649b770e54ff2a912f, type: 3}
+    - {fileID: 8300000, guid: b92af72181d3c5f47ad7e2d07598a7f9, type: 3}
+    - {fileID: 8300000, guid: 4f7044c774845b343b0624eabd6d7835, type: 3}
+    - {fileID: 8300000, guid: 1912eae0042d1c7459d83ff8b263010a, type: 3}

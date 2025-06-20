@@ -17,4 +17,4 @@ MonoBehaviour:
     - Oh right, that's where the NPC was. Uh... yeah, he's gone. Removed him. Yknow,
       since you said my writing was god awful. No more dialogue.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 18e59154c06f5c4458872c484f114c3f, type: 3}

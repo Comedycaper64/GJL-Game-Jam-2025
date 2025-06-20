@@ -16,15 +16,15 @@ MonoBehaviour:
   - dialogueChoice: An adventure game would work well.
     feedbackKey: Genre
     feedbackValue: 0
-    attitudeModifier: 2
-    feedbackType: 1
+    attitudeModifier: 0
+    feedbackType: 3
   - dialogueChoice: Well, roguelikes are pretty popular right now...
     feedbackKey: Genre
     feedbackValue: 2
-    attitudeModifier: -2
-    feedbackType: 2
+    attitudeModifier: 1
+    feedbackType: 3
   - dialogueChoice: MMO, no question.
     feedbackKey: Genre
     feedbackValue: 1
-    attitudeModifier: 1
-    feedbackType: 3
+    attitudeModifier: -1
+    feedbackType: 2

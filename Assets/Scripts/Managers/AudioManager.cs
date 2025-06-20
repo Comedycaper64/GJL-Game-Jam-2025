@@ -114,19 +114,30 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void FadeOutMusic()
+    private void FadeOutMusic()
     {
         fadeOut = true;
         fadeIn = false;
         fadeCounter = 0f;
     }
 
-    public void FadeInMusic()
+    private void FadeInMusic()
     {
         SetMusicAudioSourceVolume(0f);
         fadeIn = true;
         fadeOut = false;
         fadeCounter = 0f;
+    }
+
+    public void StartMusic()
+    {
+        musicAudioSource.Play();
+        FadeInMusic();
+    }
+
+    public void StopMusic()
+    {
+        FadeOutMusic();
     }
 
     private static AudioSource PlaySFXClip(

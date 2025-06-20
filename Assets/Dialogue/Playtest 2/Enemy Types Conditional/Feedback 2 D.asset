@@ -17,5 +17,5 @@ MonoBehaviour:
     - Who are "they" in this instance?
     - Well whatever, if you say so.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 9baeaba429494834bae398e88968a8fd, type: 3}
+    - {fileID: 8300000, guid: eb25d0299071b914e826d68475ecc4cc, type: 3}

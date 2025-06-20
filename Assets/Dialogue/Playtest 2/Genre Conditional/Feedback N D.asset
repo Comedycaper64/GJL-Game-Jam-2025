@@ -16,4 +16,4 @@ MonoBehaviour:
     dialogue:
     - ...thank you for your brilliant insight.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 6dff184e7a115024e99e79e8fff8f3c4, type: 3}

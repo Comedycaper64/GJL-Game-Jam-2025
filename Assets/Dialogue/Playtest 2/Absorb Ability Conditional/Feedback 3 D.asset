@@ -18,4 +18,6 @@ MonoBehaviour:
     - Like it just does an extra thing and adds to your toolkit?
     - Arrrgghghghh
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 183a826f752019e44a4dfde737af466d, type: 3}
+    - {fileID: 8300000, guid: f50e4d19aa7e76d4e88cc89c9ec93619, type: 3}
+    - {fileID: 8300000, guid: e40603e479dc08848b8dc92dd926c97b, type: 3}

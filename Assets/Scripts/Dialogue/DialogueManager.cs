@@ -130,8 +130,7 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueAudioSource.clip = voiceClip;
 
-            // dialogueAudioSource.volume =
-            //     PlayerOptions.GetMasterVolume() * PlayerOptions.GetVoiceVolume();
+            dialogueAudioSource.volume = PlayerOptions.GetVoiceVolume();
 
             dialogueAudioSource.Play();
 

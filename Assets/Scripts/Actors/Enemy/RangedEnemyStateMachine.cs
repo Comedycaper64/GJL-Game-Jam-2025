@@ -16,6 +16,9 @@ public class RangedEnemyStateMachine : StateMachine
     [SerializeField]
     private GameObject enemyVisual;
 
+    [SerializeField]
+    private AudioClip shootSFX;
+
     private void Awake()
     {
         health = GetComponent<HealthSystem>();
@@ -76,6 +79,11 @@ public class RangedEnemyStateMachine : StateMachine
     public Rigidbody2D GetRigidbody()
     {
         return enemyRB;
+    }
+
+    public AudioClip GetShootSFX()
+    {
+        return shootSFX;
     }
 
     public void ToggleCollider(bool toggle)

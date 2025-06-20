@@ -103,6 +103,7 @@ MonoBehaviour:
   weaponHolderTransform: {fileID: 3373455999606061460}
   weaponSprite: {fileID: 7114934214600710318}
   enemyWeaponAnim: {fileID: 8333271527260938845}
+  weaponSwingSFX: {fileID: 8300000, guid: d55f21df517b3cb49bdd851fbeed48b9, type: 3}
 --- !u!1 &7697762583061819015
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   isInvincible: 0
-  damageSFX: {fileID: 0}
+  damageSFX: {fileID: 8300000, guid: f896b1ffbb1c0cc438f72f5e19443c85, type: 3}
 --- !u!58 &4171370489840474166
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -357,7 +358,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

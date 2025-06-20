@@ -24,8 +24,8 @@ MonoBehaviour:
     - So uhhh... yeah, launch up the game when you're ready. Just extract those files
       I sent and it should hopefully run!
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 38d3a26589a177f49be5325369f2df60, type: 3}
+    - {fileID: 8300000, guid: b8c209e770f92f14e997c048da1acb4e, type: 3}
+    - {fileID: 8300000, guid: 77848dad3aae5bb4c984509021705af7, type: 3}
+    - {fileID: 8300000, guid: c27d041cea63b8147aba5a833271c633, type: 3}
+    - {fileID: 8300000, guid: 87bf9ee00d8711d42ba98bffbf81b19e, type: 3}

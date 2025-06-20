@@ -21,6 +21,7 @@ public class ConversationManager : MonoBehaviour
     public static EventHandler<bool> OnConversationActive;
 
     public static EventHandler<int> OnUnlockFeedback;
+
     public static Action OnPlaytestEnd;
 
     private void Awake()
@@ -193,6 +194,8 @@ public class ConversationManager : MonoBehaviour
 
     private void EndConversationTrigger(object sender, DialogueCluster cluster)
     {
+        FeedbackManager.Instance.SilenceTest();
+
         AddToConversation(cluster, EndLevel);
     }
 }

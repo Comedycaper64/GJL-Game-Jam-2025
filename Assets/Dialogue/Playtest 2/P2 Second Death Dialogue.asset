@@ -17,4 +17,4 @@ MonoBehaviour:
     - sigh*... damn it, looks like I'll need to rebalance stuff again. You're not
       really supposed to be dying to these encounters.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 2eae80a19dd14ef448f7c27a5a677c1e, type: 3}

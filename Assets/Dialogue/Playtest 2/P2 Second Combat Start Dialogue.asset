@@ -22,7 +22,7 @@ MonoBehaviour:
     - Oh, almost forgot, the Absorb mechanic has been improved, try it out with these
       projectiles.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: 45f678c4e0eb12445bb4c4180061b363, type: 3}
+    - {fileID: 8300000, guid: 27ea70af4b4d386429e7bc840b1cce23, type: 3}
+    - {fileID: 8300000, guid: 9940fbef8a84fc244b99eaee5d9627c0, type: 3}
+    - {fileID: 8300000, guid: ce551757a2f1596418799ec090aefb83, type: 3}

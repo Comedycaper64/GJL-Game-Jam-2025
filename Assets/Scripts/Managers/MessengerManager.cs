@@ -43,6 +43,9 @@ public class MessengerManager : MonoBehaviour
     [SerializeField]
     private CanvasGroupFader messengerUIFader;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     private void Awake()
     {
         messengerScrollbar.value = 0f;
@@ -69,6 +72,7 @@ public class MessengerManager : MonoBehaviour
         messengerUIFader.ToggleBlockRaycasts(false);
 
         yield return new WaitForSeconds(1f);
+        audioManager.StartMusic();
 
         darknessFader.ToggleFade(false);
 

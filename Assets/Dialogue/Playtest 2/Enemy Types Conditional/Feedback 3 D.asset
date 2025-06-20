@@ -17,5 +17,5 @@ MonoBehaviour:
     - Like sometimes enhanced versions of the enemies spawn as an added challenge?
     - Hmm, ok.
     voiceClip:
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
-    - {fileID: 8300000, guid: 995dd144cd94b2f4badbd49d935da73f, type: 3}
+    - {fileID: 8300000, guid: b0a1d64336ce7c14e9623a56e56b82b7, type: 3}
+    - {fileID: 8300000, guid: ecc0040a6303e744c8eb85e2e8ffe4ca, type: 3}
