@@ -21,7 +21,7 @@ MonoBehaviour:
   - dialogueChoice: Yeah, it's good.
     feedbackKey: Attack
     feedbackValue: 0
-    attitudeModifier: 0
+    attitudeModifier: 1
     feedbackType: 1
   - dialogueChoice: It's ok, it feels a bit unsatisfying.
     feedbackKey: Attack

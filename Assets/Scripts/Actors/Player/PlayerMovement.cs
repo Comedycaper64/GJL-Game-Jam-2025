@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private bool sfxVariance = false;
     private bool canMove;
     private bool dashAvailable;
     private float movementSpeed;
@@ -26,6 +27,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private AudioClip dashSFX;
 
+    [SerializeField]
+    private AudioClip altDashSFX;
+
+    [SerializeField]
+    private float sfxVolume = 0.25f;
+
     private void Awake()
     {
         stats = GetComponent<PlayerStats>();
@@ -40,6 +47,19 @@ public class PlayerMovement : MonoBehaviour
         ToggleCanMove(true);
 
         PlayerManager.OnPlayerDead += OnPlayerDead;
+
+        if (FeedbackManager.Instance.TryGetDictionaryValue("SFX", out int val))
+        {
+            if (val == 1)
+            {
+                sfxVariance = true;
+                dashSFX = altDashSFX;
+            }
+            else if (val == 2)
+            {
+                sfxVolume = 0;
+            }
+        }
     }
 
     private void OnDisable()
@@ -152,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Dash Effect
 
-        AudioManager.PlaySFX(dashSFX, 0.5f, 0, transform.position);
+        AudioManager.PlaySFX(dashSFX, sfxVolume, 0, transform.position, sfxVariance);
 
         dashAvailable = false;
     }

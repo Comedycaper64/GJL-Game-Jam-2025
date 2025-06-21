@@ -1,11 +1,15 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerAbsorber : MonoBehaviour
 {
+    private bool sfxVariance = false;
     private bool playerDead = false;
     private bool absorberAvailable = false;
     private bool absorberActive = false;
+    private int absorbType = -1;
+    private int projectilesAbsorbed = 0;
     private float absorbMeter = 1f;
     private float meterDrainRate;
     private float meterReplenishRate;
@@ -14,7 +18,13 @@ public class PlayerAbsorber : MonoBehaviour
     private PlayerStats playerStats;
 
     [SerializeField]
+    private HealthSystem playerHealth;
+
+    [SerializeField]
     private Collider2D absorbCollider;
+
+    [SerializeField]
+    private PlayerCursorPointer pointer;
 
     [SerializeField]
     private GameObject absorbVisual;
@@ -23,7 +33,16 @@ public class PlayerAbsorber : MonoBehaviour
     private AudioClip absorbSFX;
 
     [SerializeField]
+    private AudioClip altAbsorbSFX;
+
+    [SerializeField]
     private AudioClip absorbBuffSFX;
+
+    [SerializeField]
+    private AudioClip altAbsorbBuffSFX;
+
+    [SerializeField]
+    private float sfxVolume = 0.25f;
 
     public static EventHandler<bool> OnAbsorbToggle;
 
@@ -38,6 +57,25 @@ public class PlayerAbsorber : MonoBehaviour
         absorberAvailable = true;
 
         PlayerManager.OnPlayerDead += DisableAbsorber;
+
+        if (FeedbackManager.Instance.TryGetDictionaryValue("SFX", out int val))
+        {
+            if (val == 1)
+            {
+                sfxVariance = true;
+                absorbBuffSFX = altAbsorbBuffSFX;
+                absorbSFX = altAbsorbSFX;
+            }
+            else if (val == 2)
+            {
+                sfxVolume = 0f;
+            }
+        }
+
+        if (FeedbackManager.Instance.TryGetDictionaryValue("Absorb", out int val2))
+        {
+            absorbType = val2;
+        }
     }
 
     private void OnDisable()
@@ -84,11 +122,16 @@ public class PlayerAbsorber : MonoBehaviour
         ToggleAbsorber(true);
 
         //Play Absorb Effect
-        AudioManager.PlaySFX(absorbSFX, 0.5f, 0, transform.position);
+        AudioManager.PlaySFX(absorbSFX, sfxVolume, 0, transform.position, sfxVariance);
     }
 
     private void ToggleAbsorber(bool toggle)
     {
+        if (toggle)
+        {
+            projectilesAbsorbed = 0;
+        }
+
         absorbCollider.enabled = toggle;
         absorbVisual.SetActive(toggle);
         absorberActive = toggle;
@@ -99,6 +142,58 @@ public class PlayerAbsorber : MonoBehaviour
     private void EndAbsorb()
     {
         ToggleAbsorber(false);
+
+        if ((absorbType >= 0) && (projectilesAbsorbed > 0))
+        {
+            ActivateAbsorbAbility(absorbType);
+        }
+    }
+
+    private void ActivateAbsorbAbility(int abilityType)
+    {
+        switch (abilityType)
+        {
+            case 0:
+                HealPlayer();
+                break;
+            case 1:
+                BoostDamage();
+                break;
+            case 2:
+                LaunchProjectile();
+                break;
+        }
+    }
+
+    private void LaunchProjectile()
+    {
+        ProjectileManager.SpawnProjectile(
+            transform.position,
+            pointer.GetCursorDirection(),
+            projectilesAbsorbed,
+            6 * projectilesAbsorbed,
+            true
+        );
+    }
+
+    private void BoostDamage()
+    {
+        playerStats.damageBuff = projectilesAbsorbed;
+        AudioManager.PlaySFX(absorbBuffSFX, sfxVolume, 0, transform.position, sfxVariance);
+        StartCoroutine(BuffEnd());
+        //Enable buff visual
+    }
+
+    private IEnumerator BuffEnd()
+    {
+        yield return new WaitForSeconds(projectilesAbsorbed);
+        //Disable buff visual
+        playerStats.damageBuff = 0;
+    }
+
+    private void HealPlayer()
+    {
+        playerHealth.Heal(projectilesAbsorbed);
     }
 
     public void ToggleAbsorberAvailable(bool toggle)
@@ -122,7 +217,7 @@ public class PlayerAbsorber : MonoBehaviour
 
     public void AbsorbProjectile()
     {
-        Debug.Log("Absorb");
+        projectilesAbsorbed++;
     }
 
     private void DisableAbsorber(object sender, bool toggle)

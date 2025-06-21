@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyWeapon : MonoBehaviour
 {
+    private bool sfxVariance = false;
     private float damp = 5f;
 
     private Vector2 playerTarget = Vector2.up;
@@ -17,6 +18,28 @@ public class EnemyWeapon : MonoBehaviour
 
     [SerializeField]
     private AudioClip weaponSwingSFX;
+
+    [SerializeField]
+    private AudioClip weaponSwingAltSFX;
+
+    [SerializeField]
+    private float sfxVolume = 0.25f;
+
+    private void Start()
+    {
+        if (FeedbackManager.Instance.TryGetDictionaryValue("SFX", out int val))
+        {
+            if (val == 1)
+            {
+                sfxVariance = true;
+                weaponSwingSFX = weaponSwingAltSFX;
+            }
+            else if (val == 2)
+            {
+                sfxVolume = 0f;
+            }
+        }
+    }
 
     private void Update()
     {
@@ -40,7 +63,7 @@ public class EnemyWeapon : MonoBehaviour
     public void PlayAttackAnimation()
     {
         enemyWeaponAnim.SetTrigger("attack");
-        AudioManager.PlaySFX(weaponSwingSFX, 0.5f, 0, transform.position);
+        AudioManager.PlaySFX(weaponSwingSFX, sfxVolume, 5, transform.position, sfxVariance);
     }
 
     public void ToggleWeaponVisual(bool toggle)

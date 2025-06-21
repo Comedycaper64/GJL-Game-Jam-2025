@@ -23,11 +23,14 @@ public class MeleeEnemyApproachState : State
             + Random.Range(-stats.weaponAttackVariance, stats.weaponAttackVariance);
         weaponAttackTimer = 0f;
 
+        enemyStateMachine.ToggleMovement(true);
+
         stateMachine.smAnimator.SetBool("chasing", true);
     }
 
     public override void Exit()
     {
+        enemyStateMachine.ToggleMovement(false);
         stateMachine.smAnimator.SetBool("chasing", false);
     }
 
@@ -67,6 +70,6 @@ public class MeleeEnemyApproachState : State
         }
 
         //stateMachine.transform.position += directionToMove * stats.movementSpeed * deltaTime;
-        rb.MovePosition(rb.position + ((Vector2)directionToMove * stats.movementSpeed * deltaTime));
+        enemyStateMachine.SetMoveDirection(directionToMove);
     }
 }

@@ -50,7 +50,16 @@ public class MeleeEnemyAttackState : State
             playerHealth.transform.position - stateMachine.transform.position
         ).normalized;
 
-        if (Vector2.Dot(attackDirection, playerDirectionFromEnemy) > (1f - stats.weaponAttackArc))
+        if (
+            (
+                Vector2.Distance(playerHealth.transform.position, stateMachine.transform.position)
+                <= stats.weaponAttackRange
+            )
+            && (
+                Vector2.Dot(attackDirection, playerDirectionFromEnemy)
+                > (1f - stats.weaponAttackArc)
+            )
+        )
         {
             playerHealth.TakeDamage(stats.weaponDamage);
         }

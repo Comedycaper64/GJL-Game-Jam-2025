@@ -63,9 +63,10 @@ public class RangedEnemyAttackState : State
 
         AudioManager.PlaySFX(
             enemyStateMachine.GetShootSFX(),
-            0.5f,
+            enemyStateMachine.GetSFXVolume(),
             0,
-            stateMachine.transform.position
+            stateMachine.transform.position,
+            enemyStateMachine.GetSFXVariance()
         );
     }
 }

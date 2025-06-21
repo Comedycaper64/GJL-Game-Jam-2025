@@ -6,9 +6,9 @@ public class PlayerOptions : MonoBehaviour
     private const string SFX_VOLUME = "SFXVolume";
     private const string VOICE_VOLUME = "VoiceVolume";
 
-    private static float MUSIC_VOLUME_DEF = 0.75f;
-    private static float SFX_VOLUME_DEF = 0.75f;
-    private static float VOICE_VOLUME_DEF = 0.75f;
+    private static float MUSIC_VOLUME_DEF = 0.5f;
+    private static float SFX_VOLUME_DEF = 0.5f;
+    private static float VOICE_VOLUME_DEF = 0.5f;
 
     public static void SetMusicVolume(float newVolume)
     {

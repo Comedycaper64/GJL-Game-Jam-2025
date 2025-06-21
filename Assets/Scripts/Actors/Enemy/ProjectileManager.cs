@@ -19,13 +19,24 @@ public class ProjectileManager : MonoBehaviour
         Vector3 spawnPosition,
         Vector2 flightDirection,
         int projectileDamage,
-        float projectileSpeed
+        float projectileSpeed,
+        bool playerProjectile = false
     )
     {
         Projectile spawnedProjectile = projectiles[projectileIndex];
 
         spawnedProjectile.transform.position = spawnPosition;
-        spawnedProjectile.Spawn(flightDirection, projectileDamage, projectileSpeed);
+        // spawnedProjectile.transform.rotation = Quaternion.LookRotation(
+        //     flightDirection,
+        //     Vector3.forward
+        // );
+
+        spawnedProjectile.Spawn(
+            flightDirection,
+            projectileDamage,
+            projectileSpeed,
+            playerProjectile
+        );
 
         projectileIndex++;
 

@@ -17,11 +17,14 @@ MonoBehaviour:
     feedbackKey: Absorb
     feedbackValue: 0
     attitudeModifier: 0
+    feedbackType: 3
   - dialogueChoice: What if it made you stronger?
     feedbackKey: Absorb
     feedbackValue: 1
-    attitudeModifier: 0
+    attitudeModifier: 1
+    feedbackType: 3
   - dialogueChoice: What if you did a ranged attack based on how much you absorbed?
     feedbackKey: Absorb
     feedbackValue: 2
-    attitudeModifier: 0
+    attitudeModifier: 1
+    feedbackType: 3

@@ -20,11 +20,11 @@ MonoBehaviour:
     feedbackType: 3
   - dialogueChoice: Well, roguelikes are pretty popular right now...
     feedbackKey: Genre
-    feedbackValue: 2
+    feedbackValue: 1
     attitudeModifier: 1
     feedbackType: 3
   - dialogueChoice: MMO, no question.
     feedbackKey: Genre
-    feedbackValue: 1
+    feedbackValue: 2
     attitudeModifier: -1
     feedbackType: 2

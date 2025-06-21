@@ -24,29 +24,48 @@ public class FeedbackManager : MonoBehaviour
     private Dictionary<FeedbackType, int> feedbackTypeDicitonary =
         new Dictionary<FeedbackType, int>();
 
+    [SerializeField]
+    private DebugFeedbackSetter debugFeedbackSetter;
+
     public static FeedbackManager Instance { get; private set; }
 
     private void Awake()
     {
         if (Instance != null)
         {
-            Debug.LogError(
-                "There's more than one FeedbackManager! " + transform + " - " + Instance
-            );
+            // Debug.LogError(
+            //     "There's more than one FeedbackManager! " + transform + " - " + Instance
+            // );
             Destroy(gameObject);
             return;
         }
         Instance = this;
 
-        // DON'T DESTROY ON LOAD
+        transform.SetParent(null);
+
+        DontDestroyOnLoad(gameObject);
+
+        if (debugFeedbackSetter)
+        {
+            debugFeedbackSetter.SetFeedback();
+        }
     }
 
     private void Start()
     {
-        feedbackTypeDicitonary.Add(FeedbackType.praise, 0);
-        feedbackTypeDicitonary.Add(FeedbackType.critique, 0);
-        feedbackTypeDicitonary.Add(FeedbackType.constructive, 0);
-        feedbackTypeDicitonary.Add(FeedbackType.silence, 0);
+        //Debug.Log("Dictionary Init");
+
+        if (feedbackTypeDicitonary.Count <= 0)
+        {
+            feedbackTypeDicitonary.Add(FeedbackType.praise, 0);
+            feedbackTypeDicitonary.Add(FeedbackType.critique, 0);
+            feedbackTypeDicitonary.Add(FeedbackType.constructive, 0);
+            feedbackTypeDicitonary.Add(FeedbackType.silence, 0);
+        }
+        // else
+        // {
+
+        // }
     }
 
     private void OnEnable()
@@ -57,6 +76,14 @@ public class FeedbackManager : MonoBehaviour
     private void OnDisable()
     {
         DialogueChoiceManager.OnFeedbackType -= UpdateFeedbackCounts;
+    }
+
+    public void ResetFeedbackTypes()
+    {
+        feedbackTypeDicitonary[FeedbackType.praise] = 0;
+        feedbackTypeDicitonary[FeedbackType.critique] = 0;
+        feedbackTypeDicitonary[FeedbackType.constructive] = 0;
+        feedbackTypeDicitonary[FeedbackType.silence] = 0;
     }
 
     public void SetDictionaryValue(string key, int value)
@@ -85,11 +112,11 @@ public class FeedbackManager : MonoBehaviour
             .Aggregate((x, y) => x.Value > y.Value ? x : y)
             .Key;
 
-        Debug.Log("Praise Count: " + praiseCount);
-        Debug.Log("Critique Count: " + critiqueCount);
-        Debug.Log("Constructive Count: " + constructiveCount);
-        Debug.Log("Silent Count: " + silenceCount);
-        Debug.Log("Evaluated feedback type: " + highestFeedbackType);
+        // Debug.Log("Praise Count: " + praiseCount);
+        // Debug.Log("Critique Count: " + critiqueCount);
+        // Debug.Log("Constructive Count: " + constructiveCount);
+        // Debug.Log("Silent Count: " + silenceCount);
+        // Debug.Log("Evaluated feedback type: " + highestFeedbackType);
 
         return highestFeedbackType;
     }

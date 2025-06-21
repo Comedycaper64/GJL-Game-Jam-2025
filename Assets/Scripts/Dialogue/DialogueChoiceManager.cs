@@ -41,9 +41,9 @@ public class DialogueChoiceManager : MonoBehaviour
             chosenDialogue = currentChoices[choiceIndex];
         }
 
-        Debug.Log(
-            "Chosen Dialogue: " + chosenDialogue.dialogueChoice + " " + chosenDialogue.feedbackValue
-        );
+        // Debug.Log(
+        //     "Chosen Dialogue: " + chosenDialogue.dialogueChoice + " " + chosenDialogue.feedbackValue
+        // );
 
         //Resolve attitude change
         AttitudeManager.Instance.AlterAttitude(chosenDialogue.attitudeModifier);

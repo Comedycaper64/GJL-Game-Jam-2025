@@ -21,10 +21,10 @@ MonoBehaviour:
   - dialogueChoice: They're a touch repetitive right now.
     feedbackKey: SFX
     feedbackValue: 1
-    attitudeModifier: 0
+    attitudeModifier: 1
     feedbackType: 3
   - dialogueChoice: They're very video-gamey.
     feedbackKey: SFX
-    feedbackValue: 1
+    feedbackValue: 0
     attitudeModifier: 0
     feedbackType: 3

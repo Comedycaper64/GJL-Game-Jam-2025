@@ -12,8 +12,16 @@ public class NPCDialogue : MonoBehaviour
 
     private Queue<string> spokenDialogue;
 
+    private DialogueSO npcDialogue;
+
     [SerializeField]
-    private DialogueSO dialogueSO;
+    private DialogueSO defaultDialogueSO;
+
+    [SerializeField]
+    private DialogueSO simplifiedDialogueSO;
+
+    [SerializeField]
+    private DialogueSO quipyDialogueSO;
 
     [SerializeField]
     private GameObject npcLeaveAreaCluster;
@@ -26,9 +34,27 @@ public class NPCDialogue : MonoBehaviour
 
     private void Awake()
     {
-        spokenDialogue = new Queue<string>(dialogueSO.GetDialogue().dialogue);
         dialogueStarted = false;
         textBoxFader.SetCanvasGroupAlpha(0f);
+    }
+
+    private void Start()
+    {
+        npcDialogue = defaultDialogueSO;
+
+        if (FeedbackManager.Instance.TryGetDictionaryValue("Writing", out int val))
+        {
+            if (val == 2)
+            {
+                npcDialogue = simplifiedDialogueSO;
+            }
+            else if (val == 3)
+            {
+                npcDialogue = quipyDialogueSO;
+            }
+        }
+
+        spokenDialogue = new Queue<string>(npcDialogue.GetDialogue().dialogue);
     }
 
     private void OnDisable()

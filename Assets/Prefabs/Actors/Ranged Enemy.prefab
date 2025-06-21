@@ -53,6 +53,8 @@ MonoBehaviour:
   isPlayer: 0
   isInvincible: 0
   damageSFX: {fileID: 8300000, guid: f896b1ffbb1c0cc438f72f5e19443c85, type: 3}
+  altDamageSFX: {fileID: 0}
+  sfxVolume: 0.25
 --- !u!58 &8336690644845434557
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -128,6 +130,8 @@ MonoBehaviour:
   enemyRB: {fileID: 1403213184673020455}
   enemyVisual: {fileID: 8324103301330338475}
   shootSFX: {fileID: 8300000, guid: 40b962a6bdfebb44cb53603b69e3da86, type: 3}
+  altShootSFX: {fileID: 0}
+  sfxVolume: 0.25
 --- !u!114 &8421723283273468865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,12 +145,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
-  movementSpeed: 8
+  movementSpeed: 2
   retreatRange: 3
   weaponDamage: 1
+  defaultDamage: 1
+  hardDamage: 2
   projectileSpeed: 4
+  defaultSpeed: 4
+  hardSpeed: 4
+  easySpeed: 4
   weaponAttackRange: 12
   weaponAttackInterval: 2.5
+  defaultAttackInterval: 2
+  easyAttackInterval: 2.5
+  hardAttackInterval: 2.5
   weaponAttackVariance: 0.75
   weaponAttackTiming: 1
   weaponAttackSpread: 0.5

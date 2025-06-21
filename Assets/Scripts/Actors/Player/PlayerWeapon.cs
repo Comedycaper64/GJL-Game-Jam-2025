@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
+    private bool sfxVariance = false;
     private bool playerDead = false;
     private bool weaponActive = false;
     private bool weaponAvailable = false;
@@ -30,6 +31,12 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField]
     private AudioClip weaponSwingSFX;
 
+    [SerializeField]
+    private AudioClip altWeaponSwingSFX;
+
+    [SerializeField]
+    private float sfxVolume = 0.25f;
+
     // [SerializeField]
     // private LayerMask hittableLayerMask;
 
@@ -41,6 +48,19 @@ public class PlayerWeapon : MonoBehaviour
 
         PlayerManager.OnPlayerDead += DisableWeapon;
         weaponCollider.radius = playerStats.weaponAttackRange;
+
+        if (FeedbackManager.Instance.TryGetDictionaryValue("SFX", out int val))
+        {
+            if (val == 1)
+            {
+                sfxVariance = true;
+                weaponSwingSFX = altWeaponSwingSFX;
+            }
+            else if (val == 2)
+            {
+                sfxVolume = 0f;
+            }
+        }
     }
 
     private void OnDisable()
@@ -112,7 +132,7 @@ public class PlayerWeapon : MonoBehaviour
         //Play Weapon Effect
         //Trigger animation
         //Play SFX
-        AudioManager.PlaySFX(weaponSwingSFX, 0.5f, 0, transform.position);
+        AudioManager.PlaySFX(weaponSwingSFX, sfxVolume, 0, transform.position, sfxVariance);
 
         weaponAvailable = false;
 

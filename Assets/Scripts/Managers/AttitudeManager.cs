@@ -19,6 +19,12 @@ public class AttitudeManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        transform.SetParent(null);
+
+        SetStartingAttitude();
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public int GetAttitude()

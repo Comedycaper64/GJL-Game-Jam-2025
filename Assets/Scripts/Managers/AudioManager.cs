@@ -26,6 +26,18 @@ public class AudioManager : MonoBehaviour
     private bool fadeOut = false;
 
     [SerializeField]
+    private AudioClip defaultTrack;
+
+    [SerializeField]
+    private AudioClip maintainTrack;
+
+    [SerializeField]
+    private AudioClip alterTrack;
+
+    [SerializeField]
+    private AudioClip endingTrack;
+
+    [SerializeField]
     private AudioSource musicAudioSource;
 
     [SerializeField]
@@ -60,6 +72,22 @@ public class AudioManager : MonoBehaviour
             enumToPitch.Add(PitchEnum.oneSeventyFive, 1.75f);
             enumToPitch.Add(PitchEnum.twohundred, 2f);
         }
+
+        AudioClip musicClip = defaultTrack;
+
+        if (FeedbackManager.Instance.TryGetDictionaryValue("Music", out int val))
+        {
+            if (val == 1)
+            {
+                musicClip = maintainTrack;
+            }
+            else if (val == 2)
+            {
+                musicClip = alterTrack;
+            }
+        }
+
+        musicAudioSource.clip = musicClip;
     }
 
     private void Update()
@@ -127,6 +155,11 @@ public class AudioManager : MonoBehaviour
         fadeIn = true;
         fadeOut = false;
         fadeCounter = 0f;
+    }
+
+    public void SetEndingTrack()
+    {
+        musicAudioSource.clip = endingTrack;
     }
 
     public void StartMusic()

@@ -53,7 +53,7 @@ public class ConversationManager : MonoBehaviour
     {
         if (conversationQueue.TryDequeue(out DialogueCluster newCluster))
         {
-            Debug.Log("Advancing");
+            //Debug.Log("Advancing");
             activeDialogueCluster = new Queue<ConversationNode>(newCluster.GetCinematicNodes());
             TryResolveDialogueCluster();
         }
@@ -110,7 +110,7 @@ public class ConversationManager : MonoBehaviour
             else
             {
                 TryResolveDialogueCluster();
-                Debug.Log("Error, undefined type");
+                //Debug.Log("Error, undefined type");
             }
         }
         else
@@ -155,7 +155,7 @@ public class ConversationManager : MonoBehaviour
     private void EndConversation()
     {
         conversationActive = false;
-        Debug.Log("Convo ended");
+        //Debug.Log("Convo ended");
         OnConversationActive?.Invoke(this, false);
 
         if (OnClusterEnd != null)
@@ -180,7 +180,7 @@ public class ConversationManager : MonoBehaviour
 
         if (!conversationActive)
         {
-            Debug.Log("Convo started");
+            //Debug.Log("Convo started");
             conversationActive = true;
             OnConversationActive?.Invoke(this, true);
             AdvanceConversation();

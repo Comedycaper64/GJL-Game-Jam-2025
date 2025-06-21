@@ -1,4 +1,5 @@
 using System.Collections;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,9 @@ public class MessengerManager : MonoBehaviour
 
     [SerializeField]
     private Button callButton;
+
+    [SerializeField]
+    private MMF_Player feedbackUIPlayer;
 
     [SerializeField]
     private Scrollbar messengerScrollbar;
@@ -79,6 +83,9 @@ public class MessengerManager : MonoBehaviour
         InputManager.Instance.GameStart();
         conversationManager.AddToConversation(gameStartCluster);
 
+        yield return new WaitForSeconds(26f);
+
+        feedbackUIPlayer.PlayFeedbacks();
         //another yield
         //flash feedback button when dialogue gets to it
     }
@@ -103,6 +110,8 @@ public class MessengerManager : MonoBehaviour
 
     public void StartGame()
     {
+        FeedbackManager.Instance.ResetFeedbackTypes();
+
         StartCoroutine(DelayedGameLoad());
     }
 }

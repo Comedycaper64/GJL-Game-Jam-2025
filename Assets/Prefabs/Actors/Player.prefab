@@ -84,6 +84,8 @@ MonoBehaviour:
   cursorPointer: {fileID: 8523041529573132753}
   weaponCollider: {fileID: 3718876264224922361}
   weaponSwingSFX: {fileID: 8300000, guid: d55f21df517b3cb49bdd851fbeed48b9, type: 3}
+  altWeaponSwingSFX: {fileID: 0}
+  sfxVolume: 0.25
 --- !u!58 &3718876264224922361
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -261,8 +263,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 337350219
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -421,6 +423,8 @@ MonoBehaviour:
   playerRb: {fileID: 4913664608849616207}
   visualTransform: {fileID: 7335753668861977931}
   dashSFX: {fileID: 8300000, guid: 97722b1b4d6d18a4cb9bf172ddc60c00, type: 3}
+  altDashSFX: {fileID: 0}
+  sfxVolume: 0.25
 --- !u!114 &4006506383031850509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,10 +439,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 6
   movementSpeed: 5
+  defaultSpeed: 5
+  slowSpeed: 4
+  fastSpeed: 6
   dashSpeedModifier: 3
   dashTime: 0.2
   dashRechargeTime: 1.5
   weaponDamage: 1
+  defaultDamage: 1
+  damageBuff: 0
+  highDamage: 1
   weaponSwingRechargeTime: 0.6
   weaponAttackRange: 3
   weaponAttackArc: 1
@@ -472,6 +482,8 @@ MonoBehaviour:
   isPlayer: 1
   isInvincible: 0
   damageSFX: {fileID: 8300000, guid: f896b1ffbb1c0cc438f72f5e19443c85, type: 3}
+  altDamageSFX: {fileID: 0}
+  sfxVolume: 0.25
 --- !u!114 &5883853028858070706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,10 +636,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 4006506383031850509}
+  playerHealth: {fileID: 6032448287990442244}
   absorbCollider: {fileID: 3632214777742620697}
+  pointer: {fileID: 8523041529573132753}
   absorbVisual: {fileID: 8437322299902449766}
   absorbSFX: {fileID: 8300000, guid: 68c46d1075823714d88dc0d847e0e35b, type: 3}
+  altAbsorbSFX: {fileID: 0}
   absorbBuffSFX: {fileID: 8300000, guid: d41cc82dbb6f7564db15cb43693bebec, type: 3}
+  altAbsorbBuffSFX: {fileID: 0}
+  sfxVolume: 0.25
 --- !u!58 &3632214777742620697
 CircleCollider2D:
   m_ObjectHideFlags: 0

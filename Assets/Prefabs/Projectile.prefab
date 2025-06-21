@@ -166,6 +166,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileCollider: {fileID: 6662433798075260668}
+  enemyColour: {r: 1, g: 0, b: 0, a: 1}
+  playerColour: {r: 0, g: 0.67775345, b: 1, a: 1}
+  projectileRenderer: {fileID: 5392423863080874379}
   projectileVisual: {fileID: 6070798180330863904}
 --- !u!70 &6662433798075260668
 CapsuleCollider2D:

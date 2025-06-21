@@ -25,7 +25,7 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
     {
         if (Instance != null)
         {
-            Debug.LogError("There's more than one InputManager! " + transform + " - " + Instance);
+            //Debug.LogError("There's more than one InputManager! " + transform + " - " + Instance);
             Destroy(gameObject);
             return;
         }
@@ -35,9 +35,12 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
         controls.Player.SetCallbacks(this);
         controls.Player.Enable();
 
-        PauseManager.OnPauseGame += ToggleDisableInputs;
-
         disableInputs = true;
+    }
+
+    private void OnEnable()
+    {
+        PauseManager.OnPauseGame += ToggleDisableInputs;
     }
 
     private void OnDisable()
@@ -120,10 +123,6 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
 
     public void OnSkip(InputAction.CallbackContext context)
     {
-        if (disableInputs)
-        {
-            return;
-        }
         if (context.performed)
         {
             OnSkipEvent?.Invoke();

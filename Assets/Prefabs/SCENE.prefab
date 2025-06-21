@@ -106,6 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9245feb08c7dea940bd8773884c378a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultTrack: {fileID: 8300000, guid: dc41487261d74e342b27127f5afa6ad5, type: 3}
+  maintainTrack: {fileID: 0}
+  alterTrack: {fileID: 0}
+  endingTrack: {fileID: 0}
   musicAudioSource: {fileID: 6605142071175541043}
   localSfxPool:
   - {fileID: 1023687369395142865}
@@ -147,7 +151,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 10
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 1000
@@ -572,6 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd6b7948865e804d9e104218a4db21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugFeedbackSetter: {fileID: 0}
 --- !u!1 &6687938765907182068
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,7 +34,7 @@ public class NPCDeathManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("ded");
+        //Debug.Log("ded");
 
         npcDialogue.StopDialogue();
         feedbackSender.SendFeedback();

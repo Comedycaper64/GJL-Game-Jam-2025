@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class MeleeEnemyStateMachine : StateMachine
 {
+    private bool moving = false;
+    private Vector2 moveDirection;
     private Vector2 attackDirection;
     private Transform playerTransform;
     private HealthSystem health;
@@ -45,6 +47,16 @@ public class MeleeEnemyStateMachine : StateMachine
     {
         health.OnTakeDamage -= HealthSystem_OnTakeDamage;
         health.OnDeath -= HealthSystem_OnDeath;
+    }
+
+    private void FixedUpdate()
+    {
+        if (moving)
+        {
+            enemyRB.MovePosition(
+                enemyRB.position + (moveDirection * stats.movementSpeed * Time.fixedDeltaTime)
+            );
+        }
     }
 
     public override void SpawnEnemy()
@@ -109,6 +121,16 @@ public class MeleeEnemyStateMachine : StateMachine
     public Rigidbody2D GetRigidbody()
     {
         return enemyRB;
+    }
+
+    public void SetMoveDirection(Vector2 moveDirection)
+    {
+        this.moveDirection = moveDirection;
+    }
+
+    public void ToggleMovement(bool toggle)
+    {
+        moving = toggle;
     }
 
     public void ToggleCollider(bool toggle)

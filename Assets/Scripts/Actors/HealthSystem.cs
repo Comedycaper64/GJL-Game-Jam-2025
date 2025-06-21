@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
+    private bool sfxVariance = false;
     private int maxHealth;
 
     private int health;
@@ -16,6 +17,12 @@ public class HealthSystem : MonoBehaviour
     [SerializeField]
     private AudioClip damageSFX;
 
+    [SerializeField]
+    private AudioClip altDamageSFX;
+
+    [SerializeField]
+    private float sfxVolume = 0.25f;
+
     public Action OnTakeDamage;
     public EventHandler OnDeath;
     public EventHandler<int> OnNewHealth;
@@ -23,6 +30,22 @@ public class HealthSystem : MonoBehaviour
     private void Awake()
     {
         health = maxHealth;
+    }
+
+    private void Start()
+    {
+        if (FeedbackManager.Instance.TryGetDictionaryValue("SFX", out int val))
+        {
+            if (val == 1)
+            {
+                sfxVariance = true;
+                damageSFX = altDamageSFX;
+            }
+            else if (val == 2)
+            {
+                sfxVolume = 0f;
+            }
+        }
     }
 
     public void SetMaxHealth(int maxHealth)
@@ -42,7 +65,7 @@ public class HealthSystem : MonoBehaviour
 
         OnNewHealth?.Invoke(this, health);
 
-        AudioManager.PlaySFX(damageSFX, 0.5f, 0, transform.position);
+        AudioManager.PlaySFX(damageSFX, sfxVolume, 0, transform.position, sfxVariance);
 
         if (health == 0f)
         {

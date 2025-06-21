@@ -18,10 +18,10 @@ public class ConditionalEnabler : MonoBehaviour
     private int feedbackValue = -1;
 
     [SerializeField]
-    private GameObject falseEnable;
+    private GameObject[] falseEnable;
 
     [SerializeField]
-    private GameObject trueEnable;
+    private GameObject[] trueEnable;
 
     private void Start()
     {
@@ -41,16 +41,19 @@ public class ConditionalEnabler : MonoBehaviour
             )
             {
                 TryTrueEnable();
+                return;
             }
             else
             {
                 TryFalseEnable();
+                return;
             }
         }
 
         if (attitudeThreshold <= AttitudeManager.Instance.GetAttitude())
         {
             TryTrueEnable();
+            return;
         }
 
         TryFalseEnable();
@@ -60,7 +63,10 @@ public class ConditionalEnabler : MonoBehaviour
     {
         if (trueEnable != null)
         {
-            trueEnable.SetActive(enable);
+            foreach (GameObject gameObject in trueEnable)
+            {
+                gameObject.SetActive(enable);
+            }
         }
     }
 
@@ -68,7 +74,10 @@ public class ConditionalEnabler : MonoBehaviour
     {
         if (falseEnable != null)
         {
-            falseEnable.SetActive(enable);
+            foreach (GameObject gameObject in falseEnable)
+            {
+                gameObject.SetActive(enable);
+            }
         }
     }
 }

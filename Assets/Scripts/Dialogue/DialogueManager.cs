@@ -17,6 +17,7 @@ public struct DialogueUIEventArgs
 
 public class DialogueManager : MonoBehaviour
 {
+    private bool voicePaused = false;
     private string currentSentence;
     private AudioSource dialogueAudioSource;
 
@@ -34,9 +35,15 @@ public class DialogueManager : MonoBehaviour
         dialogueAudioSource = GetComponent<AudioSource>();
     }
 
+    private void OnEnable()
+    {
+        PauseManager.OnPauseGame += PauseVA;
+    }
+
     private void OnDisable()
     {
         InputManager.OnSkipEvent -= SkipCurrentDialogue;
+        PauseManager.OnPauseGame -= PauseVA;
     }
 
     public void PlayDialogue(DialogueSO dialogueSO, Action onDialogueComplete)
@@ -168,6 +175,24 @@ public class DialogueManager : MonoBehaviour
         else
         {
             onDialogueComplete = null;
+        }
+    }
+
+    private void PauseVA(object sender, bool pause)
+    {
+        if (!pause && voicePaused)
+        {
+            dialogueAudioSource.Play();
+            voicePaused = false;
+        }
+
+        if (dialogueAudioSource.isPlaying)
+        {
+            if (pause)
+            {
+                dialogueAudioSource.Pause();
+                voicePaused = true;
+            }
         }
     }
 }

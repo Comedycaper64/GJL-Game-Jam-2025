@@ -92,8 +92,14 @@ public class DialogueChoiceUI : MonoBehaviour
         choiceTimer = 0f;
         ResetChoiceButtons();
 
+        for (int i = 0; i < choiceButtons.Length; i++)
+        {
+            choiceButtons[i].gameObject.SetActive(false);
+        }
+
         for (int i = 0; i < choiceSO.GetDialoguesChoices().Length; i++)
         {
+            choiceButtons[i].gameObject.SetActive(true);
             choiceButtons[i].SetupChoiceButton(choiceSO.GetDialoguesChoices()[i].dialogueChoice, i);
         }
 

@@ -22,6 +22,7 @@ public class RangedEnemyAimState : State
             stats.weaponAttackInterval
             + Random.Range(-stats.weaponAttackVariance, stats.weaponAttackVariance);
         weaponAttackTimer = 0f;
+        enemyStateMachine.ToggleMovement(true);
 
         //stateMachine.smAnimator.SetBool("chasing", true);
     }
@@ -33,6 +34,8 @@ public class RangedEnemyAimState : State
         Vector2 attackDirection = (
             enemyStateMachine.GetPlayerTransform().position - stateMachine.transform.position
         ).normalized;
+
+        enemyStateMachine.ToggleMovement(false);
     }
 
     public override void Tick(float deltaTime)
@@ -75,6 +78,7 @@ public class RangedEnemyAimState : State
         }
 
         //stateMachine.transform.position += directionToMove * stats.movementSpeed * deltaTime;
-        rb.MovePosition(rb.position + ((Vector2)directionToMove * stats.movementSpeed * deltaTime));
+        //rb.MovePosition(rb.position + ((Vector2)directionToMove * stats.movementSpeed * deltaTime));
+        enemyStateMachine.SetMoveDirection(directionToMove);
     }
 }

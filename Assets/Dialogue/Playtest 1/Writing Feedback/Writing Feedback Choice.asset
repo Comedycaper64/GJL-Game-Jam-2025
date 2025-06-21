@@ -16,7 +16,7 @@ MonoBehaviour:
   - dialogueChoice: That was BAD.
     feedbackKey: Writing
     feedbackValue: 1
-    attitudeModifier: -5
+    attitudeModifier: -3
     feedbackType: 2
   - dialogueChoice: I think it could've been simplified a bit.
     feedbackKey: Writing

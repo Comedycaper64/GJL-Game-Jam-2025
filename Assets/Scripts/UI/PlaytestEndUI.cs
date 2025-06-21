@@ -2,44 +2,45 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlaytestEndUI : MonoBehaviour
 {
-    private int resultIndex = 0;
+    protected int resultIndex = 0;
 
     [SerializeField]
-    private Color positiveColour;
+    protected Color positiveColour;
 
     [SerializeField]
-    private Color middlingColour;
+    protected Color middlingColour;
 
     [SerializeField]
-    private Color negativeColour;
+    protected Color negativeColour;
 
     [SerializeField]
-    private Button nextButton;
+    protected Button nextButton;
 
     [SerializeField]
-    private TextMeshProUGUI playtimeText;
+    protected TextMeshProUGUI playtimeText;
 
     [SerializeField]
-    private TextMeshProUGUI attitudeText;
+    protected TextMeshProUGUI attitudeText;
 
     [SerializeField]
-    private TextMeshProUGUI feedbackText;
+    protected TextMeshProUGUI feedbackText;
 
     [SerializeField]
-    private TextMeshProUGUI changesText;
+    protected TextMeshProUGUI changesText;
 
     [SerializeField]
-    private DialogueUI dialogueUI;
+    protected DialogueUI dialogueUI;
 
     [SerializeField]
-    private CanvasGroupFader endFader;
+    protected CanvasGroupFader endFader;
 
     [SerializeField]
-    private CanvasGroupFader[] resultFaders;
+    protected CanvasGroupFader[] resultFaders;
 
     private void Start()
     {
@@ -58,7 +59,7 @@ public class PlaytestEndUI : MonoBehaviour
         EvaluatePlayerChoices();
     }
 
-    private void EvaluatePlayerChoices()
+    protected virtual void EvaluatePlayerChoices()
     {
         dialogueUI.StartCallTimer(false);
 
@@ -74,12 +75,12 @@ public class PlaytestEndUI : MonoBehaviour
     private void EvaluateAttitude()
     {
         int attitude = AttitudeManager.Instance.GetAttitude();
-        if (attitude > 19)
+        if (attitude > 18)
         {
             attitudeText.text = "Very positive";
             attitudeText.color = positiveColour;
         }
-        else if (attitude > 14)
+        else if (attitude > 13)
         {
             attitudeText.text = "Mostly positive";
             attitudeText.color = positiveColour;
@@ -124,32 +125,47 @@ public class PlaytestEndUI : MonoBehaviour
 
         int changesMade = FeedbackManager.Instance.GetChangesInfluenced();
 
-        changesText.text = "Changes made: " + changesMade.ToString();
+        changesText.text = changesMade.ToString() + " changes";
     }
 
-    private IEnumerator DelayedNextButtonReenable()
+    protected IEnumerator DelayedNextButtonReenable()
     {
         yield return new WaitForSeconds(1f);
 
         nextButton.interactable = true;
     }
 
-    private void LoadNextLevel()
+    private IEnumerator LoadNextLevel()
     {
+        int nextSceneBuild = 1;
+
+        if (FeedbackManager.Instance.TryGetDictionaryValue("Style", out int val))
+        {
+            if (val == 1)
+            {
+                nextSceneBuild = 2;
+            }
+        }
+        //evaluate next level
         //async load
+
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadSceneAsync(nextSceneBuild);
     }
 
-    public void NextSlide()
+    public virtual void NextSlide()
     {
         nextButton.interactable = false;
 
         resultFaders[resultIndex].ToggleFade(false);
+
         resultIndex++;
         resultFaders[resultIndex].ToggleFade(true);
 
         if (resultIndex >= (resultFaders.Length - 1))
         {
-            LoadNextLevel();
+            StartCoroutine(LoadNextLevel());
         }
         else
         {

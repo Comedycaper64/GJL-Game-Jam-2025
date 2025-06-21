@@ -26,14 +26,18 @@ public class PauseManager : MonoBehaviour
 
     private void Awake()
     {
-        InputManager.OnMenuEvent += TogglePause;
-
         pauseMenuFader.SetCanvasGroupAlpha(0f);
         pauseMenuFader.ToggleBlockRaycasts(false);
 
         musicSlider.value = PlayerOptions.GetMusicVolume();
         sfxSlider.value = PlayerOptions.GetSFXVolume();
         voiceSlider.value = PlayerOptions.GetVoiceVolume();
+    }
+
+    private void OnEnable()
+    {
+        //pauseActive = false;
+        InputManager.OnMenuEvent += TogglePause;
     }
 
     private void OnDisable()
