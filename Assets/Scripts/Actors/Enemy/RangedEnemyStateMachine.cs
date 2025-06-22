@@ -11,6 +11,9 @@ public class RangedEnemyStateMachine : StateMachine
     private RangedEnemyStats stats;
 
     [SerializeField]
+    private float sfxVolume = 0.25f;
+
+    [SerializeField]
     private Collider2D bodyCollider;
 
     [SerializeField]
@@ -25,9 +28,6 @@ public class RangedEnemyStateMachine : StateMachine
     [SerializeField]
     private AudioClip altShootSFX;
 
-    [SerializeField]
-    private float sfxVolume = 0.25f;
-
     private void Awake()
     {
         health = GetComponent<HealthSystem>();
@@ -35,7 +35,7 @@ public class RangedEnemyStateMachine : StateMachine
 
         ToggleCollider(false);
         health.SetMaxHealth(stats.health);
-        health.OnTakeDamage += HealthSystem_OnTakeDamage;
+
         health.OnDeath += HealthSystem_OnDeath;
     }
 
@@ -45,6 +45,7 @@ public class RangedEnemyStateMachine : StateMachine
 
         ResetEnemy();
 
+        //If feedback on sound effects has been given, modify sound effect
         if (FeedbackManager.Instance.TryGetDictionaryValue("SFX", out int val))
         {
             if (val == 1)
@@ -61,7 +62,6 @@ public class RangedEnemyStateMachine : StateMachine
 
     private void OnDisable()
     {
-        health.OnTakeDamage -= HealthSystem_OnTakeDamage;
         health.OnDeath -= HealthSystem_OnDeath;
     }
 
@@ -69,33 +69,31 @@ public class RangedEnemyStateMachine : StateMachine
     {
         if (moving)
         {
-            enemyRB.MovePosition(
-                enemyRB.position + (moveDirection * stats.movementSpeed * Time.fixedDeltaTime)
-            );
+            enemyRB.AddForce(moveDirection * 2f * stats.movementSpeed);
         }
     }
 
     public override void SpawnEnemy()
     {
         health.SetMaxHealth(stats.health);
+        enemyVisual.SetActive(true);
         SwitchState(new RangedEnemySpawnState(this));
+    }
+
+    public override void ResetEnemy()
+    {
+        base.ResetEnemy();
+        enemyVisual.SetActive(false);
+    }
+
+    public override void ToggleInactive(bool toggle)
+    {
+        ToggleCollider(!toggle);
     }
 
     public Transform GetPlayerTransform()
     {
         return playerTransform;
-    }
-
-    private void HealthSystem_OnTakeDamage()
-    {
-        //Damage feedback
-        //Play hit sound?
-    }
-
-    private void HealthSystem_OnDeath(object sender, EventArgs e)
-    {
-        SwitchState(new RangedEnemyDeadState(this));
-        OnEnemyDeath?.Invoke();
     }
 
     public RangedEnemyStats GetStats()
@@ -143,14 +141,9 @@ public class RangedEnemyStateMachine : StateMachine
         bodyCollider.enabled = toggle;
     }
 
-    public void ToggleVisual(bool toggle)
+    private void HealthSystem_OnDeath(object sender, EventArgs e)
     {
-        enemyVisual.SetActive(toggle);
-    }
-
-    public override void ToggleInactive(bool toggle)
-    {
-        ToggleCollider(!toggle);
-        ToggleVisual(!toggle);
+        SwitchState(new RangedEnemyDeadState(this));
+        OnEnemyDeath?.Invoke();
     }
 }

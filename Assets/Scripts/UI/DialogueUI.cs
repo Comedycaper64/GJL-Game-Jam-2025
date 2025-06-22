@@ -31,9 +31,6 @@ public class DialogueUI : MonoBehaviour
         dialogueFader.SetCanvasGroupAlpha(0f);
         dialogueFader.ToggleBlockRaycasts(false);
         speakerIndicator.SetActive(false);
-
-        //Temp
-        //timerStarted = true;
     }
 
     private void OnDisable()
@@ -64,15 +61,11 @@ public class DialogueUI : MonoBehaviour
 
         dialogueFader.ToggleFade(true);
 
-        //displayingDialogue = true;
-
         yield return new WaitForSeconds(dialogueUIEventArgs.displayDuration - dialogueFadeTime);
 
         dialogueFader.ToggleFade(false);
         speakerIndicator.SetActive(false);
         yield return new WaitForSeconds(dialogueFadeTime);
-
-        //displayingDialogue = false;
     }
 
     public void StartCallTimer(bool toggle = true)

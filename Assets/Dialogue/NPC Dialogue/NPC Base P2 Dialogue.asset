@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad92fcdf09f97848b791996cfbf95d5, type: 3}
+  m_Name: NPC Base P2 Dialogue
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialogue:
+    - I... am a spirit... bound here by my negative energies....
+    - This dungeon... is a fell place... it has stood for a long time...
+    - King Alaric.... twas him.... who made it such....
+    - You must... vanquish it...
+    - For if you don't.... the four shadow beasts... will cause great devastation
+      to our realm....
+    - Forsooth.... I pray for your success... in these endeavours....
+    - Tis only you.... who can wipe away.... this dastardly threat...
+    - '*cough*.... looks like my time is up....'
+    voiceClip: []

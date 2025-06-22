@@ -26,6 +26,7 @@ public class RangedEnemyStats : MonoBehaviour
 
     private void Start()
     {
+        //If feedback on difficulty has been given, modify enemy stats
         if (FeedbackManager.Instance.TryGetDictionaryValue("Diff", out int val))
         {
             if (val == 1)

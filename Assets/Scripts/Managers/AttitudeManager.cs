@@ -12,9 +12,6 @@ public class AttitudeManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError(
-                "There's more than one AttitudeManager! " + transform + " - " + Instance
-            );
             Destroy(gameObject);
             return;
         }

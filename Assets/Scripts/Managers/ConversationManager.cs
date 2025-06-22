@@ -9,9 +9,6 @@ public class ConversationManager : MonoBehaviour
     private Queue<ConversationNode> activeDialogueCluster = new Queue<ConversationNode>();
     private Queue<DialogueCluster> conversationQueue = new Queue<DialogueCluster>();
 
-    // [SerializeField]
-    // private DialogueCluster startingCluster;
-
     [SerializeField]
     private DialogueManager dialogueManager;
     private DialogueChoiceManager dialogueChoiceManager;
@@ -36,8 +33,6 @@ public class ConversationManager : MonoBehaviour
     private void Start()
     {
         dialogueChoiceManager = dialogueManager.GetComponent<DialogueChoiceManager>();
-
-        //AddToConversation(startingCluster);
     }
 
     private void OnDisable()
@@ -53,7 +48,6 @@ public class ConversationManager : MonoBehaviour
     {
         if (conversationQueue.TryDequeue(out DialogueCluster newCluster))
         {
-            //Debug.Log("Advancing");
             activeDialogueCluster = new Queue<ConversationNode>(newCluster.GetCinematicNodes());
             TryResolveDialogueCluster();
         }
@@ -110,7 +104,6 @@ public class ConversationManager : MonoBehaviour
             else
             {
                 TryResolveDialogueCluster();
-                //Debug.Log("Error, undefined type");
             }
         }
         else
@@ -125,19 +118,8 @@ public class ConversationManager : MonoBehaviour
 
         if (conditionalSO.EvaluateKey(out string key))
         {
-            // Get feedback value from feedback manager
             FeedbackManager.Instance.TryGetDictionaryValue(key, out feedbackValue);
         }
-
-        // Debug.Log("Attitude: " + AttitudeManager.Instance.GetAttitude());
-
-        // Debug.Log("Feedback value: " + feedbackValue);
-        // Debug.Log(
-        //     "Conversation Length: "
-        //         + conditionalSO
-        //             .GetConversation(AttitudeManager.Instance.GetAttitude(), feedbackValue)
-        //             .Length
-        // );
 
         ConversationNode[] newConversation = conditionalSO.GetConversation(
             AttitudeManager.Instance.GetAttitude(),
@@ -145,7 +127,6 @@ public class ConversationManager : MonoBehaviour
         );
 
         //Adds in new conversation before rest of cluster
-
         ConversationNode[] concatConversaiton = newConversation
             .Concat(activeDialogueCluster)
             .ToArray();
@@ -155,7 +136,7 @@ public class ConversationManager : MonoBehaviour
     private void EndConversation()
     {
         conversationActive = false;
-        //Debug.Log("Convo ended");
+
         OnConversationActive?.Invoke(this, false);
 
         if (OnClusterEnd != null)
@@ -180,7 +161,6 @@ public class ConversationManager : MonoBehaviour
 
         if (!conversationActive)
         {
-            //Debug.Log("Convo started");
             conversationActive = true;
             OnConversationActive?.Invoke(this, true);
             AdvanceConversation();

@@ -86,8 +86,6 @@ public class MessengerManager : MonoBehaviour
         yield return new WaitForSeconds(26f);
 
         feedbackUIPlayer.PlayFeedbacks();
-        //another yield
-        //flash feedback button when dialogue gets to it
     }
 
     private void Update()
@@ -100,8 +98,6 @@ public class MessengerManager : MonoBehaviour
         dialogueUI.StartCallTimer();
         conversationManager.AddToConversation(openingDialogueCluster, StartGame);
 
-        //augment UI so that player had joined the call
-        //disable call button
         callButton.interactable = false;
         preCallFader.ToggleFade(false);
         preCallFader.ToggleBlockRaycasts(false);

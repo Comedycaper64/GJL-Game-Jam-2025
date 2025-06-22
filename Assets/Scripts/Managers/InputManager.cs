@@ -25,7 +25,6 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
     {
         if (Instance != null)
         {
-            //Debug.LogError("There's more than one InputManager! " + transform + " - " + Instance);
             Destroy(gameObject);
             return;
         }

@@ -7,7 +7,7 @@ public class NPCDialogue : MonoBehaviour
 {
     private bool dialogueStarted = false;
     private float timeBetweenLetterTyping = 0.04f;
-    private float finishTypingWaitTime = 3f;
+    private float finishTypingWaitTime = 2f;
     private Coroutine dialogueCoroutine;
 
     private Queue<string> spokenDialogue;
@@ -42,6 +42,7 @@ public class NPCDialogue : MonoBehaviour
     {
         npcDialogue = defaultDialogueSO;
 
+        //If feedback on writing has been given, modify dialogue
         if (FeedbackManager.Instance.TryGetDictionaryValue("Writing", out int val))
         {
             if (val == 2)
@@ -123,6 +124,7 @@ public class NPCDialogue : MonoBehaviour
         }
         else
         {
+            StopDialogue();
             textBoxFader.ToggleFade(false);
         }
     }

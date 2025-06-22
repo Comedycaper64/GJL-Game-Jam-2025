@@ -334,7 +334,7 @@ MonoBehaviour:
   hardAttackInterval: 2.5
   weaponAttackVariance: 0.5
   weaponAttackTiming: 0.75
-  weaponAttackArc: 0.5
+  weaponAttackArc: 0.6
 --- !u!95 &8826262397358658747
 Animator:
   serializedVersion: 7

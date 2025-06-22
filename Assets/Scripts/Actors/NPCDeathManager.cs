@@ -17,6 +17,17 @@ public class NPCDeathManager : MonoBehaviour
     [SerializeField]
     private GameObject[] gameObjectsToDisable;
 
+    private void Start()
+    {
+        if (FeedbackManager.Instance.TryGetDictionaryValue("NPC_INV", out int val))
+        {
+            if (val == 1)
+            {
+                npcHealth.SetInvincible(true);
+            }
+        }
+    }
+
     private void OnEnable()
     {
         npcHealth.OnDeath += NPCDeath;
@@ -33,8 +44,6 @@ public class NPCDeathManager : MonoBehaviour
         {
             return;
         }
-
-        //Debug.Log("ded");
 
         npcDialogue.StopDialogue();
         feedbackSender.SendFeedback();

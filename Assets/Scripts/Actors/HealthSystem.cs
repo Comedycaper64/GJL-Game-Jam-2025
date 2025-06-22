@@ -15,13 +15,13 @@ public class HealthSystem : MonoBehaviour
     private bool isInvincible = false;
 
     [SerializeField]
+    private float sfxVolume = 0.25f;
+
+    [SerializeField]
     private AudioClip damageSFX;
 
     [SerializeField]
     private AudioClip altDamageSFX;
-
-    [SerializeField]
-    private float sfxVolume = 0.25f;
 
     public Action OnTakeDamage;
     public EventHandler OnDeath;
@@ -34,6 +34,7 @@ public class HealthSystem : MonoBehaviour
 
     private void Start()
     {
+        //If feedback on sound effects has been given, modify sound effect
         if (FeedbackManager.Instance.TryGetDictionaryValue("SFX", out int val))
         {
             if (val == 1)
@@ -46,6 +47,11 @@ public class HealthSystem : MonoBehaviour
                 sfxVolume = 0f;
             }
         }
+    }
+
+    private void Die()
+    {
+        OnDeath?.Invoke(this, EventArgs.Empty);
     }
 
     public void SetMaxHealth(int maxHealth)
@@ -65,7 +71,10 @@ public class HealthSystem : MonoBehaviour
 
         OnNewHealth?.Invoke(this, health);
 
-        AudioManager.PlaySFX(damageSFX, sfxVolume, 0, transform.position, sfxVariance);
+        if (isPlayer)
+        {
+            AudioManager.PlaySFX(damageSFX, sfxVolume, 0, transform.position, sfxVariance);
+        }
 
         if (health == 0f)
         {
@@ -75,6 +84,11 @@ public class HealthSystem : MonoBehaviour
         {
             OnTakeDamage?.Invoke();
         }
+    }
+
+    public void PlayDamagedSound()
+    {
+        AudioManager.PlaySFX(damageSFX, sfxVolume, 0, transform.position, sfxVariance);
     }
 
     public void Heal(int amountToHeal)
@@ -93,10 +107,8 @@ public class HealthSystem : MonoBehaviour
         return isPlayer;
     }
 
-    private void Die()
+    public void SetInvincible(bool toggle)
     {
-        OnDeath?.Invoke(this, EventArgs.Empty);
-        //Debug.Log(gameObject.name + "is Dead");
-        //Destroy(gameObject);
+        isInvincible = toggle;
     }
 }

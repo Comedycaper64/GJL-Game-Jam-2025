@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class DialogueChoiceUI : MonoBehaviour
 {
     private bool choiceActive = false;
+    private int activeChoiceButtons = 0;
     private float choiceTimer = 0f;
     private float choiceTime = 10f;
 
@@ -78,6 +79,11 @@ public class DialogueChoiceUI : MonoBehaviour
 
     private void DialogueChosen(object sender, int index)
     {
+        if (index >= activeChoiceButtons)
+        {
+            return;
+        }
+
         choiceActive = false;
         ResetChoiceButtons();
         choiceButtonFader.ToggleFade(false);
@@ -91,6 +97,7 @@ public class DialogueChoiceUI : MonoBehaviour
         choiceActive = true;
         choiceTimer = 0f;
         ResetChoiceButtons();
+        activeChoiceButtons = 0;
 
         for (int i = 0; i < choiceButtons.Length; i++)
         {
@@ -99,6 +106,7 @@ public class DialogueChoiceUI : MonoBehaviour
 
         for (int i = 0; i < choiceSO.GetDialoguesChoices().Length; i++)
         {
+            activeChoiceButtons++;
             choiceButtons[i].gameObject.SetActive(true);
             choiceButtons[i].SetupChoiceButton(choiceSO.GetDialoguesChoices()[i].dialogueChoice, i);
         }

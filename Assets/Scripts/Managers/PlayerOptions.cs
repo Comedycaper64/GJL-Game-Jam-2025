@@ -12,21 +12,18 @@ public class PlayerOptions : MonoBehaviour
 
     public static void SetMusicVolume(float newVolume)
     {
-        //MUSIC_VOLUME_DEF = newVolume;
         PlayerPrefs.SetFloat(MUSIC_VOLUME, newVolume);
         PlayerPrefs.Save();
     }
 
     public static void SetSFXVolume(float newVolume)
     {
-        // SFX_VOLUME_DEF = newVolume;
         PlayerPrefs.SetFloat(SFX_VOLUME, newVolume);
         PlayerPrefs.Save();
     }
 
     public static void SetVoiceVolume(float newVolume)
     {
-        //VOICE_VOLUME_DEF = newVolume;
         PlayerPrefs.SetFloat(VOICE_VOLUME, newVolume);
         PlayerPrefs.Save();
     }

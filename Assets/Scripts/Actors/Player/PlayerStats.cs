@@ -30,6 +30,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        //If feedback on movement speed has been given, modify movement speed
         if (FeedbackManager.Instance.TryGetDictionaryValue("Speed", out int val))
         {
             if (val == 1)
@@ -46,6 +47,7 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
+        //If feedback on attacking has been given, modify damage
         if (FeedbackManager.Instance.TryGetDictionaryValue("Attack", out int val2))
         {
             if (val2 == 2)

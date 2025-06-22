@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class EnemyInactiveState : State
 {
     public EnemyInactiveState(StateMachine stateMachine)

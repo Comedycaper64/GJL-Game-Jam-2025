@@ -15,9 +15,6 @@ public class DialogueConditionalSO : ConversationNode
     [SerializeField]
     private string feedbackKey = "";
 
-    // [SerializeField]
-    // private int feedbackValue = -1;
-
     [SerializeField]
     private DialogueCluster[] feedbackClusters;
 
@@ -47,8 +44,6 @@ public class DialogueConditionalSO : ConversationNode
 
     public ConversationNode[] GetConversation(int attitude = -1, int feedbackValue = -1)
     {
-        Debug.Log("Get covnersation");
-
         if (attitudeThreshold < 0)
         {
             if ((feedbackValue < 0) || (feedbackValue >= feedbackClusters.Length))

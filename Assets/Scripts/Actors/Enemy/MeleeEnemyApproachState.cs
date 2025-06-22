@@ -4,7 +4,7 @@ public class MeleeEnemyApproachState : State
 {
     private float weaponAttackTimer = 0f;
     private float weaponAttackTime;
-    private Rigidbody2D rb;
+
     private MeleeEnemyStats stats;
     private MeleeEnemyStateMachine enemyStateMachine;
 
@@ -12,7 +12,6 @@ public class MeleeEnemyApproachState : State
         : base(stateMachine)
     {
         enemyStateMachine = stateMachine as MeleeEnemyStateMachine;
-        rb = enemyStateMachine.GetRigidbody();
     }
 
     public override void Enter()

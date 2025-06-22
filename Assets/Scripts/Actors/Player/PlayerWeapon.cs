@@ -8,9 +8,16 @@ public class PlayerWeapon : MonoBehaviour
     private bool playerDead = false;
     private bool weaponActive = false;
     private bool weaponAvailable = false;
+    private bool weaponFeedback = false;
+
+    [SerializeField]
+    private bool knockbackEnemies = true;
     private float weaponRechargeTimer = 0f;
     private float weaponRechargeTime;
     private float weaponSwingDamageDelay = 0.2f;
+
+    [SerializeField]
+    private float sfxVolume = 0.25f;
 
     private Coroutine weaponSwingCoroutine;
 
@@ -34,12 +41,6 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField]
     private AudioClip altWeaponSwingSFX;
 
-    [SerializeField]
-    private float sfxVolume = 0.25f;
-
-    // [SerializeField]
-    // private LayerMask hittableLayerMask;
-
     private void Start()
     {
         weaponRechargeTime = playerStats.weaponSwingRechargeTime;
@@ -49,6 +50,7 @@ public class PlayerWeapon : MonoBehaviour
         PlayerManager.OnPlayerDead += DisableWeapon;
         weaponCollider.radius = playerStats.weaponAttackRange;
 
+        //If feedback on sound effects has been given, modify sound effect
         if (FeedbackManager.Instance.TryGetDictionaryValue("SFX", out int val))
         {
             if (val == 1)
@@ -59,6 +61,15 @@ public class PlayerWeapon : MonoBehaviour
             else if (val == 2)
             {
                 sfxVolume = 0f;
+            }
+        }
+
+        //If feedback on attacking has been given, modify weapon feedbacks
+        if (FeedbackManager.Instance.TryGetDictionaryValue("Attack", out int val2))
+        {
+            if (val2 == 1)
+            {
+                weaponFeedback = true;
             }
         }
     }
@@ -129,9 +140,6 @@ public class PlayerWeapon : MonoBehaviour
 
         weaponAnimator.SetTrigger("slash");
 
-        //Play Weapon Effect
-        //Trigger animation
-        //Play SFX
         AudioManager.PlaySFX(weaponSwingSFX, sfxVolume, 0, transform.position, sfxVariance);
 
         weaponAvailable = false;
@@ -148,6 +156,8 @@ public class PlayerWeapon : MonoBehaviour
 
     private void ResolveAttack()
     {
+        bool damageDealtOnce = false;
+
         Vector2 cursorDirection = cursorPointer.GetCursorDirection();
 
         for (int i = 0; i < enemiesInRange.Count; i++)
@@ -164,20 +174,34 @@ public class PlayerWeapon : MonoBehaviour
             )
             {
                 DealDamage(health, colliderDirectionFromPlayer);
+
+                if (!damageDealtOnce)
+                {
+                    health.PlayDamagedSound();
+                    damageDealtOnce = true;
+                }
             }
         }
     }
 
     private void DealDamage(HealthSystem health, Vector2 attackDirection)
     {
-        health.TakeDamage(playerStats.weaponDamage);
+        health.TakeDamage(playerStats.GetWeaponDamage());
 
-        if (health.TryGetComponent<Rigidbody2D>(out Rigidbody2D damagedRb))
+        if (weaponFeedback)
         {
-            damagedRb.AddForce(
-                attackDirection * playerStats.weaponKnockbackStrength,
-                ForceMode2D.Impulse
-            );
+            ParticleManager.SpawnParticles(health.transform.position, attackDirection);
+        }
+
+        if (knockbackEnemies)
+        {
+            if (health.TryGetComponent<Rigidbody2D>(out Rigidbody2D damagedRb))
+            {
+                damagedRb.AddForce(
+                    attackDirection * playerStats.weaponKnockbackStrength,
+                    ForceMode2D.Force
+                );
+            }
         }
     }
 

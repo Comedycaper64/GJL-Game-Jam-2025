@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
+    private bool pauseCooldown = false;
     private bool pauseActive = false;
 
     [SerializeField]
@@ -36,7 +38,6 @@ public class PauseManager : MonoBehaviour
 
     private void OnEnable()
     {
-        //pauseActive = false;
         InputManager.OnMenuEvent += TogglePause;
     }
 
@@ -65,8 +66,22 @@ public class PauseManager : MonoBehaviour
         OnVoiceVolumeUpdated?.Invoke(this, newVolume);
     }
 
-    private void TogglePause()
+    private IEnumerator PauseCD()
     {
+        pauseCooldown = true;
+        yield return new WaitForSecondsRealtime(0.5f);
+        pauseCooldown = false;
+    }
+
+    public void TogglePause()
+    {
+        if (pauseCooldown)
+        {
+            return;
+        }
+
+        StartCoroutine(PauseCD());
+
         pauseActive = !pauseActive;
 
         pauseMenuFader.ToggleFade(pauseActive);

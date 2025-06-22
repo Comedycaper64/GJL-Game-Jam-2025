@@ -28,6 +28,7 @@ public class MeleeEnemyStats : MonoBehaviour
 
     private void Start()
     {
+        //If Feedback about Difficulty has been given, adjust enemy stats
         if (FeedbackManager.Instance.TryGetDictionaryValue("Diff", out int val))
         {
             if (val == 1)

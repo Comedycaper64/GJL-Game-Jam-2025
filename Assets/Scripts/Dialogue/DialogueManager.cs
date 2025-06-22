@@ -46,24 +46,6 @@ public class DialogueManager : MonoBehaviour
         PauseManager.OnPauseGame -= PauseVA;
     }
 
-    public void PlayDialogue(DialogueSO dialogueSO, Action onDialogueComplete)
-    {
-        this.onDialogueComplete = onDialogueComplete;
-        dialogues = dialogueSO.GetDialogue();
-
-        InputManager.OnSkipEvent += SkipCurrentDialogue;
-
-        //ToggleDialogueUI(true);
-        TryPlayNextDialogue();
-    }
-
-    public void SkipCurrentDialogue()
-    {
-        DialogueSkipCleanup();
-
-        DisplayNextSentence();
-    }
-
     private void DialogueSkipCleanup()
     {
         dialogueAudioSource.Stop();
@@ -76,12 +58,6 @@ public class DialogueManager : MonoBehaviour
 
     private void TryPlayNextDialogue()
     {
-        // if (!dialogues.TryDequeue(out Dialogue dialogueNode))
-        // {
-        //     EndDialogue();
-        //     return;
-        // }
-
         currentDialogue = new Queue<string>(dialogues.dialogue);
 
         if (dialogues.voiceClip != null)
@@ -98,30 +74,16 @@ public class DialogueManager : MonoBehaviour
 
     private void DisplayNextSentence()
     {
-        // if (bIsSentenceTyping)
-        // {
-        //     //Debug.Log("We're typin here!");
-        //     OnFinishTypingDialogue?.Invoke();
-        //     return;
-        // }
-
         if (!currentDialogue.TryDequeue(out currentSentence))
         {
-            //TryPlayNextDialogue();
             EndDialogue();
             return;
         }
 
         float voiceClipLength = TryPlayVoiceClip();
 
-        if (currentSentence == "")
+        if (currentSentence != "")
         {
-            //ToggleDialogueUI(false);
-        }
-        else
-        {
-            //ToggleDialogueUI(true);
-
             OnDialogue?.Invoke(this, new DialogueUIEventArgs(currentSentence, voiceClipLength));
         }
     }
@@ -155,18 +117,11 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
-    // private void ToggleDialogueUI(bool toggle)
-    // {
-    //     OnToggleDialogueUI?.Invoke(this, toggle);
-    // }
-
     private void EndDialogue(bool skipping = false)
     {
         InputManager.OnSkipEvent -= SkipCurrentDialogue;
 
         dialogueAudioSource.Stop();
-
-        //ToggleDialogueUI(false);
 
         if (!skipping)
         {
@@ -176,6 +131,23 @@ public class DialogueManager : MonoBehaviour
         {
             onDialogueComplete = null;
         }
+    }
+
+    public void PlayDialogue(DialogueSO dialogueSO, Action onDialogueComplete)
+    {
+        this.onDialogueComplete = onDialogueComplete;
+        dialogues = dialogueSO.GetDialogue();
+
+        InputManager.OnSkipEvent += SkipCurrentDialogue;
+
+        TryPlayNextDialogue();
+    }
+
+    public void SkipCurrentDialogue()
+    {
+        DialogueSkipCleanup();
+
+        DisplayNextSentence();
     }
 
     private void PauseVA(object sender, bool pause)

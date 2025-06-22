@@ -121,7 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796ce00e1fe83f84da922d1d5c422486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueSO: {fileID: 11400000, guid: 90c17ae829d7fda47964e2505c107b43, type: 2}
+  defaultDialogueSO: {fileID: 11400000, guid: 90c17ae829d7fda47964e2505c107b43, type: 2}
+  simplifiedDialogueSO: {fileID: 11400000, guid: 7cd8bf67fa87e4e4d99d12889ef07b76, type: 2}
+  quipyDialogueSO: {fileID: 11400000, guid: 75df5b1bb3125cb47ae8a540520b3225, type: 2}
   npcLeaveAreaCluster: {fileID: 4224802099482086482}
   dialogueText: {fileID: 5646393861664502585}
   textBoxFader: {fileID: 4137978604405794332}
@@ -234,8 +236,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 337350219
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 079f5a8d00f74c84181be0a872b4c39d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -450,7 +452,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   isInvincible: 0
+  sfxVolume: 0.25
   damageSFX: {fileID: 0}
+  altDamageSFX: {fileID: 0}
 --- !u!114 &2714383522777132366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,8 +623,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

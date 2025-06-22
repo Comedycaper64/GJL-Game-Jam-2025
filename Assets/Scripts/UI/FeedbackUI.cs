@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 
 public class FeedbackUI : MonoBehaviour
 {
+    private bool feedbackOpenCooldown = false;
     private bool feedbackColumnOpen = false;
     private bool conversationActive = false;
 
@@ -85,9 +87,23 @@ public class FeedbackUI : MonoBehaviour
 
     public void ToggleFeedbackMenu()
     {
+        if (feedbackOpenCooldown)
+        {
+            return;
+        }
+
+        StartCoroutine(FeedbackOpenCD());
+
         feedbackColumnOpen = !feedbackColumnOpen;
         ToggleButtonFader(!feedbackColumnOpen);
         ToggleColumnFader(feedbackColumnOpen);
+    }
+
+    private IEnumerator FeedbackOpenCD()
+    {
+        feedbackOpenCooldown = true;
+        yield return new WaitForSecondsRealtime(0.5f);
+        feedbackOpenCooldown = false;
     }
 
     private void TryStartFeedback(object sender, DialogueCluster cluster)
@@ -97,7 +113,6 @@ public class FeedbackUI : MonoBehaviour
             return;
         }
 
-        //start conversation with cluster
         OnFeedback?.Invoke(this, cluster);
 
         FeedbackButtonUI feedbackButton = sender as FeedbackButtonUI;

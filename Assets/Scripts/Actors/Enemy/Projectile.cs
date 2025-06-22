@@ -89,7 +89,6 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        //Debug.Log("Collider Entered");
         if (other.TryGetComponent<PlayerAbsorber>(out PlayerAbsorber absorber))
         {
             absorber.AbsorbProjectile();
@@ -100,8 +99,6 @@ public class Projectile : MonoBehaviour
             && healthSystem.GetIsPlayer()
         )
         {
-            //Debug.Log("Player Damaged");
-
             healthSystem.TakeDamage(damage);
             Deactivate();
         }

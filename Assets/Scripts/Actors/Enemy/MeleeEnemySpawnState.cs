@@ -1,7 +1,7 @@
 public class MeleeEnemySpawnState : State
 {
-    float stateTime = 2f;
-    float stateTimer;
+    private float stateTime = 2f;
+    private float stateTimer;
     private MeleeEnemyStateMachine enemyStateMachine;
 
     public MeleeEnemySpawnState(StateMachine stateMachine)
@@ -15,7 +15,7 @@ public class MeleeEnemySpawnState : State
         stateTimer = stateTime;
         enemyStateMachine.ToggleVisual(true);
 
-        //stateMachine.animator.SetTrigger("spawn");
+        stateMachine.smAnimator.SetTrigger("spawn");
     }
 
     public override void Exit()

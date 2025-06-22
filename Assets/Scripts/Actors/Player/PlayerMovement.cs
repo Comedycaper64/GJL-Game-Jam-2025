@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 
 using UnityEngine;
@@ -16,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private InputManager inputManager;
 
     [SerializeField]
-    private Animator bodyAnimator;
+    private float sfxVolume = 0.15f;
 
     [SerializeField]
     private Rigidbody2D playerRb;
@@ -30,9 +29,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private AudioClip altDashSFX;
 
-    [SerializeField]
-    private float sfxVolume = 0.25f;
-
     private void Awake()
     {
         stats = GetComponent<PlayerStats>();
@@ -43,11 +39,11 @@ public class PlayerMovement : MonoBehaviour
     {
         inputManager = InputManager.Instance;
 
-        //Temp
         ToggleCanMove(true);
 
         PlayerManager.OnPlayerDead += OnPlayerDead;
 
+        //If feedback on sound effects has been given, modify sound effect
         if (FeedbackManager.Instance.TryGetDictionaryValue("SFX", out int val))
         {
             if (val == 1)
@@ -76,12 +72,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        //Vector2 movementValue = Vector2.zero;
         if (canMove)
         {
-            //movementValue = Move();
-            //movementValue = MoveRB();
-
             if (!dashAvailable)
             {
                 dashTimer += Time.deltaTime;
@@ -93,39 +85,14 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-
-        //bodyAnimator.SetFloat("Speed", Mathf.Abs(movementValue.x) + Mathf.Abs(movementValue.y));
     }
 
     private void FixedUpdate()
     {
-        Vector2 movementValue = Vector2.zero;
         if (canMove)
         {
-            //movementValue = Move();
-            movementValue = MoveRB();
+            MoveRB();
         }
-    }
-
-    private Vector2 Move()
-    {
-        Vector2 movementValue = inputManager.MovementValue.normalized;
-        transform.position +=
-            new Vector3(movementValue.x, movementValue.y)
-            * movementSpeed
-            * dashModifier
-            * Time.deltaTime;
-
-        if (movementValue.x < 0)
-        {
-            visualTransform.eulerAngles = new Vector3(0, 180, 0);
-        }
-        else if (movementValue.x > 0)
-        {
-            visualTransform.eulerAngles = new Vector3(0, 0, 0);
-        }
-
-        return movementValue;
     }
 
     private Vector2 MoveRB()
@@ -135,19 +102,9 @@ public class PlayerMovement : MonoBehaviour
             playerRb.position
                 + new Vector2(movementValue.x, movementValue.y)
                     * movementSpeed
-                    //* 2.5f
                     * dashModifier
                     * Time.fixedDeltaTime
         );
-
-        // playerRb.linearVelocity = Vector2.ClampMagnitude(
-        //     playerRb.linearVelocity,
-        //     movementSpeed * 2.5f * dashModifier
-        // );
-
-        // float maximumVelocity =
-
-        // playerRb.AddForce();
 
         if (movementValue.x < 0)
         {
@@ -169,8 +126,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         dashCoroutine = StartCoroutine(ApplyDash());
-
-        //Dash Effect
 
         AudioManager.PlaySFX(dashSFX, sfxVolume, 0, transform.position, sfxVariance);
 

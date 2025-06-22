@@ -1,7 +1,7 @@
 public class RangedEnemySpawnState : State
 {
-    float stateTime = 2f;
-    float stateTimer;
+    private float stateTime = 2f;
+    private float stateTimer;
     private RangedEnemyStateMachine enemyStateMachine;
 
     public RangedEnemySpawnState(StateMachine stateMachine)
@@ -13,7 +13,7 @@ public class RangedEnemySpawnState : State
     public override void Enter()
     {
         stateTimer = stateTime;
-        enemyStateMachine.ToggleVisual(true);
+        stateMachine.smAnimator.SetTrigger("spawn");
     }
 
     public override void Exit()

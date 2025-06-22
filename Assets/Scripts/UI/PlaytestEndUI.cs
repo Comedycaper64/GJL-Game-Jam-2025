@@ -146,8 +146,6 @@ public class PlaytestEndUI : MonoBehaviour
                 nextSceneBuild = 2;
             }
         }
-        //evaluate next level
-        //async load
 
         yield return new WaitForSeconds(2f);
 

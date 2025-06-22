@@ -33,9 +33,6 @@ public class FeedbackManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            // Debug.LogError(
-            //     "There's more than one FeedbackManager! " + transform + " - " + Instance
-            // );
             Destroy(gameObject);
             return;
         }
@@ -53,8 +50,6 @@ public class FeedbackManager : MonoBehaviour
 
     private void Start()
     {
-        //Debug.Log("Dictionary Init");
-
         if (feedbackTypeDicitonary.Count <= 0)
         {
             feedbackTypeDicitonary.Add(FeedbackType.praise, 0);
@@ -62,10 +57,6 @@ public class FeedbackManager : MonoBehaviour
             feedbackTypeDicitonary.Add(FeedbackType.constructive, 0);
             feedbackTypeDicitonary.Add(FeedbackType.silence, 0);
         }
-        // else
-        // {
-
-        // }
     }
 
     private void OnEnable()
@@ -111,12 +102,6 @@ public class FeedbackManager : MonoBehaviour
         FeedbackType highestFeedbackType = feedbackTypeDicitonary
             .Aggregate((x, y) => x.Value > y.Value ? x : y)
             .Key;
-
-        // Debug.Log("Praise Count: " + praiseCount);
-        // Debug.Log("Critique Count: " + critiqueCount);
-        // Debug.Log("Constructive Count: " + constructiveCount);
-        // Debug.Log("Silent Count: " + silenceCount);
-        // Debug.Log("Evaluated feedback type: " + highestFeedbackType);
 
         return highestFeedbackType;
     }
@@ -166,7 +151,6 @@ public class FeedbackManager : MonoBehaviour
                 feedbackTypeDicitonary[type] = critiqueCount;
                 break;
             case FeedbackType.silence:
-                Debug.Log("Silence Feedback");
                 silenceCount++;
                 feedbackTypeDicitonary[type] = silenceCount;
                 break;

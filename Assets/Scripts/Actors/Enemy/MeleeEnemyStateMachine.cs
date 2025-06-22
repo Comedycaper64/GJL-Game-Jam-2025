@@ -22,9 +22,6 @@ public class MeleeEnemyStateMachine : StateMachine
     [SerializeField]
     private EnemyWeapon enemyWeapon;
 
-    [SerializeField]
-    private LayerMask hittableLayerMask;
-
     private void Awake()
     {
         health = GetComponent<HealthSystem>();
@@ -32,7 +29,7 @@ public class MeleeEnemyStateMachine : StateMachine
 
         ToggleCollider(false);
         health.SetMaxHealth(stats.health);
-        health.OnTakeDamage += HealthSystem_OnTakeDamage;
+
         health.OnDeath += HealthSystem_OnDeath;
     }
 
@@ -45,7 +42,6 @@ public class MeleeEnemyStateMachine : StateMachine
 
     private void OnDisable()
     {
-        health.OnTakeDamage -= HealthSystem_OnTakeDamage;
         health.OnDeath -= HealthSystem_OnDeath;
     }
 
@@ -53,16 +49,34 @@ public class MeleeEnemyStateMachine : StateMachine
     {
         if (moving)
         {
-            enemyRB.MovePosition(
-                enemyRB.position + (moveDirection * stats.movementSpeed * Time.fixedDeltaTime)
-            );
+            enemyRB.AddForce(moveDirection * 2f * stats.movementSpeed);
         }
     }
 
     public override void SpawnEnemy()
     {
         health.SetMaxHealth(stats.health);
+        enemyVisual.SetActive(true);
         SwitchState(new MeleeEnemySpawnState(this));
+    }
+
+    public override void ResetEnemy()
+    {
+        base.ResetEnemy();
+        enemyVisual.SetActive(false);
+    }
+
+    public override void ToggleInactive(bool toggle)
+    {
+        ToggleCollider(!toggle);
+        ToggleVisual(!toggle);
+    }
+
+    public void PlayAttackAnimation()
+    {
+        smAnimator.SetTrigger("attack");
+
+        enemyWeapon.PlayAttackAnimation();
     }
 
     public Transform GetPlayerTransform()
@@ -70,37 +84,9 @@ public class MeleeEnemyStateMachine : StateMachine
         return playerTransform;
     }
 
-    private void HealthSystem_OnTakeDamage()
-    {
-        //Damage feedback
-        //Play hit sound?
-    }
-
-    private void HealthSystem_OnDeath(object sender, EventArgs e)
-    {
-        SwitchState(new MeleeEnemyDeadState(this));
-        OnEnemyDeath?.Invoke();
-    }
-
     public Vector2 GetAttackDirection()
     {
         return attackDirection;
-    }
-
-    public void SetAttackDirection(Vector2 direction)
-    {
-        attackDirection = direction;
-
-        // enemyWeapon.SetAttackDirection(direction);
-        enemyWeapon.SetAttackDirection(playerTransform.position);
-    }
-
-    public void PlayAttackAnimation()
-    {
-        //Trigger enemy attack animation
-
-        //Trigger weapon attack anim
-        enemyWeapon.PlayAttackAnimation();
     }
 
     public MeleeEnemyStats GetStats()
@@ -108,24 +94,9 @@ public class MeleeEnemyStateMachine : StateMachine
         return stats;
     }
 
-    public HealthSystem GetHealthSystem()
-    {
-        return health;
-    }
-
-    public LayerMask GetHittableLayerMask()
-    {
-        return hittableLayerMask;
-    }
-
     public Rigidbody2D GetRigidbody()
     {
         return enemyRB;
-    }
-
-    public void SetMoveDirection(Vector2 moveDirection)
-    {
-        this.moveDirection = moveDirection;
     }
 
     public void ToggleMovement(bool toggle)
@@ -140,13 +111,25 @@ public class MeleeEnemyStateMachine : StateMachine
 
     public void ToggleVisual(bool toggle)
     {
-        enemyVisual.SetActive(toggle);
         enemyWeapon.ToggleWeaponVisual(toggle);
     }
 
-    public override void ToggleInactive(bool toggle)
+    public void SetMoveDirection(Vector2 moveDirection)
     {
-        ToggleCollider(!toggle);
-        ToggleVisual(!toggle);
+        this.moveDirection = moveDirection;
+    }
+
+    public void SetAttackDirection(Vector2 direction)
+    {
+        attackDirection = direction;
+
+        // enemyWeapon.SetAttackDirection(direction);
+        enemyWeapon.SetAttackDirection(playerTransform.position);
+    }
+
+    private void HealthSystem_OnDeath(object sender, EventArgs e)
+    {
+        SwitchState(new MeleeEnemyDeadState(this));
+        OnEnemyDeath?.Invoke();
     }
 }

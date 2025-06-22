@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueChoices:
   - dialogueChoice: Actually, I hate it.
-    feedbackKey: Attack
+    feedbackKey: Music
     feedbackValue: 1
     attitudeModifier: -2
     feedbackType: 2
   - dialogueChoice: Damn, this is a bop.
-    feedbackKey: Attack
+    feedbackKey: Music
     feedbackValue: 0
     attitudeModifier: 1
     feedbackType: 1

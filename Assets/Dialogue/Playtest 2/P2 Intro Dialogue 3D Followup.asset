@@ -21,9 +21,12 @@ MonoBehaviour:
     - I genuinely don't understand how people do it. They're sheer arcanists.
     - Sooo yeah, we're doing something a bit closer to comfort. I am NOT extruding
       any more in my life than I have to.
+    - I've spent a lot of time making all the assets and putting it together, and
+      if it gets criticised I *might* cry, so I'll just assume neutral-to-good feedback.
     voiceClip:
     - {fileID: 8300000, guid: c3561fdbea4601345937c3541ec67d20, type: 3}
     - {fileID: 8300000, guid: a6228eb2047d9a649b2b2292791df819, type: 3}
     - {fileID: 8300000, guid: c0309f3adfa43ae49a32cf62f766503d, type: 3}
     - {fileID: 8300000, guid: e21bfc64088a4224a966b9492719dd2c, type: 3}
     - {fileID: 8300000, guid: 518105c573377ad488adca2e6e64569e, type: 3}
+    - {fileID: 8300000, guid: 208ed241d4069b14eac0c4a90e3d8de5, type: 3}

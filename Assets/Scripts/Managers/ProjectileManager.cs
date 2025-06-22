@@ -26,10 +26,9 @@ public class ProjectileManager : MonoBehaviour
         Projectile spawnedProjectile = projectiles[projectileIndex];
 
         spawnedProjectile.transform.position = spawnPosition;
-        // spawnedProjectile.transform.rotation = Quaternion.LookRotation(
-        //     flightDirection,
-        //     Vector3.forward
-        // );
+
+        float rotationAngle = Mathf.Atan2(flightDirection.y, flightDirection.x) * Mathf.Rad2Deg;
+        spawnedProjectile.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, rotationAngle));
 
         spawnedProjectile.Spawn(
             flightDirection,

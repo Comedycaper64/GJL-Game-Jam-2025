@@ -30,6 +30,9 @@ public class PlayerAbsorber : MonoBehaviour
     private GameObject absorbVisual;
 
     [SerializeField]
+    private GameObject buffVisual;
+
+    [SerializeField]
     private AudioClip absorbSFX;
 
     [SerializeField]
@@ -58,6 +61,7 @@ public class PlayerAbsorber : MonoBehaviour
 
         PlayerManager.OnPlayerDead += DisableAbsorber;
 
+        //If feedback on sound effects has been given, modify sound effect
         if (FeedbackManager.Instance.TryGetDictionaryValue("SFX", out int val))
         {
             if (val == 1)
@@ -72,6 +76,7 @@ public class PlayerAbsorber : MonoBehaviour
             }
         }
 
+        //If feedback on absorb has been given, modify active absorb ability
         if (FeedbackManager.Instance.TryGetDictionaryValue("Absorb", out int val2))
         {
             absorbType = val2;
@@ -121,7 +126,6 @@ public class PlayerAbsorber : MonoBehaviour
 
         ToggleAbsorber(true);
 
-        //Play Absorb Effect
         AudioManager.PlaySFX(absorbSFX, sfxVolume, 0, transform.position, sfxVariance);
     }
 
@@ -181,13 +185,13 @@ public class PlayerAbsorber : MonoBehaviour
         playerStats.damageBuff = projectilesAbsorbed;
         AudioManager.PlaySFX(absorbBuffSFX, sfxVolume, 0, transform.position, sfxVariance);
         StartCoroutine(BuffEnd());
-        //Enable buff visual
+        buffVisual.SetActive(true);
     }
 
     private IEnumerator BuffEnd()
     {
         yield return new WaitForSeconds(projectilesAbsorbed);
-        //Disable buff visual
+        buffVisual.SetActive(false);
         playerStats.damageBuff = 0;
     }
 

@@ -8,6 +8,9 @@ public class EnemyWeapon : MonoBehaviour
     private Vector2 playerTarget = Vector2.up;
 
     [SerializeField]
+    private float sfxVolume = 0.25f;
+
+    [SerializeField]
     private Transform weaponHolderTransform;
 
     [SerializeField]
@@ -22,11 +25,9 @@ public class EnemyWeapon : MonoBehaviour
     [SerializeField]
     private AudioClip weaponSwingAltSFX;
 
-    [SerializeField]
-    private float sfxVolume = 0.25f;
-
     private void Start()
     {
+        //If feedback on sound effects has been given, modify sound effect
         if (FeedbackManager.Instance.TryGetDictionaryValue("SFX", out int val))
         {
             if (val == 1)

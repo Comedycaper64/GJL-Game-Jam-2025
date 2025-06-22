@@ -83,10 +83,6 @@ public class CanvasGroupFader : MonoBehaviour
             FadeOut();
         }
 
-        // if (targetAlpha == canvasGroup.alpha)
-        // {
-        //     return;
-        // }
         this.tweenCurve = tweenCurve;
         bFade = true;
         tweenTimer = 0f;

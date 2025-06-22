@@ -1,26 +1,16 @@
-using UnityEngine;
-
 public class RangedEnemyDeadState : State
 {
-    private RangedEnemyStateMachine enemyStateMachine;
-
     public RangedEnemyDeadState(StateMachine stateMachine)
-        : base(stateMachine)
-    {
-        enemyStateMachine = stateMachine as RangedEnemyStateMachine;
-    }
+        : base(stateMachine) { }
 
     public override void Enter()
     {
-        // stateMachine.isDead = true;
-        // stateMachine.bodyCollider.enabled = false;
-        // stateMachine.animator.SetTrigger("die");
+        stateMachine.smAnimator.SetTrigger("death");
         stateMachine.ToggleInactive(true);
     }
 
     public override void Exit()
     {
-        //stateMachine.isDead = false;
         stateMachine.ToggleInactive(false);
     }
 

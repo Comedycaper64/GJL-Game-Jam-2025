@@ -3,8 +3,8 @@ using UnityEngine;
 public class RangedEnemyAttackState : State
 {
     private bool hasAttacked;
-    float stateTime = 1.5f;
-    float stateTimer;
+    private float stateTime = 1.5f;
+    private float stateTimer;
     private RangedEnemyStats stats;
     private RangedEnemyStateMachine enemyStateMachine;
     private HealthSystem playerHealth;
@@ -19,7 +19,7 @@ public class RangedEnemyAttackState : State
     public override void Enter()
     {
         stats = enemyStateMachine.GetStats();
-        //stateMachine.smAnimator.SetTrigger("attack");
+        stateMachine.smAnimator.SetTrigger("attack");
         hasAttacked = false;
         stateTimer = stateTime;
     }

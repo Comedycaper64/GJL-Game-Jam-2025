@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad92fcdf09f97848b791996cfbf95d5, type: 3}
+  m_Name: NPC Quip Dialogue
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialogue:
+    - Woah! Is that an adventurerr?! Am I seeing things?
+    - Wow! This place hasn't had a visitor in centuries!
+    - I've gotten pretty bored of eating cobwebs here, so you're a sight for sore
+      eyes!
+    - Now, I don't wanna get too cliche, but you're needed here!
+    - Things are bad... real bad. Wack as hell.
+    - You gotta take care of things, otherwise we're all screwed!
+    - I believe in you buddy! And hey, if you get outta here alive? Food's on me.
+    voiceClip: []

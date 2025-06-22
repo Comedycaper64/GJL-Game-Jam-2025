@@ -1,12 +1,12 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System;
+
 using System.Collections;
 
 public class GameEndUI : PlaytestEndUI
 {
-    private int constructiveThreshold = 10;
+    private int constructiveThreshold = 9;
     private int driveThreshold = 15;
     private bool constructivePlayer = false;
     private bool drivenDeveloper = false;

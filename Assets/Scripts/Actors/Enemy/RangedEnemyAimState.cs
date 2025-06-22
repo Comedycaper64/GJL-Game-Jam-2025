@@ -4,7 +4,7 @@ public class RangedEnemyAimState : State
 {
     private float weaponAttackTimer = 0f;
     private float weaponAttackTime;
-    private Rigidbody2D rb;
+
     private RangedEnemyStats stats;
     private RangedEnemyStateMachine enemyStateMachine;
 
@@ -12,7 +12,6 @@ public class RangedEnemyAimState : State
         : base(stateMachine)
     {
         enemyStateMachine = stateMachine as RangedEnemyStateMachine;
-        rb = enemyStateMachine.GetRigidbody();
     }
 
     public override void Enter()
@@ -23,28 +22,15 @@ public class RangedEnemyAimState : State
             + Random.Range(-stats.weaponAttackVariance, stats.weaponAttackVariance);
         weaponAttackTimer = 0f;
         enemyStateMachine.ToggleMovement(true);
-
-        //stateMachine.smAnimator.SetBool("chasing", true);
     }
 
     public override void Exit()
     {
-        //stateMachine.smAnimator.SetBool("chasing", false);
-
-        Vector2 attackDirection = (
-            enemyStateMachine.GetPlayerTransform().position - stateMachine.transform.position
-        ).normalized;
-
         enemyStateMachine.ToggleMovement(false);
     }
 
     public override void Tick(float deltaTime)
     {
-        // if (!stateMachine.canMove)
-        // {
-        //     return;
-        // }
-
         float distanceToPlayer = Vector2.Distance(
             enemyStateMachine.GetPlayerTransform().position,
             stateMachine.transform.position
@@ -77,8 +63,6 @@ public class RangedEnemyAimState : State
             }
         }
 
-        //stateMachine.transform.position += directionToMove * stats.movementSpeed * deltaTime;
-        //rb.MovePosition(rb.position + ((Vector2)directionToMove * stats.movementSpeed * deltaTime));
         enemyStateMachine.SetMoveDirection(directionToMove);
     }
 }

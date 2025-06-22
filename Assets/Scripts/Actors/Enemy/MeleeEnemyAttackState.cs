@@ -3,8 +3,8 @@ using UnityEngine;
 public class MeleeEnemyAttackState : State
 {
     private bool hasAttacked;
-    float stateTime = 1.5f;
-    float stateTimer;
+    private float stateTime = 1.5f;
+    private float stateTimer;
     private MeleeEnemyStats stats;
     private MeleeEnemyStateMachine enemyStateMachine;
     private HealthSystem playerHealth;
@@ -53,7 +53,7 @@ public class MeleeEnemyAttackState : State
         if (
             (
                 Vector2.Distance(playerHealth.transform.position, stateMachine.transform.position)
-                <= stats.weaponAttackRange
+                <= stats.weaponDamageRange
             )
             && (
                 Vector2.Dot(attackDirection, playerDirectionFromEnemy)
